@@ -54,6 +54,7 @@ namespace Ganzenbord
                     counter++;
 
                     //Matrix[i, j] = counter;
+                    //
                 }
             }
         }
