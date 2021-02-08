@@ -41,5 +41,8 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
         </Grid>
+        <TextBox x:Name="textboxje" Grid.Row="2" Grid.Column="2" ></TextBox>
+        <TextBox x:Name="textboxje1" Grid.Row="2" Grid.Column="1" ></TextBox>
+        <Button Content="Click Me!" Grid.Row="1" Grid.Column="2" Click="Button_Click" />
     </Grid>
 </Window>

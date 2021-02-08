@@ -20,20 +20,17 @@ namespace Ganzenbord
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Game _game;
+
         public MainWindow()
         {
             InitializeComponent();
+            _game = new Game();
+            CreateBoardFrontEnd();
+        }
 
-            int x = 0;
-            int y = 0;
-
-            int counter = 0;
-
-            Dictionary<int, StackPanel> field = new Dictionary<int, StackPanel>();
-
-            //field.Add(1,S)
-            //StackPanel[,] matrix = new StackPanel[8, 8];
-
+        public void CreateBoardFrontEnd()
+        {
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -42,20 +39,53 @@ namespace Ganzenbord
 
                     Label label1 = new Label();
                     Label label2 = new Label();
-                    label1.Content = $"test {i} {j}";
-                    label2.Content = $"iets {i} {j}";
+
+                    label1.Content = _game.board[i, j].ListIndex;
+                    label2.Content = _game.board[i, j].Number;
+                    label2.FontSize = 15;
+                    label2.Foreground = new SolidColorBrush(Colors.Red);
 
                     panel.Children.Add(label1);
                     panel.Children.Add(label2);
 
                     BordGrid.Children.Add(panel);
+
                     Grid.SetRow(panel, i);
                     Grid.SetColumn(panel, j);
-                    counter++;
-
-                    //Matrix[i, j] = counter;
                 }
             }
+        }
+
+        private void UpdateGrid(Field field)
+        {
+            StackPanel panel = new StackPanel();
+            Label label1 = new Label();
+
+            label1.Content = $"{field.ListIndex}...";
+
+            panel.Children.Add(label1);
+
+            BordGrid.Children.RemoveAt(field.ListIndex);
+            BordGrid.Children.Insert(field.ListIndex, panel);
+
+            Grid.SetRow(panel, field.X);
+            Grid.SetColumn(panel, field.Y);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //dit is een test
+
+            int x = Convert.ToInt32(textboxje.Text);
+            int y = Convert.ToInt32(textboxje1.Text);
+
+            textboxje.Text = "";
+            textboxje1.Text = "";
+
+            Field field = new Field();
+            field = _game.board[x, y];
+
+            UpdateGrid(field);
         }
     }
 }
