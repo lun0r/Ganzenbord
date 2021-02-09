@@ -4,17 +4,32 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
     internal class Game
     {
-        public Field[,] board;
-        public ObservableCollection<Field> boardList = new ObservableCollection<Field>();
+        private readonly ObservableCollection<Field> boardList = new ObservableCollection<Field>();
 
-        public Game()
+        private MainWindow _frontend;
+        private Dice _dice;
+
+        public Game(MainWindow frontend)
+        {
+            _frontend = frontend;
+            _dice = new Dice();
+            SetUpBoard();
+
+            Test();
+        }
+
+        private void SetUpBoard()
         {
             CreateBoardList();
+            MakeFieldNumbers();
+            FillBoardGrid();
+            SetBoardImgAndSpecials();
         }
 
         private void CreateBoardList()
@@ -31,12 +46,6 @@ namespace Ganzenbord
                     counter++;
                 }
             }
-
-            //add special props - images
-            //boardList[6].Background.Source =
-            boardList[6].Special = "bounce";
-
-            MakeFieldNumbers();
         }
 
         private void MakeFieldNumbers()
@@ -51,66 +60,87 @@ namespace Ganzenbord
                 {
                     boardList.Where(x => x.X == i).Where(x => x.Y == b).FirstOrDefault().Number = counter;
                     counter++;
-                    /* old way ↓
-                     * foreach (var list in boardList)
-                     {
-                         if (list.X == i && list.Y == b)
-                         {
-                             list.Number = counter;
-                         }
-                     }
-
-                     board[i, b].Number = counter;
-                    */
                 }
                 for (int i = b + 1; i < a - 1; i++)
                 {
                     boardList.Where(x => x.X == a - 1).Where(x => x.Y == i).FirstOrDefault().Number = counter;
                     counter++;
-                    /* old way ↓
-                    foreach (var list in boardList)
-                    {
-                        if (list.X == a - 1 && list.Y == i)
-                        {
-                            list.Number = counter;
-                        }
-                    }
-                    board[a - 1, i].Number = counter;
-                    */
                 }
                 for (int i = a - 1; i > b; i--)
                 {
                     boardList.Where(x => x.X == i).Where(x => x.Y == a - 1).FirstOrDefault().Number = counter;
                     counter++;
-                    /* old way ↓
-                    foreach (var list in boardList)
-                    {
-                        if (list.X == i && list.Y == a - 1)
-                        {
-                            list.Number = counter;
-                        }
-                    }
-                    board[i, a - 1].Number = counter;
-                    */
                 }
                 for (int i = a - 1; i > b; i--)
                 {
                     boardList.Where(x => x.X == b).Where(x => x.Y == i).FirstOrDefault().Number = counter;
                     counter++;
-                    /* old way ↓
-                    foreach (var list in boardList)
-                    {
-                        if (list.X == b && list.Y == i)
-                        {
-                            list.Number = counter;
-                        }
-                    }
-                    board[b, i].Number = counter;
-                    */
                 }
                 a--;
                 b++;
             }
+        }
+
+        private void FillBoardGrid()
+        {
+            foreach (var field in boardList)
+            {
+                field.Label1.Content = field.Number;
+                field.Label2.Content = field.Special;
+
+                _frontend.BordGrid.Children.Add(field.Grid);
+
+                Grid.SetRow(field.Grid, field.X);
+                Grid.SetColumn(field.Grid, field.Y);
+            }
+        }
+
+        private void SetBoardImgAndSpecials()
+        {
+            //TODO
+            //add special props - images
+
+            boardList[6].Special = "bounce";
+        }
+
+        public void RunGame()
+        {
+            Player player1 = new Player("player1", null);
+
+            int roll1 = player1.RollDice();
+            int roll2 = player1.RollDice();
+
+            player1.Pion = new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative));
+
+            //Test();
+            //Field field = boardList[1];
+            //Test2(player1);
+
+            UpdateField(player1);
+        }
+
+        private void Test()
+        {
+            _frontend.textboxje.Text = "jawadedada";
+            boardList.Where(x => x.Number == 8).FirstOrDefault().Label2.Content = "test";
+            boardList.Where(x => x.Number == 63).FirstOrDefault().Background.Source = new BitmapImage(new Uri("/Images/63.jpg", UriKind.Relative));
+            boardList.Where(x => x.Number == 62).FirstOrDefault().Background.Source = new BitmapImage(new Uri("/Images/rightunder.jpg", UriKind.Relative));
+            BitmapImage test = new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative));
+
+            boardList.Where(x => x.Number == 62).FirstOrDefault().GamePiece.Source = test;
+            boardList.Where(x => x.Number == 63).FirstOrDefault().GamePiece.Source = test;
+        }
+
+        private void UpdateField(Player player)
+        {
+            //boardList.Where(x => x.Number == 5).FirstOrDefault().Label2.Content = "nr5";
+
+            //boardList.Where(x => x == field).FirstOrDefault().Background.Source = field.Background.Source;
+
+            player.OldBoardPosition = 63;
+            player.NewBoardPosition = 53;
+            boardList.Where(x => x.Number == player.OldBoardPosition).FirstOrDefault().GamePiece.Source = null;
+            boardList.Where(x => x.Number == player.NewBoardPosition).FirstOrDefault().GamePiece.Source = player.Pion;
         }
     }
 }

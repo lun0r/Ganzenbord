@@ -2,32 +2,44 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
     internal class Player
     {
+        private Random rnd;
         public string Name { get; set; }
-        public int BoardPosition { get; set; } = 0;
+        public int NewBoardPosition { get; set; } = 0;
+        public int OldBoardPosition { get; set; } = 0;
         public Image Avatar { get; set; }
+        public BitmapImage Pion { get; set; }
 
         public Player(string name, Image avatar)
         {
+            rnd = new Random();
             Name = name;
             Avatar = avatar;
         }
 
         public int Move(int diceTotal)
         {
-            if (BoardPosition + diceTotal >= 63)
+            OldBoardPosition = NewBoardPosition;
+
+            if (NewBoardPosition + diceTotal >= 63)
             {
-                BoardPosition += diceTotal;
+                NewBoardPosition += diceTotal;
             }
             else
             {
-                BoardPosition = 63 + (63 - (BoardPosition + diceTotal));
+                NewBoardPosition = 63 + (63 - (NewBoardPosition + diceTotal));
             }
-            return BoardPosition;
+            return NewBoardPosition;
+        }
+
+        public int RollDice()
+        {
+            return rnd.Next(1, 7);
         }
     }
 }
