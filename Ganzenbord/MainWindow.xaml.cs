@@ -45,6 +45,9 @@ namespace Ganzenbord
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            _game.boardList.Where(x => x.Number == 8).FirstOrDefault().Label2.Content = "test";
+
+            /* old way ↓
             foreach (var item in _game.boardList)
             {
                 if (item.Number == 8)
@@ -52,6 +55,7 @@ namespace Ganzenbord
                     item.Label2.Content = "test";
                 }
             }
+            */
         }
     }
 }

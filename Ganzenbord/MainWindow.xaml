@@ -27,7 +27,16 @@
               Grid.Row="1"
               Grid.Column="1"
               ShowGridLines="True">
-
+            <Grid.Resources>
+                <Style TargetType="Image">
+                    <Setter Property="Width"
+                            Value="{Binding Path=ActualWidth, ElementName=canvas1}" />
+                    <Setter Property="Height"
+                            Value="{Binding Path=ActualHeight, ElementName=canvas1}" />
+                    <Setter Property="Stretch"
+                            Value="Fill" />
+                </Style>
+            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
