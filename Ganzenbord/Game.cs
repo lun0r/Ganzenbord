@@ -14,30 +14,16 @@ namespace Ganzenbord
         public Game()
         {
             CreateBoardList();
-            //MakeFieldNumbers();
         }
 
         private void CreateBoardList()
         {
-            //for (int i = 0; i < 64; i++)
-            //{
-            //    Field field = new Field();
-            //    field.Number = i;
-
-            //    boardList[i] = field;
-            //}
             int counter = 0;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    Field field = new Field();
-                    field.X = i;
-                    field.Y = j;
-                    field.Number = counter;
-                    field.Special = ".";
-
-                    //more props
+                    Field field = new Field(counter, i, j);
 
                     boardList.Add(field);
 
@@ -45,32 +31,11 @@ namespace Ganzenbord
                 }
             }
 
-            //add special props
+            //add special props - images
+            //boardList[6].Background.Source =
             boardList[6].Special = "bounce";
 
             MakeFieldNumbers();
-        }
-
-        private void CreateBoard()
-        {
-            board = new Field[8, 8];
-
-            int counter = 0;
-
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    Field field = new Field();
-                    field.ListIndex = counter;
-                    field.X = i;
-                    field.Y = j;
-
-                    board[i, j] = field;
-
-                    counter++;
-                }
-            }
         }
 
         private void MakeFieldNumbers()

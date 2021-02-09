@@ -20,94 +20,36 @@ namespace Ganzenbord
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Game _game;
+        private readonly Game _game;
 
         public MainWindow()
         {
             InitializeComponent();
             _game = new Game();
-            //CreateBoardFrontEnd();
-            Test();
-            //PieOverViewList.ItemsSource = _game.boardList;
+            FillBoardGrid();
         }
 
-        public void Test()
+        public void FillBoardGrid()
         {
             foreach (var field in _game.boardList)
             {
-                field._label1.Content = field.Number;
-                field._label2.Content = field.Special;
+                field.Label1.Content = field.Number;
+                field.Label2.Content = field.Special;
 
-                BordGrid.Children.Add(field._grid);
+                BordGrid.Children.Add(field.Grid);
 
-                Grid.SetRow(field._grid, field.X);
-                Grid.SetColumn(field._grid, field.Y);
+                Grid.SetRow(field.Grid, field.X);
+                Grid.SetColumn(field.Grid, field.Y);
             }
-        }
-
-        public void CreateBoardFrontEnd()
-        {
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    StackPanel panel = new StackPanel();
-
-                    Label label1 = new Label();
-                    Label label2 = new Label();
-
-                    label1.Content = _game.board[i, j].ListIndex;
-                    label2.Content = _game.board[i, j].Number;
-                    label2.FontSize = 15;
-                    label2.Foreground = new SolidColorBrush(Colors.Red);
-
-                    panel.Children.Add(label1);
-                    panel.Children.Add(label2);
-
-                    BordGrid.Children.Add(panel);
-
-                    Grid.SetRow(panel, i);
-                    Grid.SetColumn(panel, j);
-                }
-            }
-        }
-
-        private void UpdateGrid(Field field)
-        {
-            StackPanel panel = new StackPanel();
-            Label label1 = new Label();
-
-            label1.Content = $"{field.ListIndex}...";
-
-            panel.Children.Add(label1);
-
-            BordGrid.Children.RemoveAt(field.ListIndex);
-            BordGrid.Children.Insert(field.ListIndex, panel);
-
-            Grid.SetRow(panel, field.X);
-            Grid.SetColumn(panel, field.Y);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //dit is een test
-
-            //int x = Convert.ToInt32(textboxje.Text);
-            //int y = Convert.ToInt32(textboxje1.Text);
-
-            //textboxje.Text = "";
-            //textboxje1.Text = "";
-
-            //Field field = new Field();
-            //field = _game.board[x, y];
-
-            //UpdateGrid(field);
-
             foreach (var item in _game.boardList)
             {
                 if (item.Number == 8)
                 {
-                    item._label2.Content = "test";
+                    item.Label2.Content = "test";
                 }
             }
         }
