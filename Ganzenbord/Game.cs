@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 
@@ -48,20 +49,25 @@ namespace Ganzenbord
             {
                 for (int i = b; i < a; i++)
                 {
-                    foreach (var list in boardList)
-                    {
-                        if (list.X == i && list.Y == b)
-                        {
-                            list.Number = counter;
-                        }
-                    }
-
-                    //board[i, b].Number = counter;
-
+                    boardList.Where(x => x.X == i).Where(x => x.Y == b).FirstOrDefault().Number = counter;
                     counter++;
+                    /* old way ↓
+                     * foreach (var list in boardList)
+                     {
+                         if (list.X == i && list.Y == b)
+                         {
+                             list.Number = counter;
+                         }
+                     }
+
+                     board[i, b].Number = counter;
+                    */
                 }
                 for (int i = b + 1; i < a - 1; i++)
                 {
+                    boardList.Where(x => x.X == a - 1).Where(x => x.Y == i).FirstOrDefault().Number = counter;
+                    counter++;
+                    /* old way ↓
                     foreach (var list in boardList)
                     {
                         if (list.X == a - 1 && list.Y == i)
@@ -69,11 +75,14 @@ namespace Ganzenbord
                             list.Number = counter;
                         }
                     }
-                    //board[a - 1, i].Number = counter;
-                    counter++;
+                    board[a - 1, i].Number = counter;
+                    */
                 }
                 for (int i = a - 1; i > b; i--)
                 {
+                    boardList.Where(x => x.X == i).Where(x => x.Y == a - 1).FirstOrDefault().Number = counter;
+                    counter++;
+                    /* old way ↓
                     foreach (var list in boardList)
                     {
                         if (list.X == i && list.Y == a - 1)
@@ -81,11 +90,14 @@ namespace Ganzenbord
                             list.Number = counter;
                         }
                     }
-                    //board[i, a - 1].Number = counter;
-                    counter++;
+                    board[i, a - 1].Number = counter;
+                    */
                 }
                 for (int i = a - 1; i > b; i--)
                 {
+                    boardList.Where(x => x.X == b).Where(x => x.Y == i).FirstOrDefault().Number = counter;
+                    counter++;
+                    /* old way ↓
                     foreach (var list in boardList)
                     {
                         if (list.X == b && list.Y == i)
@@ -93,8 +105,8 @@ namespace Ganzenbord
                             list.Number = counter;
                         }
                     }
-                    //board[b, i].Number = counter;
-                    counter++;
+                    board[b, i].Number = counter;
+                    */
                 }
                 a--;
                 b++;

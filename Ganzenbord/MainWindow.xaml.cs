@@ -45,6 +45,12 @@ namespace Ganzenbord
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            _game.boardList.Where(x => x.Number == 8).FirstOrDefault().Label2.Content = "test";
+            _game.boardList.Where(x => x.Number == 63).FirstOrDefault().Background.Source = new BitmapImage(new Uri("/Images/63.jpg", UriKind.Relative));
+            _game.boardList.Where(x => x.Number == 62).FirstOrDefault().Background.Source = new BitmapImage(new Uri("/Images/rightunder.jpg", UriKind.Relative));
+            _game.boardList.Where(x => x.Number == 62).FirstOrDefault().GamePiece.Source = new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative));
+
+            /* old way ↓
             foreach (var item in _game.boardList)
             {
                 if (item.Number == 8)
@@ -52,6 +58,7 @@ namespace Ganzenbord
                     item.Label2.Content = "test";
                 }
             }
+            */
         }
     }
 }
