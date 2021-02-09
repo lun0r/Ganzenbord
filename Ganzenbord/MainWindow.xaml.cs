@@ -35,25 +35,13 @@ namespace Ganzenbord
         {
             foreach (var field in _game.boardList)
             {
-                Grid grid = new Grid();
-                Label label1 = new Label();
-                Label label2 = new Label();
+                field._label1.Content = field.Number;
+                field._label2.Content = field.Special;
 
-                label1.Content = field.Number;
-                //label2.Content = field.Special;
+                BordGrid.Children.Add(field._grid);
 
-                Binding binding = new Binding("Text");
-                binding.Source = field.Special;
-
-                label2.SetBinding("Text", binding);
-
-                grid.Children.Add(label1);
-                grid.Children.Add(label2);
-
-                BordGrid.Children.Add(grid);
-
-                Grid.SetRow(grid, field.X);
-                Grid.SetColumn(grid, field.Y);
+                Grid.SetRow(field._grid, field.X);
+                Grid.SetColumn(field._grid, field.Y);
             }
         }
 
@@ -115,7 +103,13 @@ namespace Ganzenbord
 
             //UpdateGrid(field);
 
-            _game.boardList[8].Special = "test";
+            foreach (var item in _game.boardList)
+            {
+                if (item.Number == 8)
+                {
+                    item._label2.Content = "test";
+                }
+            }
         }
     }
 }
