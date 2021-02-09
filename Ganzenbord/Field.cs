@@ -10,5 +10,6 @@ namespace Ganzenbord
         public int X { get; set; }
         public int Y { get; set; }
         public int Number { get; set; }
+        public string Special { get; set; }
     }
 }

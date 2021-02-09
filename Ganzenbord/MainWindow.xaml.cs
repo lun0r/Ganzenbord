@@ -26,7 +26,35 @@ namespace Ganzenbord
         {
             InitializeComponent();
             _game = new Game();
-            CreateBoardFrontEnd();
+            //CreateBoardFrontEnd();
+            Test();
+            //PieOverViewList.ItemsSource = _game.boardList;
+        }
+
+        public void Test()
+        {
+            foreach (var field in _game.boardList)
+            {
+                Grid grid = new Grid();
+                Label label1 = new Label();
+                Label label2 = new Label();
+
+                label1.Content = field.Number;
+                //label2.Content = field.Special;
+
+                Binding binding = new Binding("Text");
+                binding.Source = field.Special;
+
+                label2.SetBinding("Text", binding);
+
+                grid.Children.Add(label1);
+                grid.Children.Add(label2);
+
+                BordGrid.Children.Add(grid);
+
+                Grid.SetRow(grid, field.X);
+                Grid.SetColumn(grid, field.Y);
+            }
         }
 
         public void CreateBoardFrontEnd()
@@ -76,16 +104,18 @@ namespace Ganzenbord
         {
             //dit is een test
 
-            int x = Convert.ToInt32(textboxje.Text);
-            int y = Convert.ToInt32(textboxje1.Text);
+            //int x = Convert.ToInt32(textboxje.Text);
+            //int y = Convert.ToInt32(textboxje1.Text);
 
-            textboxje.Text = "";
-            textboxje1.Text = "";
+            //textboxje.Text = "";
+            //textboxje1.Text = "";
 
-            Field field = new Field();
-            field = _game.board[x, y];
+            //Field field = new Field();
+            //field = _game.board[x, y];
 
-            UpdateGrid(field);
+            //UpdateGrid(field);
+
+            _game.boardList[8].Special = "test";
         }
     }
 }
