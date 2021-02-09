@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ganzenbord"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow"
+        Height="600"
+        Width="800">
+
     <Grid x:Name="WindowGrid">
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -17,8 +20,13 @@
             <ColumnDefinition Width="6*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <Border Grid.Row="1" Grid.Column="1" Background="yellow" />
-        <Grid x:Name="BordGrid" Grid.Row="1" Grid.Column="1" ShowGridLines="True">
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Background="yellow" />
+        <Grid x:Name="BordGrid"
+              Grid.Row="1"
+              Grid.Column="1"
+              ShowGridLines="True">
 
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -41,8 +49,15 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
         </Grid>
-        <TextBox x:Name="textboxje" Grid.Row="2" Grid.Column="2" ></TextBox>
-        <TextBox x:Name="textboxje1" Grid.Row="2" Grid.Column="1" ></TextBox>
-        <Button Content="Click Me!" Grid.Row="1" Grid.Column="2" Click="Button_Click" />
+        <TextBox x:Name="textboxje"
+                 Grid.Row="2"
+                 Grid.Column="2"></TextBox>
+        <TextBox x:Name="textboxje1"
+                 Grid.Row="2"
+                 Grid.Column="1"></TextBox>
+        <Button Content="Click Me!"
+                Grid.Row="1"
+                Grid.Column="2"
+                Click="Button_Click" />
     </Grid>
 </Window>
