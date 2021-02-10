@@ -20,7 +20,7 @@ namespace Ganzenbord
             rnd = new Random();
             Name = name;
             Avatar = avatar;
-            Pion = pion2;
+            Pion = pion;
         }
 
         public int Move(int diceTotal)
