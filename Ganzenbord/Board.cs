@@ -22,27 +22,10 @@ namespace Ganzenbord
         //in code behind zetten:
         public void SetUpBoard()
         {
-            CreateBoardList();
             SetSpiral();
             SetCorners();
             SetSpecials();
             FillBoardGrid();
-        }
-
-        private void CreateBoardList()
-        {
-            int counter = 0;
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    Field field = new Field(counter, i, j);
-
-                    BoardList.Add(field);
-
-                    counter++;
-                }
-            }
         }
 
         private void SetSpiral()
@@ -55,9 +38,9 @@ namespace Ganzenbord
             {
                 for (int i = b; i < a; i++)
                 {
-                    Field currentField = BoardList.Where(x => x.X == i).Where(x => x.Y == b).FirstOrDefault();
+                    Field currentField = new Field(counter, i, b);
 
-                    currentField.Number = counter;
+                    BoardList.Add(currentField);
 
                     currentField.Background.Source = new BitmapImage(new Uri("/Images/vertical.jpg", UriKind.Relative));
 
@@ -65,24 +48,27 @@ namespace Ganzenbord
                 }
                 for (int i = b + 1; i < a - 1; i++)
                 {
-                    Field currentField = BoardList.Where(x => x.X == a - 1).Where(x => x.Y == i).FirstOrDefault();
-                    currentField.Number = counter;
+                    Field currentField = new Field(counter, a - 1, i);
+
+                    BoardList.Add(currentField);
                     currentField.Background.Source = new BitmapImage(new Uri("/Images/horizontal.jpg", UriKind.Relative));
 
                     counter++;
                 }
                 for (int i = a - 1; i > b; i--)
                 {
-                    Field currentField = BoardList.Where(x => x.X == i).Where(x => x.Y == a - 1).FirstOrDefault();
-                    currentField.Number = counter;
+                    Field currentField = new Field(counter, i, a - 1);
+
+                    BoardList.Add(currentField);
                     currentField.Background.Source = new BitmapImage(new Uri("/Images/vertical.jpg", UriKind.Relative));
 
                     counter++;
                 }
                 for (int i = a - 1; i > b; i--)
                 {
-                    Field currentField = BoardList.Where(x => x.X == b).Where(x => x.Y == i).FirstOrDefault();
-                    currentField.Number = counter;
+                    Field currentField = new Field(counter, b, i);
+                    BoardList.Add(currentField);
+
                     currentField.Background.Source = new BitmapImage(new Uri("/Images/horizontal.jpg", UriKind.Relative));
 
                     counter++;
@@ -90,6 +76,8 @@ namespace Ganzenbord
                 a--;
                 b++;
             }
+
+            int aaa = 0;
         }
 
         private void SetCorners()
@@ -154,6 +142,7 @@ namespace Ganzenbord
                     case 50:
                     case 54:
                     case 59:
+
                         field.SpecialImage.Source = new BitmapImage(new Uri("/Images/goose.png", UriKind.Relative));
                         field.Special = SpecialFields.Goose;
                         break;
@@ -176,8 +165,8 @@ namespace Ganzenbord
 
         public void UpdateField(Player player)
         {
-            BoardList.Where(x => x.Number == player.OldBoardPosition).FirstOrDefault().GamePiece.Source = null;
-            BoardList.Where(x => x.Number == player.NewBoardPosition).FirstOrDefault().GamePiece.Source = player.Pion;
+            BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).GamePiece.Source = null;
+            BoardList.FirstOrDefault(x => x.Number == player.NewBoardPosition).GamePiece.Source = player.Pion;
         }
     }
 }

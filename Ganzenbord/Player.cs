@@ -34,7 +34,7 @@ namespace Ganzenbord
             }
             else
             {
-                NewBoardPosition = 63 + (63 - (NewBoardPosition + diceTotal));
+                NewBoardPosition = 126 - (NewBoardPosition + diceTotal);
             }
             return NewBoardPosition;
         }
