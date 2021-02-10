@@ -17,6 +17,7 @@ namespace Ganzenbord
         public Game(MainWindow frontend)
         {
             _board = new Board(frontend);
+
             _board.SetUpBoard();
         }
 
