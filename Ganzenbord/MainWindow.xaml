@@ -66,12 +66,12 @@
         </Grid>
 
         <!--andere naam voor SetUI-->
-        
+
         <Grid x:Name="SidePanelSetup"
               Grid.Row="1"
               Grid.Column="2"
               Visibility="Visible"
-              DataContext="{Binding SetUI}">
+              DataContext="{Binding StartSidebar}">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -90,16 +90,16 @@
                 Grid.Row="3"
                 Grid.Column="3"
                 Click="Button_Click" />
-            <TextBox Grid.Row="0"  Text="{Binding BoundNumber, Mode=TwoWay}"></TextBox>
+            <TextBox Grid.Row="0"  Text="{Binding PropStart, Mode=TwoWay}"></TextBox>
 
-            <Slider  Grid.Row="1" Value="{Binding BoundNumber, Mode=TwoWay}"></Slider>
+            <Slider  Grid.Row="1" Value="{Binding PropStart, Mode=TwoWay}"></Slider>
         </Grid>
 
         <Grid x:Name="SidePanelPlaying"
               Grid.Row="1"
               Grid.Column="2"
               Visibility="Hidden"
-              DataContext="{Binding SetGame}">
+              DataContext="{Binding PlaySidebar}">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -114,7 +114,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Content="{Binding Path=Prop, Mode=TwoWay}"
+            <Button Content="{Binding PropPlay, Mode=TwoWay}"
 
                 Grid.Row="3"
                 Grid.Column="3"
