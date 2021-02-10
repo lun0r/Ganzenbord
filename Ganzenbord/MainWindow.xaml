@@ -43,7 +43,7 @@
                     <Setter Property="FontSize"
                             Value="20" />
                     <Setter Property="Foreground"
-                            Value="WhiteSmoke" />
+                            Value="GhostWhite" />
                 </Style>
             </Grid.Resources>
             <Grid.RowDefinitions>
