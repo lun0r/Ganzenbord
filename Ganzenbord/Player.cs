@@ -8,7 +8,7 @@ namespace Ganzenbord
 {
     public class Player
     {
-        private readonly Random rnd;
+        readonly private Dice dice;
         public string Name { get; set; }
         public int NewBoardPosition { get; set; } = 0;
         public int OldBoardPosition { get; set; } = 0;
@@ -17,10 +17,11 @@ namespace Ganzenbord
 
         public Player(string name, Image avatar, BitmapImage pion)
         {
-            rnd = new Random();
             Name = name;
             Avatar = avatar;
             Pion = pion;
+
+            dice = new Dice();
         }
 
         public int Move(int diceTotal)
@@ -40,7 +41,7 @@ namespace Ganzenbord
 
         public int RollDice()
         {
-            return rnd.Next(1, 7);
+            return dice.Roll();
         }
     }
 }
