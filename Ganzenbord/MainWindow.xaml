@@ -65,6 +65,8 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
+        <!--andere naam voor SetUI-->
+        
         <Grid x:Name="SidePanelSetup"
               Grid.Row="1"
               Grid.Column="2"
@@ -88,8 +90,9 @@
                 Grid.Row="3"
                 Grid.Column="3"
                 Click="Button_Click" />
-            <TextBox Grid.Row="0"  Text="{Binding Path=BoundNumber, Mode=TwoWay}"></TextBox>
-            <Slider  Grid.Row="1" Value="{Binding Path=BoundNumber, Mode=TwoWay}"></Slider>
+            <TextBox Grid.Row="0"  Text="{Binding BoundNumber, Mode=TwoWay}"></TextBox>
+
+            <Slider  Grid.Row="1" Value="{Binding BoundNumber, Mode=TwoWay}"></Slider>
         </Grid>
 
         <Grid x:Name="SidePanelPlaying"

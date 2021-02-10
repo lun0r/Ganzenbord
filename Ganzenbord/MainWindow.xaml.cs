@@ -12,16 +12,14 @@ namespace Ganzenbord
     {
         private readonly Game _game;
 
-        public SetupGame SetGame { get; set; }
-        public UserInteractionWindow SetUI { get; set; }
+        private BoardData boardData;
 
+        //nieuw object maken ipv alles mee te geven aan datacontext
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = this;
-
-            SetGame = SetupGame.GetSetupWindow();
-            SetUI = UserInteractionWindow.GetUserInteractionWindow();
+            boardData = new BoardData();
+            DataContext = boardData;
 
             _game = new Game(this);
         }
