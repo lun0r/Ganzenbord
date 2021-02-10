@@ -48,7 +48,8 @@ namespace Ganzenbord
  * layout.. design map pieces
  * Pagina -> spelregels uitleg
  *
- * SpecialField: Field (inheretance) + opbouwen board vanuit Backend.
+ * SpecialField: Field (inheritance) + opbouwen board vanuit Backend.
+ * methode execute fixen -> voor elke optie inheriten van executeable methode "Square", functionaliteit zit dan in vakje zelf
  *
  *
  */

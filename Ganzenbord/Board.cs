@@ -19,6 +19,7 @@ namespace Ganzenbord
             BoardList = new ObservableCollection<Field>();
         }
 
+        //in code behind zetten:
         public void SetUpBoard()
         {
             CreateBoardList();
