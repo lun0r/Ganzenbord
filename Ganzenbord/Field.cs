@@ -51,5 +51,5 @@ namespace Ganzenbord
  * SpecialField: Field (inheritance) + opbouwen board vanuit Backend.
  * methode execute fixen -> voor elke optie inheriten van executeable methode "Square", functionaliteit zit dan in vakje zelf
  *
- *
+ * huidige plaatsen meegeven in venstertje
  */
