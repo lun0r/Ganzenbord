@@ -17,7 +17,7 @@ namespace Ganzenbord
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _game.RunGame();
+            _game.TestRun();
         }
     }
 }

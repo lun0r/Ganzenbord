@@ -7,8 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="UI\**" />
+    <EmbeddedResource Remove="UI\**" />
+    <None Remove="UI\**" />
+    <Page Remove="UI\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Images\0.jpg" />
     <None Remove="Images\63.jpg" />
+    <None Remove="Images\goose.png" />
     <None Remove="Images\horizontal.jpg" />
     <None Remove="Images\lefttop.jpg" />
     <None Remove="Images\leftunder.jpg" />
@@ -26,6 +34,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\63.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\goose.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\horizontal.jpg">
@@ -58,10 +69,6 @@
     <Resource Include="Images\vertical.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UI\" />
   </ItemGroup>
 
   <ItemGroup>

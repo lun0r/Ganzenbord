@@ -10,40 +10,38 @@ namespace Ganzenbord
 {
     internal class Game
     {
-        private MainWindow _frontend;
-        private Dice _dice;
+        private readonly List<Player> PlayerList = new List<Player>();
+
         public Board _board;
 
         public Game(MainWindow frontend)
         {
-            _frontend = frontend;
-            _dice = new Dice();
             _board = new Board(frontend);
             _board.SetUpBoard();
         }
 
-        public void RunGame()
+        private void MakeNewPlayer(string name, Image avatar, BitmapImage pion)
         {
-            BitmapImage Pion = new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative));
-            Player player1 = new Player("player1", null, Pion);
+            Player player = new Player(name, avatar, pion);
+            PlayerList.Add(player);
+        }
 
-            int roll1 = player1.RollDice();
-            int roll2 = player1.RollDice();
-
-            //Test();
-            //Field field = boardList[1];
-            //Test2(player1);
-
-            _board.UpdateField(player1);
-
-            /* ↓Pieter zijn bewegende pionnen
-             * for (int i = 0; i < players.Count; i++)
+        public void TestRun()
+        {
+            if (PlayerList.Count < 1)
             {
-                int rolled1 = players[i].RollDice();
+                MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
+                MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
+                MakeNewPlayer("Pieter", null, new BitmapImage(new Uri("/Images/playerYellow.png", UriKind.Relative)));
+            }
 
-                players[i].Move(rolled1);
-                UpdateField(players[i]);
-            }*/
+            for (int i = 0; i < PlayerList.Count; i++)
+            {
+                int rolled1 = PlayerList[i].RollDice();
+
+                PlayerList[i].Move(rolled1);
+                _board.UpdateField(PlayerList[i]);
+            }
         }
     }
 }

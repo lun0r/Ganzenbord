@@ -8,7 +8,7 @@ namespace Ganzenbord
 {
     public class Player
     {
-        private Random rnd;
+        private readonly Random rnd;
         public string Name { get; set; }
         public int NewBoardPosition { get; set; } = 0;
         public int OldBoardPosition { get; set; } = 0;
