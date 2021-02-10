@@ -5,18 +5,18 @@ using System.Windows.Controls;
 
 namespace Ganzenbord
 {
-    internal class Field
+    public class Field
     {
         public int X { get; set; }
         public int Y { get; set; }
         public int Number { get; set; }
-        public string Special { get; set; }
+        public SpecialFields Special { get; set; }
         public Grid Grid { get; set; }
-        public Label Label1 { get; set; }
-        public Label Label2 { get; set; }
+        public Label FieldNumber { get; set; }
 
         public Image Background { get; set; }
         public Image GamePiece { get; set; }
+        public Image SpecialImage { get; set; }
         public bool HasGoose { get; set; }
 
         public Field(int number, int x, int y)
@@ -25,14 +25,17 @@ namespace Ganzenbord
             Y = y;
             Number = number;
             Grid = new Grid();
-            Label1 = new Label();
-            Label2 = new Label();
+            FieldNumber = new Label();
+
             Background = new Image();
             GamePiece = new Image();
+            SpecialImage = new Image();
+
             Grid.Children.Add(Background);
+            Grid.Children.Add(SpecialImage);
             Grid.Children.Add(GamePiece);
-            Grid.Children.Add(Label1);
-            Grid.Children.Add(Label2);
+
+            Grid.Children.Add(FieldNumber);
         }
     }
 }
@@ -45,7 +48,7 @@ namespace Ganzenbord
  * layout.. design map pieces
  * Pagina -> spelregels uitleg
  *
- *
+ * SpecialField: Field (inheretance) + opbouwen board vanuit Backend.
  *
  *
  */

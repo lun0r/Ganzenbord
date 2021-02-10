@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Ganzenbord"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="600"
-        Width="800">
+        Height="900"
+        Width="1200">
 
     <Grid x:Name="WindowGrid">
         <Grid.RowDefinitions>
@@ -25,8 +25,7 @@
                 Background="yellow" />
         <Grid x:Name="BordGrid"
               Grid.Row="1"
-              Grid.Column="1"
-              ShowGridLines="True">
+              Grid.Column="1">
             <Grid.Resources>
                 <Style TargetType="Image">
                     <Setter Property="Width"
@@ -35,6 +34,12 @@
                             Value="{Binding Path=ActualHeight, ElementName=canvas1}" />
                     <Setter Property="Stretch"
                             Value="Fill" />
+                </Style>
+                <Style TargetType="Label">
+                    <Setter Property="FontSize"
+                            Value="20" />
+                    <Setter Property="Foreground"
+                            Value="WhiteSmoke" />
                 </Style>
             </Grid.Resources>
             <Grid.RowDefinitions>
@@ -58,12 +63,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
         </Grid>
-        <TextBox x:Name="textboxje"
-                 Grid.Row="2"
-                 Grid.Column="2"></TextBox>
-        <TextBox x:Name="textboxje1"
-                 Grid.Row="2"
-                 Grid.Column="1"></TextBox>
+
         <Button Content="Click Me!"
                 Grid.Row="1"
                 Grid.Column="2"
