@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    internal class Player
+    public class Player
     {
         private Random rnd;
         public string Name { get; set; }

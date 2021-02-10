@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace Ganzenbord
 {
-    internal class Field
+    public class Field
     {
         public int X { get; set; }
         public int Y { get; set; }
