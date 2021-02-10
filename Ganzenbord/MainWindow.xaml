@@ -6,11 +6,10 @@
         xmlns:local="clr-namespace:Ganzenbord"
         mc:Ignorable="d"
         Title="MainWindow"
-        WindowState="Maximized"
-        >
+        WindowState="Maximized">
 
     <!--WindowStyle = "None"-->
-    
+
     <Grid x:Name="WindowGrid">
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -22,11 +21,9 @@
             <ColumnDefinition Width="800" />
             <ColumnDefinition Width="400" />
             <ColumnDefinition Width="1*" />
-            
         </Grid.ColumnDefinitions>
         <Border Grid.Row="1"
-                Grid.Column="1"
-                />
+                Grid.Column="1" />
         <Grid x:Name="BordGrid"
               Grid.Row="1"
               Grid.Column="1">
@@ -68,11 +65,11 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
-
         <Grid x:Name="SidePanelSetup"
               Grid.Row="1"
               Grid.Column="2"
-              Visibility="Hidden">
+              Visibility="Visible"
+              DataContext="{Binding SetUI}">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -91,12 +88,15 @@
                 Grid.Row="3"
                 Grid.Column="3"
                 Click="Button_Click" />
+            <TextBox Grid.Row="0"  Text="{Binding Path=BoundNumber, Mode=TwoWay}"></TextBox>
+            <Slider  Grid.Row="1" Value="{Binding Path=BoundNumber, Mode=TwoWay}"></Slider>
         </Grid>
-        
+
         <Grid x:Name="SidePanelPlaying"
               Grid.Row="1"
               Grid.Column="2"
-              Visibility="Visible">
+              Visibility="Hidden"
+              DataContext="{Binding SetGame}">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -111,7 +111,8 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Content="Click Me!"
+            <Button Content="{Binding Path=Prop, Mode=TwoWay}"
+
                 Grid.Row="3"
                 Grid.Column="3"
                 Click="Button_Click" />
