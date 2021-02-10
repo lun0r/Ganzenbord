@@ -35,6 +35,15 @@ namespace Ganzenbord
             //Test2(player1);
 
             _board.UpdateField(player1);
+
+            /* ↓Pieter zijn bewegende pionnen
+             * for (int i = 0; i < players.Count; i++)
+            {
+                int rolled1 = players[i].RollDice();
+
+                players[i].Move(rolled1);
+                UpdateField(players[i]);
+            }*/
         }
     }
 }
