@@ -14,11 +14,18 @@ namespace Ganzenbord
 
         public Board _board;
 
+        public Player PlayerPlaying { get; set; }
+
+
         public Game(MainWindow frontend)
         {
             _board = new Board(frontend);
 
             _board.SetUpBoard();
+
+            MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
+            MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
+            MakeNewPlayer("Pieter", null, new BitmapImage(new Uri("/Images/playerYellow.png", UriKind.Relative)));
         }
 
         private void MakeNewPlayer(string name, Image avatar, BitmapImage pion)
@@ -29,11 +36,13 @@ namespace Ganzenbord
 
         public void TestRun()
         {
-            if (PlayerList.Count < 1)
+            if (PlayerPlaying == null)
             {
-                MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
-                MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
-                MakeNewPlayer("Pieter", null, new BitmapImage(new Uri("/Images/playerYellow.png", UriKind.Relative)));
+                PlayerPlaying = PlayerList[0];
+            }
+            else
+            {
+                //PlayerPlaying = PlayerList.Where(x => x.)
             }
 
             for (int i = 0; i < PlayerList.Count; i++)
