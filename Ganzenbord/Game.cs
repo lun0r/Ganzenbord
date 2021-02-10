@@ -24,12 +24,11 @@ namespace Ganzenbord
 
         public void RunGame()
         {
-            Player player1 = new Player("player1", null);
+            BitmapImage Pion = new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative));
+            Player player1 = new Player("player1", null, Pion);
 
             int roll1 = player1.RollDice();
             int roll2 = player1.RollDice();
-
-            player1.Pion = new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative));
 
             //Test();
             //Field field = boardList[1];
