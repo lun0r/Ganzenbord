@@ -14,29 +14,11 @@ namespace Ganzenbord
         public List<Field> CreateNewBoard()
         {
             BoardList = new List<Field>();
-            CreateBoardList();
             SetSpiral();
-            SetCorners();
             SetSpecials();
             //FillBoardGrid();
 
             return BoardList;
-        }
-
-        private void CreateBoardList()
-        {
-            int counter = 0;
-            for (int i = 0; i < 8; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    Field field = new Field(counter, i, j);
-
-                    BoardList.Add(field);
-
-                    counter++;
-                }
-            }
         }
 
         private void SetSpiral()
@@ -49,36 +31,77 @@ namespace Ganzenbord
             {
                 for (int i = b; i < a; i++)
                 {
-                    Field currentField = BoardList.Where(x => x.X == i).Where(x => x.Y == b).FirstOrDefault();
+                    Field currentField = MakeField(counter, i, b);
+                    //Field currentField = new Field(counter, i, b);
+                    BoardList.Add(currentField);
 
-                    currentField.Number = counter;
-
-                    currentField.Background.Source = new BitmapImage(new Uri("/Images/vertical.jpg", UriKind.Relative));
+                    if (counter == 0)
+                    {
+                        currentField.Background.Source = SetImage("0.jpg"); ;
+                    }
+                    else if (i == a - 1)
+                    {
+                        currentField.Background.Source = SetImage("leftunder.jpg");
+                    }
+                    else
+                    {
+                        currentField.Background.Source = SetImage("vertical.jpg");
+                    }
 
                     counter++;
                 }
                 for (int i = b + 1; i < a - 1; i++)
                 {
-                    Field currentField = BoardList.Where(x => x.X == a - 1).Where(x => x.Y == i).FirstOrDefault();
-                    currentField.Number = counter;
-                    currentField.Background.Source = new BitmapImage(new Uri("/Images/horizontal.jpg", UriKind.Relative));
+                    Field currentField = MakeField(counter, a - 1, i);
+
+                    //Field currentField = new Field(counter, a - 1, i);
+
+                    BoardList.Add(currentField);
+
+                    currentField.Background.Source = SetImage("horizontal.jpg");
 
                     counter++;
                 }
                 for (int i = a - 1; i > b; i--)
                 {
-                    Field currentField = BoardList.Where(x => x.X == i).Where(x => x.Y == a - 1).FirstOrDefault();
-                    currentField.Number = counter;
-                    currentField.Background.Source = new BitmapImage(new Uri("/Images/vertical.jpg", UriKind.Relative));
+                    Field currentField = MakeField(counter, i, a - 1);
 
+                    //Field currentField = new Field(counter, i, a - 1);
+
+                    BoardList.Add(currentField);
+                    if (i == a - 1)
+                    {
+                        currentField.Background.Source = SetImage("rightunder.jpg");
+                    }
+                    else
+                    {
+                        currentField.Background.Source = SetImage("vertical.jpg");
+                    }
                     counter++;
                 }
                 for (int i = a - 1; i > b; i--)
                 {
-                    Field currentField = BoardList.Where(x => x.X == b).Where(x => x.Y == i).FirstOrDefault();
-                    currentField.Number = counter;
-                    currentField.Background.Source = new BitmapImage(new Uri("/Images/horizontal.jpg", UriKind.Relative));
+                    Field currentField = MakeField(counter, b, i);
 
+                    //Field currentField = new Field(counter, b, i);
+                    BoardList.Add(currentField);
+
+                    if (b + 1 == a - 1)
+                    {
+                        currentField.Background.Source = SetImage("63.jpg");
+                    }
+                    else if (i == b + 1)
+                    {
+                        currentField.Background.Source = SetImage("lefttop.jpg");
+                    }
+                    else if (i == a - 1)
+                    {
+                        currentField.Background.Source = SetImage("righttop.jpg");
+                    }
+                    else
+                    {
+                        currentField.Background.Source = SetImage("horizontal.jpg");
+                    }
                     counter++;
                 }
                 a--;
@@ -86,79 +109,82 @@ namespace Ganzenbord
             }
         }
 
-        private void SetCorners()
+        public Field MakeField(int counter, int x, int y)
         {
-            foreach (Field field in BoardList)
+            Field currentField = null;
+
+            switch (counter)
             {
-                switch (field.Number)
-                {
-                    case 0:
-                        field.Background.Source = new BitmapImage(new Uri("/Images/0.jpg", UriKind.Relative));
-                        break;
+                case 5:
+                case 14:
+                case 18:
+                case 23:
+                case 27:
+                case 32:
+                case 36:
+                case 41:
+                case 45:
+                case 50:
+                case 54:
+                case 59:
+                    currentField = new Goose(counter, x, y);
+                    break;
 
-                    case 63:
-                        field.Background.Source = new BitmapImage(new Uri("/Images/63.jpg", UriKind.Relative));
-                        break;
+                case 9:
+                    currentField = new Field9(counter, x, y);
+                    break;
 
-                    case 7:
-                    case 33:
-                    case 51:
-                    case 61:
-                        field.Background.Source = new BitmapImage(new Uri("/Images/leftunder.jpg", UriKind.Relative));
-                        break;
+                case 6:
+                    currentField = new Bridge(counter, x, y);
+                    break;
 
-                    case 14:
-                    case 38:
-                    case 54:
-                    case 62:
-                        field.Background.Source = new BitmapImage(new Uri("/Images/rightunder.jpg", UriKind.Relative));
-                        break;
+                case 19:
+                    currentField = new Inn(counter, x, y);
+                    break;
 
-                    case 21:
-                    case 43:
-                    case 57:
-                        field.Background.Source = new BitmapImage(new Uri("/Images/righttop.jpg", UriKind.Relative));
-                        break;
+                case 31:
+                    currentField = new Well(counter, x, y);
+                    break;
 
-                    case 27:
-                    case 47:
-                    case 59:
-                        field.Background.Source = new BitmapImage(new Uri("/Images/lefttop.jpg", UriKind.Relative));
-                        break;
-                }
+                case 42:
+                    currentField = new Maze(counter, x, y);
+                    break;
+
+                case 52:
+                    currentField = new Prison(counter, x, y);
+                    break;
+
+                case 58:
+                    currentField = new Death(counter, x, y);
+                    break;
+
+                case 63:
+                    currentField = new YellowWon(counter, x, y);
+                    break;
+                default:
+                    currentField = new Field(counter, x, y);
+                    break;
             }
+
+            return currentField;
+        }
+
+        private BitmapImage SetImage(string path)
+        {
+            return new BitmapImage(new Uri($"/Images/{path}", UriKind.Relative));
         }
 
         private void SetSpecials()
         {
             foreach (Field field in BoardList)
             {
-                switch (field.Number)
-                {
-                    case 5:
-                    case 9:
-                    case 14:
-                    case 18:
-                    case 23:
-                    case 27:
-                    case 32:
-                    case 36:
-                    case 41:
-                    case 45:
-                    case 50:
-                    case 54:
-                    case 59:
-                        field.SpecialImage.Source = new BitmapImage(new Uri("/Images/goose.png", UriKind.Relative));
-                        field.Special = SpecialFields.Goose;
-                        break;
-                }
             }
         }
 
         public void UpdateField(Player player)
         {
-            BoardList.Where(x => x.Number == player.OldBoardPosition).FirstOrDefault().GamePiece.Source = null;
-            BoardList.Where(x => x.Number == player.NewBoardPosition).FirstOrDefault().GamePiece.Source = player.Pion;
+            BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).GamePiece.Source = null;
+            BoardList.FirstOrDefault(x => x.Number == player.NewBoardPosition).GamePiece.Source = player.Pion;
         }
     }
 }
