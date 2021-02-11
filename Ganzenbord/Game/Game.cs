@@ -27,11 +27,6 @@ namespace Ganzenbord
             _dice2 = new Dice();
 
 
-
-            MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
-            MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
-            MakeNewPlayer("Pieter", null, new BitmapImage(new Uri("/Images/playerYellow.png", UriKind.Relative)));
-
         }
 
         private void MakeNewPlayer(string name, Image avatar, BitmapImage pion)
@@ -70,5 +65,20 @@ namespace Ganzenbord
                 //}
             }
         }
+
+        public void StartGame()
+        {
+            MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
+            MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
+            MakeNewPlayer("Pieter", null, new BitmapImage(new Uri("/Images/playerYellow.png", UriKind.Relative)));
+
+            RollDice();
+        }
+
+        public void RollDice()
+        { 
+            StartSidebar.
+        }
+
     }
 }

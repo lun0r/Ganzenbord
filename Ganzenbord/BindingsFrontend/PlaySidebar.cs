@@ -5,17 +5,21 @@ namespace Ganzenbord
 {
     internal class PlaySidebar : INotifyPropertyChanged
     {
-        private int _propPlay;
+        private string _diceRolled;
+
         private string _videoPath;
 
-        public int PropPlay
+        private string _currentTurn;
+
+
+        public string DiceRolled
         {
-            get { return _propPlay; }
+            get { return _diceRolled; }
             set
             {
-                if (_propPlay != value)
+                if (_diceRolled != value)
                 {
-                    _propPlay = value;
+                    _diceRolled = value;
                     OnPropertyChanged();
                 }
             }
@@ -33,6 +37,21 @@ namespace Ganzenbord
                 }
             }
         }
+
+        public string CurrentTurn
+        {
+            get { return _currentTurn; }
+            set
+            {
+                if (_currentTurn != value)
+                {
+                    _currentTurn = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -5,17 +5,16 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    class FieldEnd : Field
+    class YellowWon : Field
     {
         public Image SpecialImage { get; set; }
 
-        public FieldEnd(int number, int x, int y)
+        public YellowWon(int number, int x, int y)
             : base(number, x, y)
         {
-            SpecialImage = new Image();
-            SpecialImage.Source = new BitmapImage(new Uri($"/Images/end.png", UriKind.Relative));
-            Grid.Children.Insert(1, SpecialImage);
+            
         }
+
         public override int ReturnMove(Player player)
         {
             return 0;
