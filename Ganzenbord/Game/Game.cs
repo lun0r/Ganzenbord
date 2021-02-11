@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
@@ -14,14 +12,13 @@ namespace Ganzenbord
 
         public Board _board;
 
-        public Player PlayerPlaying { get; set; }
+        public int counter = 0;
 
+        private Player PlayerPlaying { get; set; }
 
-        public Game(MainWindow frontend)
+        public Game()
         {
-            _board = new Board(frontend);
-
-            _board.SetUpBoard();
+            _board = new Board();
 
             MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
             MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
@@ -51,6 +48,15 @@ namespace Ganzenbord
 
                 PlayerList[i].Move(rolled1);
                 _board.UpdateField(PlayerList[i]);
+
+                //for (int j = 0; j < rolled1; j++)
+                //{
+                //    PlayerList[i].OldBoardPosition = PlayerList[i].NewBoardPosition;
+                //    PlayerList[i].NewBoardPosition++;
+
+                //    _board.UpdateField(PlayerList[i]);
+                //    Thread.Sleep(100);
+                //}
             }
         }
     }
