@@ -3,9 +3,10 @@ using System.Runtime.CompilerServices;
 
 namespace Ganzenbord
 {
-    internal class PlaySidebar
+    internal class PlaySidebar : INotifyPropertyChanged
     {
         private int _propPlay;
+        private string _videoPath;
 
         public int PropPlay
         {
@@ -15,6 +16,19 @@ namespace Ganzenbord
                 if (_propPlay != value)
                 {
                     _propPlay = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string VideoPath
+        {
+            get { return _videoPath; }
+            set
+            {
+                if (_videoPath != value)
+                {
+                    _videoPath = value;
                     OnPropertyChanged();
                 }
             }

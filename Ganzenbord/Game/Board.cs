@@ -1,31 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+
 using System.Linq;
-using System.Text;
-using System.Windows.Controls;
+
 using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
     public class Board
     {
-        public ObservableCollection<Field> BoardList { get; set; }
-        private readonly MainWindow _frontend;
+        public List<Field> BoardList { get; set; }
 
-        public Board(MainWindow frontend)
+        public List<Field> CreateNewBoard()
         {
-            _frontend = frontend;
-            BoardList = new ObservableCollection<Field>();
-        }
-
-        //in code behind zetten:
-        public void SetUpBoard()
-        {
+            BoardList = new List<Field>();
+            CreateBoardList();
             SetSpiral();
             SetCorners();
             SetSpecials();
-            FillBoardGrid();
+            //FillBoardGrid();
+
+            return BoardList;
         }
 
         private void SetSpiral()
@@ -147,19 +142,6 @@ namespace Ganzenbord
                         //field.Special = SpecialFields.Goose;
                         break;
                 }
-            }
-        }
-
-        private void FillBoardGrid()
-        {
-            foreach (var field in BoardList)
-            {
-                field.FieldNumber.Content = field.Number;
-
-                _frontend.BordGrid.Children.Add(field.Grid);
-
-                Grid.SetRow(field.Grid, field.X);
-                Grid.SetColumn(field.Grid, field.Y);
             }
         }
 
