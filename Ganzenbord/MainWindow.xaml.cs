@@ -25,11 +25,12 @@ namespace Ganzenbord
         private void FillBoardGrid()
         {
             List<Field> boardList = _game._board.CreateNewBoard();
+
             foreach (var field in boardList)
             {
                 if (field.Number != 0)
                 {
-                    field.FieldNumber.Content = field.Number;
+                    field.FieldNumber.Content = field.X;
                 }
 
                 BoardGrid.Children.Add(field.Grid);

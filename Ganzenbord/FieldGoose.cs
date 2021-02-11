@@ -15,7 +15,7 @@ namespace Ganzenbord
         {
             SpecialImage = new Image();
             SpecialImage.Source = image;
-            Grid.Children.Add(SpecialImage);
+            Grid.Children.Insert(1, SpecialImage);
         }
 
         public override SpecialFields ReturnMove()
