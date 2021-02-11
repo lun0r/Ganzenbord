@@ -17,22 +17,14 @@ namespace Ganzenbord
             {
                 if (player.Dice1 == 5 || player.Dice1 == 4 && player.Dice2 == 5 || player.Dice2 == 4)
                 {
-                    UpdateBoardPosition(player);
                     return new int[] { 26, 1 };
                 }
                 else if (player.Dice1 == 6 || player.Dice1 == 3 && player.Dice2 == 6 || player.Dice2 == 3)
                 {
-                    UpdateBoardPosition(player);
                     return new int[] { 53, 1 };
                 }
             }
             return base.ReturnMove(player);
-        }
-
-        public override void UpdateBoardPosition(Player player)
-        {
-            player.OldBoardPosition = player.CurrentBoardPosition;
-            player.CurrentBoardPosition += player.Dice1 + player.Dice2;
         }
     }
 }

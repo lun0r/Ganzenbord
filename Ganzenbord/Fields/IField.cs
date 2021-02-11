@@ -13,7 +13,5 @@ namespace Ganzenbord
         int Y { get; set; }
 
         public int[] ReturnMove(Player player);
-
-        public void UpdateBoardPosition(Player player);
     }
 }

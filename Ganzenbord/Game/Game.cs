@@ -86,21 +86,23 @@ namespace Ganzenbord
                     }
                     else if (output[1] == 2)
                     {
-                        //TO CHECK List<Player> wellplayers = (List<Player>)PlayerList.Where(x => x.SkipTurn > 4).Where(x => x != CP);
-                        //if (wellplayers.Count >= 0)
-                        // {
-                        //     wellplayers.FirstOrDefault().SkipTurn = 0;
-                        // }
+                        MessageBox.Show($"{CP.Name} zit in de put!");
+                        foreach (var player in PlayerList)
+                        {
+                            if (player.SkipTurn > 4 && player != CP)
+                            {
+                                MessageBox.Show($"{player.Name} is vrij!");
+                                player.SkipTurn = 0;
+                            }
+                        }
                     }
                     else
                     {
                         MessageBox.Show($"{CP.Name} blijft staan!");
                     }
 
-                    SpecialIsHit = output[1] != 0;
+                    SpecialIsHit = output[1] == 0 || output[1] == 2 ? false : true;
                 } while (SpecialIsHit);
-
-                //CP.Move(CP.Dice1 + CP.Dice2);
             }
             else
             {

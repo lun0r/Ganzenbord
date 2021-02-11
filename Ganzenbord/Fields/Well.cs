@@ -22,10 +22,5 @@ namespace Ganzenbord
 
             return new int[] { 0, 2 };
         }
-
-        public override void UpdateBoardPosition(Player player)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
