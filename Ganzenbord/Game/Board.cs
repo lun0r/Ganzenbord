@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+
 using System.Linq;
-using System.Text;
-using System.Windows.Controls;
+
 using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
@@ -12,14 +11,9 @@ namespace Ganzenbord
     {
         public List<Field> BoardList { get; set; }
 
-        public Board()
-        {
-            BoardList = new List<Field>();
-        }
-
-        //in code behind zetten:
         public List<Field> CreateNewBoard()
         {
+            BoardList = new List<Field>();
             CreateBoardList();
             SetSpiral();
             SetCorners();

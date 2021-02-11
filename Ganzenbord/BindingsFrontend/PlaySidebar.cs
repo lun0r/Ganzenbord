@@ -6,6 +6,7 @@ namespace Ganzenbord
     internal class PlaySidebar : INotifyPropertyChanged
     {
         private int _propPlay;
+        private string _videoPath;
 
         public int PropPlay
         {
@@ -20,8 +21,6 @@ namespace Ganzenbord
             }
         }
 
-        private string _videoPath;
-
         public string VideoPath
         {
             get { return _videoPath; }
@@ -33,13 +32,6 @@ namespace Ganzenbord
                     OnPropertyChanged();
                 }
             }
-        }
-
-        public PlaySidebar()
-        {
-            //VideoPath = @"C:\Users\1\Desktop\test.mp4";
-            VideoPath = "../../../Images/0.jpg";
-            //VideoPath = "../../../Images/test.mp4";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
