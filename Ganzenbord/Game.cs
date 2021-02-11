@@ -16,12 +16,9 @@ namespace Ganzenbord
 
         public Player PlayerPlaying { get; set; }
 
-
-        public Game(MainWindow frontend)
+        public Game()
         {
-            _board = new Board(frontend);
-
-            _board.SetUpBoard();
+            _board = new Board();
 
             MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
             MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));

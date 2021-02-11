@@ -10,23 +10,23 @@ namespace Ganzenbord
 {
     public class Board
     {
-        public ObservableCollection<Field> BoardList { get; set; }
-        private readonly MainWindow _frontend;
+        public List<Field> BoardList { get; set; }
 
-        public Board(MainWindow frontend)
+        public Board()
         {
-            _frontend = frontend;
-            BoardList = new ObservableCollection<Field>();
+            BoardList = new List<Field>();
         }
 
         //in code behind zetten:
-        public void SetUpBoard()
+        public List<Field> CreateNewBoard()
         {
             CreateBoardList();
             SetSpiral();
             SetCorners();
             SetSpecials();
-            FillBoardGrid();
+            //FillBoardGrid();
+
+            return BoardList;
         }
 
         private void CreateBoardList()
@@ -158,19 +158,6 @@ namespace Ganzenbord
                         field.Special = SpecialFields.Goose;
                         break;
                 }
-            }
-        }
-
-        private void FillBoardGrid()
-        {
-            foreach (var field in BoardList)
-            {
-                field.FieldNumber.Content = field.Number;
-
-                _frontend.BordGrid.Children.Add(field.Grid);
-
-                Grid.SetRow(field.Grid, field.X);
-                Grid.SetColumn(field.Grid, field.Y);
             }
         }
 

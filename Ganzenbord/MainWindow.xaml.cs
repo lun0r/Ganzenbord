@@ -1,6 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Ganzenbord
 {
@@ -11,22 +14,57 @@ namespace Ganzenbord
 
     {
         private readonly Game _game;
-
+        private bool test = true;
         private BoardData boardData;
 
-        //nieuw object maken ipv alles mee te geven aan datacontext
         public MainWindow()
         {
             InitializeComponent();
             boardData = new BoardData();
             DataContext = boardData;
+            _game = new Game();
+            FillBoardGrid();
+        }
 
-            _game = new Game(this);
+        private void FillBoardGrid()
+        {
+            List<Field> boardList = _game._board.CreateNewBoard();
+            foreach (var field in boardList)
+            {
+                field.FieldNumber.Content = field.Number;
+
+                BoardGrid.Children.Add(field.Grid);
+
+                Grid.SetRow(field.Grid, field.X);
+                Grid.SetColumn(field.Grid, field.Y);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _game.TestRun();
+
+            if (test)
+            {
+                boardData.PlaySidebar.VideoPath = "../../../Images/test.mp4";
+            }
+            else
+            {
+                boardData.PlaySidebar.VideoPath = "../../../Images/0.jpg";
+            }
+            test = !test;
+        }
+
+        private void ButtonDice_Click(object sender, RoutedEventArgs e)
+        {
+            mePlayer.Play();
+
+            TimeSpan test = new TimeSpan(0, 0, 3);
+
+            if (mePlayer.Position > test)
+            {
+                mePlayer.Stop();
+            }
         }
     }
 }
