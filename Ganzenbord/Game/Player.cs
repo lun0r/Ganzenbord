@@ -4,41 +4,36 @@ using System.Windows.Media.Imaging;
 namespace Ganzenbord
 {
     public class Player
-    {
-        readonly private Dice dice;
+    { 
         public string Name { get; set; }
         public int NewBoardPosition { get; set; } = 0;
         public int OldBoardPosition { get; set; } = 0;
         public Image Avatar { get; set; }
         public BitmapImage Pion { get; set; }
+        public int Dice1 { get; set; }
+        public int Dice2 { get; set; }
 
         public Player(string name, Image avatar, BitmapImage pion)
         {
             Name = name;
             Avatar = avatar;
             Pion = pion;
-
-            dice = new Dice();
         }
 
-        public int Move(int diceTotal)
+        public int Move(int dice1, int dice2)
         {
             OldBoardPosition = NewBoardPosition;
 
-            if (NewBoardPosition + diceTotal <= 63)
+            if (NewBoardPosition + (dice1+dice2) <= 63)
             {
-                NewBoardPosition += diceTotal;
+                NewBoardPosition += (dice1 + dice2);
             }
             else
             {
-                NewBoardPosition = 126 - (NewBoardPosition + diceTotal);
+                NewBoardPosition = 126 - (NewBoardPosition + (dice1 + dice2));
             }
             return NewBoardPosition;
         }
 
-        public int RollDice()
-        {
-            return dice.Roll();
-        }
     }
 }

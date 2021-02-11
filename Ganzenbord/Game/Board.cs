@@ -128,7 +128,7 @@ namespace Ganzenbord
                 case 50:
                 case 54:
                 case 59:
-                    currentField = new FieldGoose(counter, x, y, SetImage("goose.png"));
+                    currentField = new Goose(counter, x, y);
                     break;
 
                 default:

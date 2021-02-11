@@ -8,6 +8,9 @@ namespace Ganzenbord
 {
     internal class Game
     {
+        readonly private Dice _dice1;
+        readonly private Dice _dice2;
+
         private readonly List<Player> PlayerList = new List<Player>();
 
         public Board _board;
@@ -20,9 +23,15 @@ namespace Ganzenbord
         {
             _board = new Board();
 
+            _dice1 = new Dice();
+            _dice2 = new Dice();
+
+
+
             MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
             MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
             MakeNewPlayer("Pieter", null, new BitmapImage(new Uri("/Images/playerYellow.png", UriKind.Relative)));
+
         }
 
         private void MakeNewPlayer(string name, Image avatar, BitmapImage pion)
@@ -33,6 +42,7 @@ namespace Ganzenbord
 
         public void TestRun()
         {
+
             if (PlayerPlaying == null)
             {
                 PlayerPlaying = PlayerList[0];
@@ -44,9 +54,10 @@ namespace Ganzenbord
 
             for (int i = 0; i < PlayerList.Count; i++)
             {
-                int rolled1 = PlayerList[i].RollDice();
+                int rolleddice1 = _dice1.Roll();
+                int rolleddice2 = _dice2.Roll();
 
-                PlayerList[i].Move(rolled1);
+                PlayerList[i].Move(rolleddice1, rolleddice2);
                 _board.UpdateField(PlayerList[i]);
 
                 //for (int j = 0; j < rolled1; j++)
