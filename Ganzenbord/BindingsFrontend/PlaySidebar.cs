@@ -11,6 +11,7 @@ namespace Ganzenbord
 
         private string _currentTurn;
 
+        private int _currentPlayer;
 
         public string DiceRolled
         {
@@ -46,12 +47,11 @@ namespace Ganzenbord
                 if (_currentTurn != value)
                 {
                     _currentTurn = value;
+
                     OnPropertyChanged();
                 }
             }
         }
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -10,13 +10,12 @@ namespace Ganzenbord
     {
         private readonly Game _game;
 
-        private bool test = true;
         private BoardData boardData;
 
         public MainWindow()
         {
             InitializeComponent();
-            boardData = new BoardData();
+            boardData = BoardData.GetBoardData();
             DataContext = boardData;
             _game = new Game();
             FillBoardGrid();
@@ -40,10 +39,9 @@ namespace Ganzenbord
             }
         }
 
-
         private void ButtonDice_Click(object sender, RoutedEventArgs e)
         {
-            _game.RollDice();
+            _game.Run();
         }
 
         private void StartGameClick(object sender, RoutedEventArgs e)
@@ -51,7 +49,6 @@ namespace Ganzenbord
             SidePanelSetup.Visibility = Visibility.Hidden;
             SidePanelPlaying.Visibility = Visibility.Visible;
             _game.StartGame();
-
         }
     }
 }
