@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Ganzenbord
 {
-    internal class StartSidebar
+    internal class StartSidebar : INotifyPropertyChanged
     {
         private int _propStart;
 

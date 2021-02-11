@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace Ganzenbord
 {
@@ -10,13 +7,12 @@ namespace Ganzenbord
         public int X { get; set; }
         public int Y { get; set; }
         public int Number { get; set; }
-        public SpecialFields Special { get; set; }
         public Grid Grid { get; set; }
         public Label FieldNumber { get; set; }
 
         public Image Background { get; set; }
         public Image GamePiece { get; set; }
-        public Image SpecialImage { get; set; }
+
         public bool HasGoose { get; set; }
 
         public Field(int number, int x, int y)
@@ -29,13 +25,17 @@ namespace Ganzenbord
 
             Background = new Image();
             GamePiece = new Image();
-            SpecialImage = new Image();
 
             Grid.Children.Add(Background);
-            Grid.Children.Add(SpecialImage);
+
             Grid.Children.Add(GamePiece);
 
             Grid.Children.Add(FieldNumber);
+        }
+
+        public virtual SpecialFields ReturnMove()
+        {
+            return SpecialFields.NotSpecial;
         }
     }
 }

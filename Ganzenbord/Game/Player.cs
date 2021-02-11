@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
@@ -34,7 +31,7 @@ namespace Ganzenbord
             }
             else
             {
-                NewBoardPosition = 63 + (63 - (NewBoardPosition + diceTotal));
+                NewBoardPosition = 126 - (NewBoardPosition + diceTotal);
             }
             return NewBoardPosition;
         }
