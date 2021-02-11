@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -50,7 +51,7 @@ namespace Ganzenbord
                 int rolleddice1 = _dice1.Roll();
                 int rolleddice2 = _dice2.Roll();
 
-                PlayerList[i].Move(rolleddice1, rolleddice2);
+                // PlayerList[i].Move(rolleddice1, rolleddice2);
                 _board.UpdateField(PlayerList[i]);
 
                 //for (int j = 0; j < rolled1; j++)
@@ -81,17 +82,25 @@ namespace Ganzenbord
 
         public void Run()
         {
-            RollDice();
-            UpdateDisplay("hallo pieter", "hallo kobe");
-
             string CurentTurn = PlayerList[currentPlayer].Name;
+            RollDice();
             string DiceRolled = $"Dice :{PlayerList[currentPlayer].Dice1} Dice : {PlayerList[currentPlayer].Dice2}";
 
-            PlayerList[currentPlayer].Move(PlayerList[currentPlayer].Dice1, PlayerList[currentPlayer].Dice2);
-            _board.UpdateField(PlayerList[currentPlayer]);
+            int test = 0;
 
+            do
+            {
+                test = _board.BoardList.FirstOrDefault(x => x.Number == PlayerList[currentPlayer].NewBoardPosition + PlayerList[currentPlayer].Dice1 + PlayerList[currentPlayer].Dice2).ReturnMove(PlayerList[currentPlayer]);
+                PlayerList[currentPlayer].Move(test);
+
+                //PlayerList[currentPlayer].NewBoardPosition + PlayerList[currentPlayer].Dice1 + PlayerList[currentPlayer].Dice2;
+                _board.UpdateField(PlayerList[currentPlayer]);
+            } while (test != 0);
+
+            //PlayerList[currentPlayer].Move(PlayerList[currentPlayer].Dice1 + PlayerList[currentPlayer].Dice2);
+
+            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
             UpdateDisplay(DiceRolled, CurentTurn);
-            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1;
         }
 
         public void UpdateDisplay(string diceRolled, string currentTurn)

@@ -12,14 +12,13 @@ namespace Ganzenbord
             : base(number, x, y)
         {
             SpecialImage = new Image();
-            SpecialImage.Source = new BitmapImage(new Uri($"/Images/goose.png", UriKind.Relative)) ;
+            SpecialImage.Source = new BitmapImage(new Uri($"/Images/goose.png", UriKind.Relative));
             Grid.Children.Insert(1, SpecialImage);
         }
 
         public override int ReturnMove(Player player)
         {
-
-            return 0;
+            return player.Dice1 + player.Dice2;
         }
     }
 }

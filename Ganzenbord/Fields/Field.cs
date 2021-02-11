@@ -13,7 +13,6 @@ namespace Ganzenbord
         public Image Background { get; set; }
         public Image GamePiece { get; set; }
 
-
         public Field(int number, int x, int y)
         {
             X = x;
@@ -34,7 +33,7 @@ namespace Ganzenbord
 
         public virtual int ReturnMove(Player player)
         {
-            return 0 ;
+            return player.NewBoardPosition + player.Dice1 + player.Dice2;
         }
 
         public virtual void UpdateBoardPosition(Player player)
