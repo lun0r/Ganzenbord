@@ -2,7 +2,7 @@
 
 namespace Ganzenbord
 {
-    public class Field
+    public class Field : IField
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -13,7 +13,6 @@ namespace Ganzenbord
         public Image Background { get; set; }
         public Image GamePiece { get; set; }
 
-        public bool HasGoose { get; set; }
 
         public Field(int number, int x, int y)
         {
@@ -33,9 +32,14 @@ namespace Ganzenbord
             Grid.Children.Add(FieldNumber);
         }
 
-        public virtual SpecialFields ReturnMove()
+        public virtual int ReturnMove(Player player)
         {
-            return SpecialFields.NotSpecial;
+            return 0 ;
+        }
+
+        public virtual void UpdateBoardPosition(Player player)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -8,11 +8,14 @@ namespace Ganzenbord
         Label FieldNumber { get; set; }
         Image GamePiece { get; set; }
         Grid Grid { get; set; }
-        bool HasGoose { get; set; }
         int Number { get; set; }
         int X { get; set; }
         int Y { get; set; }
 
-        public SpecialFields execute();
+        public int ReturnMove(Player player);
+
+        public void UpdateBoardPosition(Player player);
+        
     }
+
 }
