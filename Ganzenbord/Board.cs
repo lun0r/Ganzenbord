@@ -143,8 +143,8 @@ namespace Ganzenbord
                     case 54:
                     case 59:
 
-                        field.SpecialImage.Source = new BitmapImage(new Uri("/Images/goose.png", UriKind.Relative));
-                        field.Special = SpecialFields.Goose;
+                        //field.SpecialImage.Source = new BitmapImage(new Uri("/Images/goose.png", UriKind.Relative));
+                        //field.Special = SpecialFields.Goose;
                         break;
                 }
             }

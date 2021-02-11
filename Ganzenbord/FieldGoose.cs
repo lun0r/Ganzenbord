@@ -17,5 +17,10 @@ namespace Ganzenbord
             SpecialImage.Source = image;
             Grid.Children.Add(SpecialImage);
         }
+
+        public override SpecialFields ReturnMove()
+        {
+            return SpecialFields.Goose;
+        }
     }
 }

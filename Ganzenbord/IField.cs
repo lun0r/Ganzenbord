@@ -13,6 +13,6 @@ namespace Ganzenbord
         int X { get; set; }
         int Y { get; set; }
 
-        public void execture();
+        public SpecialFields execute();
     }
 }
