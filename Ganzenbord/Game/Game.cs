@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Ganzenbord
 {
@@ -33,31 +34,6 @@ namespace Ganzenbord
 
         public void TestRun()
         {
-            if (PlayerPlaying == null)
-            {
-                PlayerPlaying = PlayerList[0];
-            }
-            else
-            {
-                //PlayerPlaying = PlayerList.Where(x => x.)
-            }
-
-            for (int i = 0; i < PlayerList.Count; i++)
-            {
-                int rolled1 = PlayerList[i].RollDice();
-
-                PlayerList[i].Move(rolled1);
-                _board.UpdateField(PlayerList[i]);
-
-                //for (int j = 0; j < rolled1; j++)
-                //{
-                //    PlayerList[i].OldBoardPosition = PlayerList[i].NewBoardPosition;
-                //    PlayerList[i].NewBoardPosition++;
-
-                //    _board.UpdateField(PlayerList[i]);
-                //    Thread.Sleep(100);
-                //}
-            }
         }
     }
 }
