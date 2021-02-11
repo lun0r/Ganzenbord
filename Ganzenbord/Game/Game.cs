@@ -87,6 +87,9 @@ namespace Ganzenbord
             string CurentTurn = PlayerList[currentPlayer].Name;
             string DiceRolled = $"Dice :{PlayerList[currentPlayer].Dice1} Dice : {PlayerList[currentPlayer].Dice2}";
 
+            PlayerList[currentPlayer].Move(PlayerList[currentPlayer].Dice1, PlayerList[currentPlayer].Dice2);
+            _board.UpdateField(PlayerList[currentPlayer]);
+
             UpdateDisplay(DiceRolled, CurentTurn);
             currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1;
         }
