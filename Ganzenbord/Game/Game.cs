@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
@@ -11,6 +11,8 @@ namespace Ganzenbord
         private readonly List<Player> PlayerList = new List<Player>();
 
         public Board _board;
+
+        public int counter = 0;
 
         private Player PlayerPlaying { get; set; }
 
@@ -46,6 +48,15 @@ namespace Ganzenbord
 
                 PlayerList[i].Move(rolled1);
                 _board.UpdateField(PlayerList[i]);
+
+                //for (int j = 0; j < rolled1; j++)
+                //{
+                //    PlayerList[i].OldBoardPosition = PlayerList[i].NewBoardPosition;
+                //    PlayerList[i].NewBoardPosition++;
+
+                //    _board.UpdateField(PlayerList[i]);
+                //    Thread.Sleep(100);
+                //}
             }
         }
     }

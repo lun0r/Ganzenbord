@@ -9,6 +9,7 @@ namespace Ganzenbord
 
     {
         private readonly Game _game;
+
         private bool test = true;
         private BoardData boardData;
 
@@ -26,7 +27,10 @@ namespace Ganzenbord
             List<Field> boardList = _game._board.CreateNewBoard();
             foreach (var field in boardList)
             {
-                field.FieldNumber.Content = field.Number;
+                if (field.Number != 0)
+                {
+                    field.FieldNumber.Content = field.Number;
+                }
 
                 BoardGrid.Children.Add(field.Grid);
 
