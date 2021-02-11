@@ -10,13 +10,12 @@ namespace Ganzenbord
     {
         private readonly Game _game;
 
-        private bool test = true;
         private BoardData boardData;
 
         public MainWindow()
         {
             InitializeComponent();
-            boardData = new BoardData();
+            boardData = BoardData.GetBoardData();
             DataContext = boardData;
             _game = new Game();
             FillBoardGrid();
@@ -30,7 +29,7 @@ namespace Ganzenbord
             {
                 if (field.Number != 0)
                 {
-                    field.FieldNumber.Content = field.X;
+                    field.FieldNumber.Content = field.Number;
                 }
 
                 BoardGrid.Children.Add(field.Grid);
@@ -40,31 +39,16 @@ namespace Ganzenbord
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            _game.TestRun();
-
-            if (test)
-            {
-                boardData.PlaySidebar.VideoPath = "../../../Images/test.mp4";
-            }
-            else
-            {
-                boardData.PlaySidebar.VideoPath = "../../../Images/0.jpg";
-            }
-            test = !test;
-        }
-
         private void ButtonDice_Click(object sender, RoutedEventArgs e)
         {
-            mePlayer.Play();
+            _game.Run();
+        }
 
-            TimeSpan test = new TimeSpan(0, 0, 3);
-
-            if (mePlayer.Position > test)
-            {
-                mePlayer.Stop();
-            }
+        private void StartGameClick(object sender, RoutedEventArgs e)
+        {
+            SidePanelSetup.Visibility = Visibility.Hidden;
+            SidePanelPlaying.Visibility = Visibility.Visible;
+            _game.StartGame();
         }
     }
 }

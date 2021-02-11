@@ -116,7 +116,6 @@ namespace Ganzenbord
             switch (counter)
             {
                 case 5:
-                case 9:
                 case 14:
                 case 18:
                 case 23:
@@ -131,6 +130,37 @@ namespace Ganzenbord
                     currentField = new Goose(counter, x, y);
                     break;
 
+                case 9:
+                    currentField = new Field9(counter, x, y);
+                    break;
+
+                case 6:
+                    currentField = new Bridge(counter, x, y);
+                    break;
+
+                case 19:
+                    currentField = new Inn(counter, x, y);
+                    break;
+
+                case 31:
+                    currentField = new Well(counter, x, y);
+                    break;
+
+                case 42:
+                    currentField = new Maze(counter, x, y);
+                    break;
+
+                case 52:
+                    currentField = new Prison(counter, x, y);
+                    break;
+
+                case 58:
+                    currentField = new Death(counter, x, y);
+                    break;
+
+                case 63:
+                    currentField = new YellowWon(counter, x, y);
+                    break;
                 default:
                     currentField = new Field(counter, x, y);
                     break;

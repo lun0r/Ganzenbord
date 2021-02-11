@@ -72,7 +72,7 @@
         <Grid x:Name="SidePanelSetup"
               Grid.Row="1"
               Grid.Column="2"
-              Visibility="Hidden"
+              Visibility="Visible"
               DataContext="{Binding StartSidebar}">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -88,10 +88,10 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Content="Make player!"
+            <Button Content="Start Game!"
                     Grid.Row="3"
                     Grid.Column="3"
-                    Click="Button_Click" />
+                    Click="StartGameClick" />
             <TextBox Grid.Row="0"
                      Text="{Binding PropStart, Mode=TwoWay}"></TextBox>
 
@@ -103,7 +103,7 @@
               Background="Black"
               Grid.Row="1"
               Grid.Column="2"
-              Visibility="Visible"
+              Visibility="Hidden"
               DataContext="{Binding PlaySidebar}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*" />
@@ -118,22 +118,25 @@
                 <ColumnDefinition Width="6*" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Row="2" Grid.Column="1"  Text="{Binding VideoPath, Mode=TwoWay}"></TextBox>
-            <Button Content="player move(test)"
-                Grid.Row="4"
-                Grid.Column="1"
-                Click="Button_Click" />
+            <TextBox x:Name="CurrentTurn"
+                     Grid.Row="2"
+                     Grid.Column="1"
+                     Text="{Binding CurrentTurn, Mode=TwoWay}"></TextBox>
+            <TextBox x:Name="DiceRolled"
+                     Grid.Row="3"
+                     Grid.Column="1"
+                     Text="{Binding DiceRolled, Mode=TwoWay}"></TextBox>
+
             <Button Content="Throw dice(test)"
-                x:Name="throwDice"
-                Grid.Row="3"
-                Grid.Column="1"
-                Click="ButtonDice_Click" />
-            <MediaElement
-                x:Name="mePlayer"
-                LoadedBehavior="Manual"
-                Source="{Binding VideoPath, Mode=TwoWay}"
-                Grid.Row="1"
-                Grid.Column="1">
+                    x:Name="throwDice"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Click="ButtonDice_Click" />
+            <MediaElement x:Name="mePlayer"
+                          LoadedBehavior="Manual"
+                          Source="{Binding VideoPath, Mode=TwoWay}"
+                          Grid.Row="1"
+                          Grid.Column="1">
             </MediaElement>
         </Grid>
     </Grid>

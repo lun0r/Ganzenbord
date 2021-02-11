@@ -2,15 +2,23 @@
 {
     internal class BoardData
     {
-        //bevat setupgame en userinteraction
-
+        private static BoardData boardData;
         public PlaySidebar PlaySidebar { get; set; }
         public StartSidebar StartSidebar { get; set; }
 
-        public BoardData()
+        private BoardData()
         {
             PlaySidebar = new PlaySidebar();
             StartSidebar = new StartSidebar();
+        }
+
+        public static BoardData GetBoardData()
+        {
+            if (boardData == null)
+            {
+                boardData = new BoardData();
+            }
+            return boardData;
         }
     }
 }
