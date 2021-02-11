@@ -55,7 +55,7 @@ namespace Ganzenbord
             {
                 for (int i = b; i < a; i++)
                 {
-                    Field currentField = BoardList.Where(x => x.X == i).Where(x => x.Y == b).FirstOrDefault();
+                    Field currentField = BoardList.Where(x => x.X == i).FirstOrDefault(x => x.Y == b);
 
                     currentField.Number = counter;
 
@@ -65,7 +65,7 @@ namespace Ganzenbord
                 }
                 for (int i = b + 1; i < a - 1; i++)
                 {
-                    Field currentField = BoardList.Where(x => x.X == a - 1).Where(x => x.Y == i).FirstOrDefault();
+                    Field currentField = BoardList.Where(x => x.X == a - 1).FirstOrDefault(x => x.Y == i);
                     currentField.Number = counter;
                     currentField.Background.Source = new BitmapImage(new Uri("/Images/horizontal.jpg", UriKind.Relative));
 
@@ -73,7 +73,7 @@ namespace Ganzenbord
                 }
                 for (int i = a - 1; i > b; i--)
                 {
-                    Field currentField = BoardList.Where(x => x.X == i).Where(x => x.Y == a - 1).FirstOrDefault();
+                    Field currentField = BoardList.Where(x => x.X == i).FirstOrDefault(x => x.Y == a - 1);
                     currentField.Number = counter;
                     currentField.Background.Source = new BitmapImage(new Uri("/Images/vertical.jpg", UriKind.Relative));
 
@@ -81,7 +81,7 @@ namespace Ganzenbord
                 }
                 for (int i = a - 1; i > b; i--)
                 {
-                    Field currentField = BoardList.Where(x => x.X == b).Where(x => x.Y == i).FirstOrDefault();
+                    Field currentField = BoardList.Where(x => x.X == b).FirstOrDefault(x => x.Y == i);
                     currentField.Number = counter;
                     currentField.Background.Source = new BitmapImage(new Uri("/Images/horizontal.jpg", UriKind.Relative));
 
@@ -176,8 +176,8 @@ namespace Ganzenbord
 
         public void UpdateField(Player player)
         {
-            BoardList.Where(x => x.Number == player.OldBoardPosition).FirstOrDefault().GamePiece.Source = null;
-            BoardList.Where(x => x.Number == player.NewBoardPosition).FirstOrDefault().GamePiece.Source = player.Pion;
+            BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).GamePiece.Source = null;
+            BoardList.FirstOrDefault(x => x.Number == player.NewBoardPosition).GamePiece.Source = player.Pion;
         }
     }
 }
