@@ -31,9 +31,10 @@ namespace Ganzenbord
             Grid.Children.Add(FieldNumber);
         }
 
-        public virtual int ReturnMove(Player player)
+        public virtual int[] ReturnMove(Player player)
         {
-            return player.NewBoardPosition + player.Dice1 + player.Dice2;
+            int[] output = new int[] { 0, 0 };
+            return output;
         }
 
         public virtual void UpdateBoardPosition(Player player)

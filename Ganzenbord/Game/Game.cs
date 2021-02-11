@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -15,7 +16,9 @@ namespace Ganzenbord
         public BoardData boardData;
         public Board _board;
         private readonly List<Player> PlayerList;
+
         private int currentPlayer = 0;
+
         public int counter = 0;
 
         private Player PlayerPlaying { get; set; }
@@ -35,36 +38,6 @@ namespace Ganzenbord
             PlayerList.Add(player);
         }
 
-        public void TestRun()
-        {
-            if (PlayerPlaying == null)
-            {
-                PlayerPlaying = PlayerList[0];
-            }
-            else
-            {
-                //PlayerPlaying = PlayerList.Where(x => x.)
-            }
-
-            for (int i = 0; i < PlayerList.Count; i++)
-            {
-                int rolleddice1 = _dice1.Roll();
-                int rolleddice2 = _dice2.Roll();
-
-                // PlayerList[i].Move(rolleddice1, rolleddice2);
-                _board.UpdateField(PlayerList[i]);
-
-                //for (int j = 0; j < rolled1; j++)
-                //{
-                //    PlayerList[i].OldBoardPosition = PlayerList[i].NewBoardPosition;
-                //    PlayerList[i].NewBoardPosition++;
-
-                //    _board.UpdateField(PlayerList[i]);
-                //    Thread.Sleep(100);
-                //}
-            }
-        }
-
         public void StartGame()
         {
             MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
@@ -82,25 +55,62 @@ namespace Ganzenbord
 
         public void Run()
         {
-            string CurentTurn = PlayerList[currentPlayer].Name;
             RollDice();
-            string DiceRolled = $"Dice :{PlayerList[currentPlayer].Dice1} Dice : {PlayerList[currentPlayer].Dice2}";
+            var CP = PlayerList[currentPlayer];
+            string CurentTurn = CP.Name;
+            string DiceRolled = $"Dice :{CP.Dice1} Dice : {CP.Dice2}";
 
-            int test = 0;
-
-            do
+            if (CP.SkipTurn <= 0)
             {
-                test = _board.BoardList.FirstOrDefault(x => x.Number == PlayerList[currentPlayer].NewBoardPosition + PlayerList[currentPlayer].Dice1 + PlayerList[currentPlayer].Dice2).ReturnMove(PlayerList[currentPlayer]);
-                PlayerList[currentPlayer].Move(test);
+                CP.IsReversed = false;
 
-                //PlayerList[currentPlayer].NewBoardPosition + PlayerList[currentPlayer].Dice1 + PlayerList[currentPlayer].Dice2;
-                _board.UpdateField(PlayerList[currentPlayer]);
-            } while (test != 0);
+                int ToMove = CP.CurrentBoardPosition + CP.Dice1 + CP.Dice2;
 
-            //PlayerList[currentPlayer].Move(PlayerList[currentPlayer].Dice1 + PlayerList[currentPlayer].Dice2);
+                bool SpecialIsHit = true;
+                CP.IsReversed = ToMove > 63;
+                CP.Move(ToMove);
+                _board.UpdateField(CP);
+                UpdateDisplay(DiceRolled, CurentTurn);
+                MessageBox.Show($"{CP.Name} is  vertrokken...");
+                do
+                {
+                    int[] output = _board.BoardList.FirstOrDefault(x => x.Number == CP.CurrentBoardPosition).ReturnMove(CP);
+                    if (output[1] == 1)
+                    {
+                        MessageBox.Show($"{CP.Name} staat op ne special!");
+                        CP.IsReversed = output[0] > 63 ? true : false;
+                        CP.Move(output[0]);
+                        _board.UpdateField(CP);
+                        UpdateDisplay(DiceRolled, CurentTurn);
+                        MessageBox.Show($"{CP.Name} is vertrokken van de special..");
+                    }
+                    else if (output[1] == 2)
+                    {
+                        //TO CHECK List<Player> wellplayers = (List<Player>)PlayerList.Where(x => x.SkipTurn > 4).Where(x => x != CP);
+                        //if (wellplayers.Count >= 0)
+                        // {
+                        //     wellplayers.FirstOrDefault().SkipTurn = 0;
+                        // }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{CP.Name} blijft staan!");
+                    }
 
+                    SpecialIsHit = output[1] != 0;
+                } while (SpecialIsHit);
+
+                //CP.Move(CP.Dice1 + CP.Dice2);
+            }
+            else
+            {
+                MessageBox.Show($"Sorry {CP.Name}, je moet een beurt overslaan!");
+                CP.SkipTurn--;
+            }
             currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
             UpdateDisplay(DiceRolled, CurentTurn);
+
+            // TO ADD: special fields geven event-zinnetje weer , bvb gans: "Oh nee, een Gans achtervolgt je, ga X aantal plaatsen voorruit!!"
         }
 
         public void UpdateDisplay(string diceRolled, string currentTurn)

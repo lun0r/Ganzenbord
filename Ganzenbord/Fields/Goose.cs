@@ -16,9 +16,19 @@ namespace Ganzenbord
             Grid.Children.Insert(1, SpecialImage);
         }
 
-        public override int ReturnMove(Player player)
+        public override int[] ReturnMove(Player player)
         {
-            return player.Dice1 + player.Dice2;
+            int[] output;
+            if (player.IsReversed)
+            {
+                output = new int[] { player.CurrentBoardPosition - player.Dice1 - player.Dice2, 1 };
+            }
+            else
+            {
+                output = new int[] { player.CurrentBoardPosition + player.Dice1 + player.Dice2, 1 };
+            }
+
+            return output;
         }
     }
 }

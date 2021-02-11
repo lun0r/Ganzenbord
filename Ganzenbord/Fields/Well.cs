@@ -2,10 +2,9 @@
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-
 namespace Ganzenbord
 {
-    class Well : Field
+    internal class Well : Field
     {
         public Image SpecialImage { get; set; }
 
@@ -16,15 +15,17 @@ namespace Ganzenbord
             SpecialImage.Source = new BitmapImage(new Uri($"/Images/well.png", UriKind.Relative));
             Grid.Children.Insert(1, SpecialImage);
         }
-        public override int ReturnMove(Player player)
+
+        public override int[] ReturnMove(Player player)
         {
-            return 0;
+            player.SkipTurn = 9999;
+
+            return new int[] { 0, 2 };
         }
 
         public override void UpdateBoardPosition(Player player)
         {
             throw new System.NotImplementedException();
         }
-
     }
 }
