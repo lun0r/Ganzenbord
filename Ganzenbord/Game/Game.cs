@@ -46,7 +46,7 @@ namespace Ganzenbord
             RollDice();
             Player CP = PlayerList[currentPlayer];
 
-            string DiceRolled = $"Dice:{CP.Dice1} | {CP.Dice2}";
+            string DiceRolled = $"Dice:  {CP.Dice1}  |  {CP.Dice2}";
             int newFieldPos = CP.CurrentBoardPosition + CP.Dice1 + CP.Dice2;
             CP.IsReversed = false;
 
@@ -54,10 +54,10 @@ namespace Ganzenbord
             {
                 CP.IsReversed = newFieldPos > 63;
                 CP.Move(newFieldPos);
-                _board.UpdateField(CP);
                 boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
                 boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
-                MessageBox.Show($"{CP.Name} is vertrokken...");
+                MessageBox.Show($"{CP.Name} heeft {CP.Dice1 + CP.Dice2} geworpen, en zet aan");
+                _board.UpdateField(CP);
 
                 MakeMove(CP);
             }
@@ -67,6 +67,13 @@ namespace Ganzenbord
                 CP.SkipTurn--;
             }
             currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
+
+            if (CP.CurrentBoardPosition == 63)
+            {
+                MessageBox.Show("---------------------------------Game over-----------------------------------------------");
+
+                //disable rolldice knop en toon restartgame knop, of zoiets
+            }
         }
 
         public void RollDice()
@@ -79,7 +86,7 @@ namespace Ganzenbord
         {
             bool specialIsHit = true;
             var CP = currentPlayer;
-            string DiceRolled = $"Dice:{CP.Dice1} | {CP.Dice2}";
+            string DiceRolled = $"Dice:  {CP.Dice1}  |  {CP.Dice2}";
 
             do
             {
