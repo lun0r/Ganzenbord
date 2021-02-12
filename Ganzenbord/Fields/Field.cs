@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
@@ -55,14 +58,28 @@ namespace Ganzenbord
         {
             PawnWrap = new WrapPanel();
             PawnWrap.Orientation = Orientation.Horizontal;
-            PawnWrap.HorizontalAlignment = HorizontalAlignment.Left;
-            PawnWrap.VerticalAlignment = VerticalAlignment.Top;
+            PawnWrap.HorizontalAlignment = HorizontalAlignment.Center;
+            PawnWrap.VerticalAlignment = VerticalAlignment.Center;
             Red = new Image();
             Green = new Image();
             Blue = new Image();
             Purple = new Image();
             Orange = new Image();
             Yellow = new Image();
+
+            
+            Red.Source = new BitmapImage(new Uri($"/Images/pawnred.png", UriKind.Relative));
+            Red.Stretch = Stretch.None;
+            Green.Source = new BitmapImage(new Uri($"/Images/pawngreen.png", UriKind.Relative));
+            Green.Stretch = Stretch.None;
+            Blue.Source = new BitmapImage(new Uri($"/Images/pawnblue.png", UriKind.Relative));
+            Blue.Stretch = Stretch.None;
+            Purple.Source = new BitmapImage(new Uri($"/Images/pawnpurple.png", UriKind.Relative));
+            Purple.Stretch = Stretch.None;
+            Orange.Source = new BitmapImage(new Uri($"/Images/pawnorange.png", UriKind.Relative));
+            Orange.Stretch = Stretch.None;
+            Yellow.Source = new BitmapImage(new Uri($"/Images/pawnyellow.png", UriKind.Relative));
+            Yellow.Stretch = Stretch.None;
 
             Red.Visibility = Visibility.Collapsed;
             Green.Visibility = Visibility.Collapsed;

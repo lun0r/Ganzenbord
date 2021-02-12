@@ -31,17 +31,23 @@ namespace Ganzenbord
             PlayerList = new List<Player>();
         }
 
-        private void MakeNewPlayer(string name, Image avatar, BitmapImage pion)
+        private void MakeNewPlayer(string name, Image avatar, PawnColor pawn)
         {
-            Player player = new Player(name, avatar, pion);
+            Player player = new Player(name, avatar, pawn);
             PlayerList.Add(player);
         }
 
         public void StartGame()
         {
-            MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
-            MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
-            MakeNewPlayer("Pieter", null, new BitmapImage(new Uri("/Images/playerYellow.png", UriKind.Relative)));
+            MakeNewPlayer("Dries", null, PawnColor.Orange);
+            MakeNewPlayer("Kobe", null, PawnColor.Blue);
+            MakeNewPlayer("Pieter", null, PawnColor.Yellow);
+            MakeNewPlayer("Michiel", null, PawnColor.Green);
+
+            _board.BoardList[0].Orange.Visibility = Visibility.Visible;
+            _board.BoardList[0].Blue.Visibility = Visibility.Visible;
+            _board.BoardList[0].Yellow.Visibility = Visibility.Visible;
+            _board.BoardList[0].Green.Visibility = Visibility.Visible;
         }
 
         public void RollDice()
