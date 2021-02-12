@@ -41,18 +41,22 @@ namespace Ganzenbord
             _board.BoardList[0].Green.Visibility = Visibility.Visible;
         }
 
-        public void Run()
+        public bool Run()
         {
             RollDice();
             Player CP = PlayerList[currentPlayer];
+            CP.IsReversed = false;
 
             string DiceRolled = $"Dice:  {CP.Dice1}  |  {CP.Dice2}";
             int newFieldPos = CP.CurrentBoardPosition + CP.Dice1 + CP.Dice2;
-            CP.IsReversed = false;
 
-            if (CP.SkipTurn <= 0)
+            if (CP.SkipTurn > 0)
             {
-                CP.IsReversed = newFieldPos > 63;
+                MessageBox.Show($"Sorry {CP.Name}, je moet een beurt overslaan!");
+                CP.SkipTurn--;
+            }
+            else
+            {
                 CP.Move(newFieldPos);
                 boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
                 boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
@@ -61,19 +65,17 @@ namespace Ganzenbord
 
                 MakeMove(CP);
             }
-            else
-            {
-                MessageBox.Show($"Sorry {CP.Name}, je moet een beurt overslaan!");
-                CP.SkipTurn--;
-            }
-            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
 
             if (CP.CurrentBoardPosition == 63)
             {
-                MessageBox.Show("---------------------------------Game over-----------------------------------------------");
-
-                //disable rolldice knop en toon restartgame knop, of zoiets
+                boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
+                boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
+                MessageBox.Show($"---Game over--- {CP.Name} Won!!!");
+                return true;
             }
+            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
+
+            return false;
         }
 
         public void RollDice()
@@ -84,35 +86,23 @@ namespace Ganzenbord
 
         private void MakeMove(Player currentPlayer)
         {
-            bool specialIsHit = true;
-            var CP = currentPlayer;
-            string DiceRolled = $"Dice:  {CP.Dice1}  |  {CP.Dice2}";
+            bool specialIsHit;
+            string DiceRolled = $"Dice:  {currentPlayer.Dice1}  |  {currentPlayer.Dice2}";
 
             do
             {
                 boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
-                boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
+                boardData.PlaySidebar.UpdateDisplay(currentPlayer.Name, BindedProp.CURRENTTURN);
 
-                Field currentField = _board.BoardList.FirstOrDefault(x => x.Number == CP.CurrentBoardPosition);
-                int NummerOmNaarToeTeGaan = currentField.ReturnMove(CP);
+                Field currentField = _board.BoardList.FirstOrDefault(x => x.Number == currentPlayer.CurrentBoardPosition);
+                int desiredPosition = currentField.ReturnMove(currentPlayer);
 
-                specialIsHit = NummerOmNaarToeTeGaan != CP.CurrentBoardPosition;
+                specialIsHit = desiredPosition != currentPlayer.CurrentBoardPosition;
 
-                if (NummerOmNaarToeTeGaan != CP.CurrentBoardPosition)
-                {
-                    MessageBox.Show(currentField.ToString());
+                MessageBox.Show(currentField.ToString());
 
-                    CP.Move(NummerOmNaarToeTeGaan);
-                    _board.UpdateField(CP);
-                }
-                else if (CP.SkipTurn > 4) // de put
-                {
-                    MessageBox.Show(currentField.ToString());
-                }
-                else
-                {
-                    MessageBox.Show($"{CP.Name} blijft staan!");
-                }
+                currentPlayer.Move(desiredPosition);
+                _board.UpdateField(currentPlayer);
             } while (specialIsHit);
         }
     }

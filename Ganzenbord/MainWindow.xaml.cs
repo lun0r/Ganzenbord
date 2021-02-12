@@ -10,7 +10,8 @@ namespace Ganzenbord
     {
         private readonly Game _game;
 
-        private BoardData boardData;
+        private readonly BoardData boardData;
+        private bool gameOver = false;
 
         public MainWindow()
         {
@@ -19,10 +20,6 @@ namespace Ganzenbord
             DataContext = boardData;
             _game = new Game();
             FillBoardGrid();
-            //WrapPanel test = new WrapPanel
-            //{
-            //    HorizontalAlignment = HorizontalAlignment.Center;
-            //VerticalAlignment = VerticalAlignment.Center;
         }
 
         private void FillBoardGrid()
@@ -45,7 +42,13 @@ namespace Ganzenbord
 
         private void ButtonDice_Click(object sender, RoutedEventArgs e)
         {
-            _game.Run();
+            gameOver = _game.Run();
+            if (gameOver)
+            {
+                throwDice.IsEnabled = false;
+                boardData.PlaySidebar.DiceRolled = "Won!!!";
+                gameOver = false;
+            }
         }
 
         private void StartGameClick(object sender, RoutedEventArgs e)
@@ -53,6 +56,11 @@ namespace Ganzenbord
             SidePanelSetup.Visibility = Visibility.Hidden;
             SidePanelPlaying.Visibility = Visibility.Visible;
             _game.StartGame();
+        }
+
+        private void BtnQuit_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

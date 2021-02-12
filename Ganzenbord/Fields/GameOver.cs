@@ -5,19 +5,24 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    internal class YellowWon : Field
+    internal class GameOver : Field
     {
         public Image SpecialImage { get; set; }
 
-        public YellowWon(int number, int x, int y)
+        public GameOver(int number, int x, int y)
             : base(number, x, y)
         {
         }
 
         public override int ReturnMove(Player player)
         {
-            MessageBox.Show($"{player.Name} won !!! Vuurwerk (9/10 Pieter) ");
-            return player.CurrentBoardPosition;
+            MessageBox.Show($"{player.Name} won !!!");
+            return 63;
+        }
+
+        public override string ToString()
+        {
+            return "well done!";
         }
     }
 }

@@ -148,6 +148,11 @@
                     Grid.Row="4"
                     Grid.Column="1"
                     Click="ButtonDice_Click" />
+            <Button Content="X"
+                    x:Name="btnQuit"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Background="Red" Click="BtnQuit_Click" />
             <MediaElement x:Name="mePlayer"
                           LoadedBehavior="Manual"
                           Source="{Binding VideoPath, Mode=TwoWay}"

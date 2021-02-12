@@ -10,7 +10,6 @@ namespace Ganzenbord
 {
     public class Board
     {
-        //private TimeSpan interval;
         public List<Field> BoardList { get; set; }
 
         private readonly DispatcherTimer dt = new DispatcherTimer();
@@ -18,7 +17,6 @@ namespace Ganzenbord
         public Board()
         {
             dt.Interval = new TimeSpan(0, 0, 1);
-            dt.Tick += Dt_Tick;
         }
 
         public List<Field> CreateNewBoard()
@@ -161,7 +159,7 @@ namespace Ganzenbord
                     break;
 
                 case 63:
-                    currentField = new YellowWon(counter, x, y);
+                    currentField = new GameOver(counter, x, y);
                     break;
 
                 default:

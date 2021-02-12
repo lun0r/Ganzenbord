@@ -6,7 +6,8 @@ namespace Ganzenbord
 {
     internal class Field9 : Goose
     {
-        public int returnValue { get; set; }
+        private int returnValue { get; set; }
+        private bool firstRound { get; set; } = true;
 
         public Field9(int number, int x, int y)
             : base(number, x, y)
@@ -30,6 +31,7 @@ namespace Ganzenbord
                 }
                 returnValue = 0;
             }
+            firstRound = false;
             return base.ReturnMove(player);
         }
 
@@ -39,7 +41,11 @@ namespace Ganzenbord
             {
                 return base.ToString();
             }
-            return $"You arrived 9 in first move,  you move to {returnValue}.";
+            if (firstRound)
+            {
+                return $"You arrived 9 in first move,  you move to {returnValue}.";
+            }
+            return "You died, revived and threw nine. You where born lucky!";
         }
     }
 }

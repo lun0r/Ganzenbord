@@ -28,7 +28,7 @@ namespace Ganzenbord
 
         public void Move(int newFieldPos)
         {
-            IsReversed = newFieldPos > 63 ? true : false;
+            IsReversed = newFieldPos > 63;
 
             if (newFieldPos > 63)
             {
