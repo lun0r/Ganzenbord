@@ -11,4 +11,15 @@ namespace Ganzenbord
         VideoPath,
         CurrentTurn,
     }
+
+    public enum PawnColor
+    {
+        Default,
+        Red,
+        Green,
+        Blue,
+        Purple,
+        Orange,
+        Yellow,
+    }
 }

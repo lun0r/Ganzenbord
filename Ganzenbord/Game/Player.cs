@@ -16,11 +16,13 @@ namespace Ganzenbord
         public bool IsReversed { get; set; } = false;
         public int SkipTurn { get; set; }
 
-        public Player(string name, Image avatar, BitmapImage pion)
+        public PawnColor Pawn { get; set; }
+
+        public Player(string name, Image avatar, PawnColor pawn)
         {
             Name = name;
             Avatar = avatar;
-            Pion = pion;
+            Pawn = pawn;
         }
 
         public void Move(int newFieldPos)
