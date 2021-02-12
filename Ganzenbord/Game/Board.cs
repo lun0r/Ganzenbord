@@ -171,35 +171,35 @@ namespace Ganzenbord
         {
             switch (player.Pawn)
             {
-                case PawnColor.Default:
+                case PawnColor.DEFAULT:
                     break;
 
-                case PawnColor.Red:
+                case PawnColor.RED:
                     BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Red.Visibility = Visibility.Collapsed;
                     BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Red.Visibility = Visibility.Visible;
                     break;
 
-                case PawnColor.Green:
+                case PawnColor.GREEN:
                     BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Green.Visibility = Visibility.Collapsed;
                     BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Green.Visibility = Visibility.Visible;
                     break;
 
-                case PawnColor.Blue:
+                case PawnColor.BLUE:
                     BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Blue.Visibility = Visibility.Collapsed;
                     BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Blue.Visibility = Visibility.Visible;
                     break;
 
-                case PawnColor.Purple:
+                case PawnColor.PURPLE:
                     BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Purple.Visibility = Visibility.Collapsed;
                     BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Purple.Visibility = Visibility.Visible;
                     break;
 
-                case PawnColor.Orange:
+                case PawnColor.ORANGE:
                     BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Orange.Visibility = Visibility.Collapsed;
                     BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Orange.Visibility = Visibility.Visible;
                     break;
 
-                case PawnColor.Yellow:
+                case PawnColor.YELLOW:
                     BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Yellow.Visibility = Visibility.Collapsed;
                     BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Yellow.Visibility = Visibility.Visible;
                     break;

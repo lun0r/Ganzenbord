@@ -1,21 +1,21 @@
 ﻿namespace Ganzenbord
 {
-    public enum BINDEDPROP
+    public enum BindedProp
     {
-        Default,
-        DiceRolled,
-        VideoPath,
-        CurrentTurn,
+        DEFAULT,
+        DICEROLLED,
+        VIDEOPATH,
+        CURRENTTURN,
     }
 
     public enum PawnColor
     {
-        Default,
-        Red,
-        Green,
-        Blue,
-        Purple,
-        Orange,
-        Yellow,
+        DEFAULT,
+        RED,
+        GREEN,
+        BLUE,
+        PURPLE,
+        ORANGE,
+        YELLOW,
     }
 }

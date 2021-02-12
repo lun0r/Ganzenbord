@@ -30,10 +30,10 @@ namespace Ganzenbord
 
         public void StartGame()
         {
-            MakeNewPlayer("Dries", null, PawnColor.Orange);
-            MakeNewPlayer("Kobe", null, PawnColor.Blue);
-            MakeNewPlayer("Pieter", null, PawnColor.Yellow);
-            MakeNewPlayer("Michiel", null, PawnColor.Green);
+            MakeNewPlayer("Dries", null, PawnColor.ORANGE);
+            MakeNewPlayer("Kobe", null, PawnColor.BLUE);
+            MakeNewPlayer("Pieter", null, PawnColor.YELLOW);
+            MakeNewPlayer("Michiel", null, PawnColor.GREEN);
 
             _board.BoardList[0].Orange.Visibility = Visibility.Visible;
             _board.BoardList[0].Blue.Visibility = Visibility.Visible;
@@ -55,8 +55,8 @@ namespace Ganzenbord
                 CP.IsReversed = newFieldPos > 63;
                 CP.Move(newFieldPos);
                 _board.UpdateField(CP);
-                boardData.PlaySidebar.UpdateDisplay(DiceRolled, BINDEDPROP.DiceRolled);
-                boardData.PlaySidebar.UpdateDisplay(CP.Name, BINDEDPROP.CurrentTurn);
+                boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
+                boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
                 MessageBox.Show($"{CP.Name} is vertrokken...");
 
                 MakeMove(CP);
@@ -83,8 +83,8 @@ namespace Ganzenbord
 
             do
             {
-                boardData.PlaySidebar.UpdateDisplay(DiceRolled, BINDEDPROP.DiceRolled);
-                boardData.PlaySidebar.UpdateDisplay(CP.Name, BINDEDPROP.CurrentTurn);
+                boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
+                boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
 
                 Field currentField = _board.BoardList.FirstOrDefault(x => x.Number == CP.CurrentBoardPosition);
                 int NummerOmNaarToeTeGaan = currentField.ReturnMove(CP);
