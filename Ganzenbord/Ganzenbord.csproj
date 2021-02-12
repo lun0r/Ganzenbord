@@ -24,6 +24,12 @@
     <None Remove="Images\lefttop.jpg" />
     <None Remove="Images\leftunder.jpg" />
     <None Remove="Images\maze.png" />
+    <None Remove="Images\pawnblue.png" />
+    <None Remove="Images\pawngreen.png" />
+    <None Remove="Images\pawnorange.png" />
+    <None Remove="Images\pawnpurple.png" />
+    <None Remove="Images\pawnred.png" />
+    <None Remove="Images\pawnyellow.png" />
     <None Remove="Images\playerBlue.png" />
     <None Remove="Images\playerPurple.png" />
     <None Remove="Images\playerRed.png" />
@@ -65,6 +71,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\maze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\pawnblue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\pawngreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\pawnorange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\pawnpurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\pawnred.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\pawnyellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\playerBlue.png">
