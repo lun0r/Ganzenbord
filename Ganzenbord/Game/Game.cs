@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 
 namespace Ganzenbord
 {
@@ -18,30 +14,66 @@ namespace Ganzenbord
 
         private int currentPlayer = 0;
 
-        public int counter = 0;
-
-        private Player PlayerPlaying { get; set; }
-
         public Game()
         {
             _board = new Board();
             boardData = BoardData.GetBoardData();
-
             _dice = new Dice();
             PlayerList = new List<Player>();
         }
 
-        private void MakeNewPlayer(string name, Image avatar, BitmapImage pion)
+        private void MakeNewPlayer(string name, Image avatar, PawnColor pawn)
         {
-            Player player = new Player(name, avatar, pion);
+            Player player = new Player(name, avatar, pawn);
             PlayerList.Add(player);
         }
 
         public void StartGame()
         {
-            MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
-            MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
-            MakeNewPlayer("Pieter", null, new BitmapImage(new Uri("/Images/playerYellow.png", UriKind.Relative)));
+            MakeNewPlayer("Dries", null, PawnColor.ORANGE);
+            MakeNewPlayer("Kobe", null, PawnColor.BLUE);
+            MakeNewPlayer("Pieter", null, PawnColor.YELLOW);
+            MakeNewPlayer("Michiel", null, PawnColor.GREEN);
+
+            _board.BoardList[0].Orange.Visibility = Visibility.Visible;
+            _board.BoardList[0].Blue.Visibility = Visibility.Visible;
+            _board.BoardList[0].Yellow.Visibility = Visibility.Visible;
+            _board.BoardList[0].Green.Visibility = Visibility.Visible;
+        }
+
+        public void Run()
+        {
+            RollDice();
+            Player CP = PlayerList[currentPlayer];
+
+            string DiceRolled = $"Dice:  {CP.Dice1}  |  {CP.Dice2}";
+            int newFieldPos = CP.CurrentBoardPosition + CP.Dice1 + CP.Dice2;
+            CP.IsReversed = false;
+
+            if (CP.SkipTurn <= 0)
+            {
+                CP.IsReversed = newFieldPos > 63;
+                CP.Move(newFieldPos);
+                boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
+                boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
+                MessageBox.Show($"{CP.Name} heeft {CP.Dice1 + CP.Dice2} geworpen, en zet aan");
+                _board.UpdateField(CP);
+
+                MakeMove(CP);
+            }
+            else
+            {
+                MessageBox.Show($"Sorry {CP.Name}, je moet een beurt overslaan!");
+                CP.SkipTurn--;
+            }
+            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
+
+            if (CP.CurrentBoardPosition == 63)
+            {
+                MessageBox.Show("---------------------------------Game over-----------------------------------------------");
+
+                //disable rolldice knop en toon restartgame knop, of zoiets
+            }
         }
 
         public void RollDice()
@@ -50,61 +82,38 @@ namespace Ganzenbord
             PlayerList[currentPlayer].Dice2 = _dice.Roll();
         }
 
-        public void Run()
+        private void MakeMove(Player currentPlayer)
         {
-            RollDice();
-            var CP = PlayerList[currentPlayer];
-            string CurentTurn = CP.Name;
-            string DiceRolled = $"Dice :{CP.Dice1} Dice : {CP.Dice2}";
+            bool specialIsHit = true;
+            var CP = currentPlayer;
+            string DiceRolled = $"Dice:  {CP.Dice1}  |  {CP.Dice2}";
 
-            if (CP.SkipTurn <= 0)
+            do
             {
-                CP.IsReversed = false;
+                boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
+                boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
 
-                int ToMove = CP.CurrentBoardPosition + CP.Dice1 + CP.Dice2;
+                Field currentField = _board.BoardList.FirstOrDefault(x => x.Number == CP.CurrentBoardPosition);
+                int NummerOmNaarToeTeGaan = currentField.ReturnMove(CP);
 
-                bool SpecialIsHit = true;
-                CP.IsReversed = ToMove > 63;
-                CP.Move(ToMove);
-                _board.UpdateField(CP);
-                boardData.PlaySidebar.UpdateDisplay(DiceRolled, PropToBindTo.DiceRolled);
-                boardData.PlaySidebar.UpdateDisplay(CurentTurn, PropToBindTo.CurrentTurn);
-                MessageBox.Show($"{CP.Name} is  vertrokken...");
-                do
+                specialIsHit = NummerOmNaarToeTeGaan != CP.CurrentBoardPosition;
+
+                if (NummerOmNaarToeTeGaan != CP.CurrentBoardPosition)
                 {
-                    boardData.PlaySidebar.UpdateDisplay(DiceRolled, PropToBindTo.DiceRolled);
-                    boardData.PlaySidebar.UpdateDisplay(CurentTurn, PropToBindTo.CurrentTurn);
+                    MessageBox.Show(currentField.ToString());
 
-                    Field currentField = _board.BoardList.FirstOrDefault(x => x.Number == CP.CurrentBoardPosition);
-                    int NummerOmNaarToeTeGaan = currentField.ReturnMove(CP);
-
-                    SpecialIsHit = NummerOmNaarToeTeGaan != CP.CurrentBoardPosition;
-
-                    if (NummerOmNaarToeTeGaan != CP.CurrentBoardPosition)
-                    {
-                        MessageBox.Show(currentField.ToString());
-
-                        CP.Move(NummerOmNaarToeTeGaan);
-                        _board.UpdateField(CP);
-                    }
-                    else if (CP.SkipTurn > 4) // de put
-                    {
-                        MessageBox.Show(currentField.ToString());
-                    }
-                    else
-                    {
-                        MessageBox.Show($"{CP.Name} blijft staan!");
-                    }
-
-                    //SpecialIsHit = WatBenIk == 0 || WatBenIk == 2 ? false : true;
-                } while (SpecialIsHit);
-            }
-            else
-            {
-                MessageBox.Show($"Sorry {CP.Name}, je moet een beurt overslaan!");
-                CP.SkipTurn--;
-            }
-            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
+                    CP.Move(NummerOmNaarToeTeGaan);
+                    _board.UpdateField(CP);
+                }
+                else if (CP.SkipTurn > 4) // de put
+                {
+                    MessageBox.Show(currentField.ToString());
+                }
+                else
+                {
+                    MessageBox.Show($"{CP.Name} blijft staan!");
+                }
+            } while (specialIsHit);
         }
     }
 }

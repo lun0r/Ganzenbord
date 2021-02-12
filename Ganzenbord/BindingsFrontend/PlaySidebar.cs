@@ -59,23 +59,23 @@ namespace Ganzenbord
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void UpdateDisplay(string message, PropToBindTo propToBindTo)
+        public void UpdateDisplay(string message, BindedProp propToBindTo)
         {
             switch (propToBindTo)
             {
-                case PropToBindTo.Default:
+                case BindedProp.DEFAULT:
                     MessageBox.Show("Error");
                     break;
 
-                case PropToBindTo.DiceRolled:
+                case BindedProp.DICEROLLED:
                     DiceRolled = message;
                     break;
 
-                case PropToBindTo.VideoPath:
+                case BindedProp.VIDEOPATH:
                     VideoPath = message;
                     break;
 
-                case PropToBindTo.CurrentTurn:
+                case BindedProp.CURRENTTURN:
                     CurrentTurn = message;
                     break;
 

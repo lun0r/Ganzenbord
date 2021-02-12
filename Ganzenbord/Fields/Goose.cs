@@ -7,7 +7,10 @@ namespace Ganzenbord
     internal class Goose : Field
     {
         public int ReturnValue { get; set; }
+        public int GooseFollowsXPositions { get; set; }
         public Image SpecialImage { get; set; }
+
+
 
         public Goose(int number, int x, int y)
             : base(number, x, y)
@@ -19,21 +22,23 @@ namespace Ganzenbord
 
         public override int ReturnMove(Player player)
         {
+            GooseFollowsXPositions = player.Dice1 + player.Dice2;
+
             if (player.IsReversed)
             {
-                ReturnValue = player.CurrentBoardPosition - player.Dice1 - player.Dice2;
+                ReturnValue = player.CurrentBoardPosition - GooseFollowsXPositions;
                 return ReturnValue;
             }
             else
             {
-                ReturnValue = player.CurrentBoardPosition + player.Dice1 + player.Dice2;
+                ReturnValue = player.CurrentBoardPosition + GooseFollowsXPositions;
                 return ReturnValue;
             }
         }
 
         public override string ToString()
         {
-            return $"I am a Goose, i will hunt you till position {ReturnValue} .";
+            return $"I am a Goose, i will hunt you for {GooseFollowsXPositions} tiles.";
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            return $"You lost you way in the maze, return to position 39.";
+            return $"You lost your way in the maze, return to position 39.";
         }
     }
 }

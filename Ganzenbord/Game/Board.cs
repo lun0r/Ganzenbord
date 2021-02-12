@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 using System.Linq;
-
+using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -25,7 +25,6 @@ namespace Ganzenbord
         {
             BoardList = new List<Field>();
             SetSpiral();
-            SetSpecials();
 
             return BoardList;
         }
@@ -41,7 +40,6 @@ namespace Ganzenbord
                 for (int i = b; i < a; i++)
                 {
                     Field currentField = MakeField(counter, i, b);
-                    //Field currentField = new Field(counter, i, b);
                     BoardList.Add(currentField);
 
                     if (counter == 0)
@@ -63,8 +61,6 @@ namespace Ganzenbord
                 {
                     Field currentField = MakeField(counter, a - 1, i);
 
-                    //Field currentField = new Field(counter, a - 1, i);
-
                     BoardList.Add(currentField);
 
                     currentField.Background.Source = SetImage("horizontal.jpg");
@@ -74,8 +70,6 @@ namespace Ganzenbord
                 for (int i = a - 1; i > b; i--)
                 {
                     Field currentField = MakeField(counter, i, a - 1);
-
-                    //Field currentField = new Field(counter, i, a - 1);
 
                     BoardList.Add(currentField);
                     if (i == a - 1)
@@ -92,7 +86,6 @@ namespace Ganzenbord
                 {
                     Field currentField = MakeField(counter, b, i);
 
-                    //Field currentField = new Field(counter, b, i);
                     BoardList.Add(currentField);
 
                     if (b + 1 == a - 1)
@@ -120,7 +113,7 @@ namespace Ganzenbord
 
         public Field MakeField(int counter, int x, int y)
         {
-            Field currentField = null;
+            Field currentField;
 
             switch (counter)
             {
@@ -184,45 +177,45 @@ namespace Ganzenbord
             return new BitmapImage(new Uri($"/Images/{path}", UriKind.Relative));
         }
 
-        private void SetSpecials()
-        {
-            foreach (Field field in BoardList)
-            {
-            }
-        }
-
-        private int stepsToTake;
-        private int pos;
-        private BitmapImage pion;
-
         public void UpdateField(Player player)
         {
-            pos = 0;
-            stepsToTake = 0;
-
-            stepsToTake = player.CurrentBoardPosition - player.OldBoardPosition;
-            pos = player.OldBoardPosition;
-
-            pion = player.Pion;
-
-            dt.Start();
-        }
-
-        private void Dt_Tick(object sender, EventArgs e)
-        {
-            if (pos > 0)
+            switch (player.Pawn)
             {
-                BoardList.FirstOrDefault(x => x.Number == pos - 1).GamePiece.Source = null;
+                case PawnColor.DEFAULT:
+                    break;
 
-                BoardList.FirstOrDefault(x => x.Number == pos - 1).GamePiece.Opacity = 100;
-            }
-            BoardList.FirstOrDefault(x => x.Number == pos).GamePiece.Opacity = 0.5;
-            BoardList.FirstOrDefault(x => x.Number == pos + 1).GamePiece.Source = pion;
+                case PawnColor.RED:
+                    BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Red.Visibility = Visibility.Collapsed;
+                    BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Red.Visibility = Visibility.Visible;
+                    break;
 
-            pos++;
-            if (pos >= stepsToTake)
-            {
-                dt.Stop();
+                case PawnColor.GREEN:
+                    BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Green.Visibility = Visibility.Collapsed;
+                    BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Green.Visibility = Visibility.Visible;
+                    break;
+
+                case PawnColor.BLUE:
+                    BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Blue.Visibility = Visibility.Collapsed;
+                    BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Blue.Visibility = Visibility.Visible;
+                    break;
+
+                case PawnColor.PURPLE:
+                    BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Purple.Visibility = Visibility.Collapsed;
+                    BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Purple.Visibility = Visibility.Visible;
+                    break;
+
+                case PawnColor.ORANGE:
+                    BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Orange.Visibility = Visibility.Collapsed;
+                    BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Orange.Visibility = Visibility.Visible;
+                    break;
+
+                case PawnColor.YELLOW:
+                    BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).Yellow.Visibility = Visibility.Collapsed;
+                    BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).Yellow.Visibility = Visibility.Visible;
+                    break;
+
+                default:
+                    break;
             }
         }
     }

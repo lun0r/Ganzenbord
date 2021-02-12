@@ -1,14 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ganzenbord
+﻿namespace Ganzenbord
 {
-    public enum PropToBindTo
+    public enum BindedProp
     {
-        Default,
-        DiceRolled,
-        VideoPath,
-        CurrentTurn,
+        DEFAULT,
+        DICEROLLED,
+        VIDEOPATH,
+        CURRENTTURN,
+    }
+
+    public enum PawnColor
+    {
+        DEFAULT,
+        RED,
+        GREEN,
+        BLUE,
+        PURPLE,
+        ORANGE,
+        YELLOW,
     }
 }

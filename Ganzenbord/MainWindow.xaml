@@ -38,6 +38,12 @@
                     <Setter Property="Stretch"
                             Value="Fill" />
                 </Style>
+                <Style TargetType="WrapPanel">
+                    <Setter Property="Width"
+                            Value="{Binding Path=ActualWidth, ElementName=canvas1}" />
+                    <Setter Property="Height"
+                            Value="{Binding Path=ActualHeight, ElementName=canvas1}" />
+                </Style>
                 <Style TargetType="Label">
                     <Setter Property="FontSize"
                             Value="20" />
@@ -77,13 +83,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="87" />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="87" />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
