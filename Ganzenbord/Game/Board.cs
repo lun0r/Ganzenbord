@@ -4,12 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Ganzenbord
 {
     public class Board
     {
         public List<Field> BoardList { get; set; }
+
+        private readonly DispatcherTimer dt = new DispatcherTimer();
+
+        public Board()
+        {
+            dt.Interval = new TimeSpan(0, 0, 1);
+        }
 
         public List<Field> CreateNewBoard()
         {
@@ -151,7 +159,7 @@ namespace Ganzenbord
                     break;
 
                 case 63:
-                    currentField = new YellowWon(counter, x, y);
+                    currentField = new GameOver(counter, x, y);
                     break;
 
                 default:
