@@ -15,8 +15,6 @@ namespace Ganzenbord
         {
             BoardList = new List<Field>();
             SetSpiral();
-            SetSpecials();
-            //FillBoardGrid();
 
             return BoardList;
         }
@@ -32,7 +30,6 @@ namespace Ganzenbord
                 for (int i = b; i < a; i++)
                 {
                     Field currentField = MakeField(counter, i, b);
-                    //Field currentField = new Field(counter, i, b);
                     BoardList.Add(currentField);
 
                     if (counter == 0)
@@ -54,8 +51,6 @@ namespace Ganzenbord
                 {
                     Field currentField = MakeField(counter, a - 1, i);
 
-                    //Field currentField = new Field(counter, a - 1, i);
-
                     BoardList.Add(currentField);
 
                     currentField.Background.Source = SetImage("horizontal.jpg");
@@ -65,8 +60,6 @@ namespace Ganzenbord
                 for (int i = a - 1; i > b; i--)
                 {
                     Field currentField = MakeField(counter, i, a - 1);
-
-                    //Field currentField = new Field(counter, i, a - 1);
 
                     BoardList.Add(currentField);
                     if (i == a - 1)
@@ -83,7 +76,6 @@ namespace Ganzenbord
                 {
                     Field currentField = MakeField(counter, b, i);
 
-                    //Field currentField = new Field(counter, b, i);
                     BoardList.Add(currentField);
 
                     if (b + 1 == a - 1)
@@ -173,13 +165,6 @@ namespace Ganzenbord
         private BitmapImage SetImage(string path)
         {
             return new BitmapImage(new Uri($"/Images/{path}", UriKind.Relative));
-        }
-
-        private void SetSpecials()
-        {
-            foreach (Field field in BoardList)
-            {
-            }
         }
 
         public void UpdateField(Player player)
