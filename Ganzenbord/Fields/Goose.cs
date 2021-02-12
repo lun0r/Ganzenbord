@@ -6,6 +6,7 @@ namespace Ganzenbord
 {
     internal class Goose : Field
     {
+        public int ReturnValue { get; set; }
         public Image SpecialImage { get; set; }
 
         public Goose(int number, int x, int y)
@@ -16,19 +17,23 @@ namespace Ganzenbord
             Grid.Children.Insert(1, SpecialImage);
         }
 
-        public override int[] ReturnMove(Player player)
+        public override int ReturnMove(Player player)
         {
-            int[] output;
             if (player.IsReversed)
             {
-                output = new int[] { player.CurrentBoardPosition - player.Dice1 - player.Dice2, 1 };
+                ReturnValue = player.CurrentBoardPosition - player.Dice1 - player.Dice2;
+                return ReturnValue;
             }
             else
             {
-                output = new int[] { player.CurrentBoardPosition + player.Dice1 + player.Dice2, 1 };
+                ReturnValue = player.CurrentBoardPosition + player.Dice1 + player.Dice2;
+                return ReturnValue;
             }
+        }
 
-            return output;
+        public override string ToString()
+        {
+            return $"I am a Goose, i will hunt you till position {ReturnValue} .";
         }
     }
 }

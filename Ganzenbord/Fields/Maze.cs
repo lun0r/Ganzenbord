@@ -16,10 +16,14 @@ namespace Ganzenbord
             Grid.Children.Insert(1, SpecialImage);
         }
 
-        public override int[] ReturnMove(Player player)
+        public override int ReturnMove(Player player)
         {
-            int[] output = new int[] { 39, 1 };
-            return output;
+            return 39;
+        }
+
+        public override string ToString()
+        {
+            return $"You lost you way in the maze, return to position 39.";
         }
     }
 }
