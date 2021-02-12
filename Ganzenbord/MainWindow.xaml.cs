@@ -19,6 +19,10 @@ namespace Ganzenbord
             DataContext = boardData;
             _game = new Game();
             FillBoardGrid();
+            //WrapPanel test = new WrapPanel
+            //{
+            //    HorizontalAlignment = HorizontalAlignment.Center;
+            //VerticalAlignment = VerticalAlignment.Center;
         }
 
         private void FillBoardGrid()
