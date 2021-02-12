@@ -2,10 +2,9 @@
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-
 namespace Ganzenbord
 {
-    class Prison : Field
+    internal class Prison : Field
     {
         public Image SpecialImage { get; set; }
 
@@ -16,15 +15,12 @@ namespace Ganzenbord
             SpecialImage.Source = new BitmapImage(new Uri($"/Images/prison.png", UriKind.Relative));
             Grid.Children.Insert(1, SpecialImage);
         }
-        public override int ReturnMove(Player player)
-        {
-            return 0;
-        }
 
-        public override void UpdateBoardPosition(Player player)
+        public override int[] ReturnMove(Player player)
         {
-            throw new System.NotImplementedException();
-        }
+            player.SkipTurn = 3;
 
+            return new int[] { 0, 0 }; ;
+        }
     }
 }

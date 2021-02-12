@@ -4,39 +4,27 @@ using System.Text;
 
 namespace Ganzenbord
 {
-    class Field9 : Goose
+    internal class Field9 : Goose
     {
         public Field9(int number, int x, int y)
-            :base(number, x, y)
+            : base(number, x, y)
         {
-
         }
 
-        public override int ReturnMove(Player player)
+        public override int[] ReturnMove(Player player)
         {
-            //klopt nog niet: 
-
-            if (player.OldBoardPosition == 0 && player.NewBoardPosition == 0)
+            if (!player.HasDied)
             {
-                if (player.Dice1 == 5 || player.Dice1 == 4)
+                if (player.Dice1 == 5 || player.Dice1 == 4 && player.Dice2 == 5 || player.Dice2 == 4)
                 {
-                    UpdateBoardPosition(player);
-                    return 26;
+                    return new int[] { 26, 1 };
                 }
-                else if (player.Dice1 == 6 || player.Dice1 == 3)
+                else if (player.Dice1 == 6 || player.Dice1 == 3 && player.Dice2 == 6 || player.Dice2 == 3)
                 {
-                    UpdateBoardPosition(player);
-                    return 53;
+                    return new int[] { 53, 1 };
                 }
-                
             }
             return base.ReturnMove(player);
-        }
-
-        public override void UpdateBoardPosition(Player player)
-        {
-            player.OldBoardPosition = player.NewBoardPosition;
-            player.NewBoardPosition += player.Dice1 + player.Dice2;
         }
     }
 }

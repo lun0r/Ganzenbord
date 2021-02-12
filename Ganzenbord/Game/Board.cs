@@ -161,6 +161,7 @@ namespace Ganzenbord
                 case 63:
                     currentField = new YellowWon(counter, x, y);
                     break;
+
                 default:
                     currentField = new Field(counter, x, y);
                     break;
@@ -184,7 +185,7 @@ namespace Ganzenbord
         public void UpdateField(Player player)
         {
             BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).GamePiece.Source = null;
-            BoardList.FirstOrDefault(x => x.Number == player.NewBoardPosition).GamePiece.Source = player.Pion;
+            BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).GamePiece.Source = player.Pion;
         }
     }
 }

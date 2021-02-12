@@ -4,14 +4,17 @@ using System.Windows.Media.Imaging;
 namespace Ganzenbord
 {
     public class Player
-    { 
+    {
         public string Name { get; set; }
-        public int NewBoardPosition { get; set; } = 0;
-        public int OldBoardPosition { get; set; } = 0;
+        public int CurrentBoardPosition { get; set; }
+        public int OldBoardPosition { get; set; }
         public Image Avatar { get; set; }
         public BitmapImage Pion { get; set; }
         public int Dice1 { get; set; }
         public int Dice2 { get; set; }
+        public bool HasDied { get; set; } = false;
+        public bool IsReversed { get; set; } = false;
+        public int SkipTurn { get; set; }
 
         public Player(string name, Image avatar, BitmapImage pion)
         {
@@ -20,20 +23,16 @@ namespace Ganzenbord
             Pion = pion;
         }
 
-        public int Move(int dice1, int dice2)
+        public void Move(int newFieldPos)
         {
-            OldBoardPosition = NewBoardPosition;
+            if (newFieldPos > 63)
+            {
+                newFieldPos = 63 - (newFieldPos - 63);
+            }
 
-            if (NewBoardPosition + (dice1+dice2) <= 63)
-            {
-                NewBoardPosition += (dice1 + dice2);
-            }
-            else
-            {
-                NewBoardPosition = 126 - (NewBoardPosition + (dice1 + dice2));
-            }
-            return NewBoardPosition;
+            OldBoardPosition = CurrentBoardPosition;
+
+            CurrentBoardPosition = newFieldPos;
         }
-
     }
 }

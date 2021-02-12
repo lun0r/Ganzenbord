@@ -13,7 +13,6 @@ namespace Ganzenbord
         public Image Background { get; set; }
         public Image GamePiece { get; set; }
 
-
         public Field(int number, int x, int y)
         {
             X = x;
@@ -32,14 +31,10 @@ namespace Ganzenbord
             Grid.Children.Add(FieldNumber);
         }
 
-        public virtual int ReturnMove(Player player)
+        public virtual int[] ReturnMove(Player player)
         {
-            return 0 ;
-        }
-
-        public virtual void UpdateBoardPosition(Player player)
-        {
-            throw new System.NotImplementedException();
+            int[] output = new int[] { 0, 0 };
+            return output;
         }
     }
 }

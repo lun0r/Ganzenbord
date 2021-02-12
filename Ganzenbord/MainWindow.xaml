@@ -121,9 +121,11 @@
             <TextBox x:Name="CurrentTurn"
                      Grid.Row="2"
                      Grid.Column="1"
+                     FontSize="25"
                      Text="{Binding CurrentTurn, Mode=TwoWay}"></TextBox>
             <TextBox x:Name="DiceRolled"
                      Grid.Row="3"
+                     FontSize="25"
                      Grid.Column="1"
                      Text="{Binding DiceRolled, Mode=TwoWay}"></TextBox>
 
