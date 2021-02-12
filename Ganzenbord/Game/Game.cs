@@ -44,7 +44,7 @@ namespace Ganzenbord
             MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
             MakeNewPlayer("Pieter", null, new BitmapImage(new Uri("/Images/playerYellow.png", UriKind.Relative)));
 
-            UpdateDisplay("hallo pieter1", "hallo kobe1");
+            
         }
 
         public void RollDice()
