@@ -31,10 +31,14 @@ namespace Ganzenbord
             Grid.Children.Add(FieldNumber);
         }
 
-        public virtual int[] ReturnMove(Player player)
+        public virtual int ReturnMove(Player player)
         {
-            int[] output = new int[] { 0, 0 };
-            return output;
+            return player.CurrentBoardPosition;
+        }
+
+        public override string ToString()
+        {
+            return "You arrived on a normal field, pass dice to next player.";
         }
     }
 }

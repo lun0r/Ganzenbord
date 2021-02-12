@@ -16,11 +16,15 @@ namespace Ganzenbord
             Grid.Children.Insert(1, SpecialImage);
         }
 
-        public override int[] ReturnMove(Player player)
+        public override int ReturnMove(Player player)
         {
             player.SkipTurn = 1;
-            int[] output = new int[] { 0, 0 };
-            return output;
+            return player.CurrentBoardPosition;
+        }
+
+        public override string ToString()
+        {
+            return "You will spend the night in the inn, Skip one turn";
         }
     }
 }

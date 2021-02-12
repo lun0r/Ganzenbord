@@ -16,11 +16,16 @@ namespace Ganzenbord
             Grid.Children.Insert(1, SpecialImage);
         }
 
-        public override int[] ReturnMove(Player player)
+        public override int ReturnMove(Player player)
         {
             player.SkipTurn = 3;
 
-            return new int[] { 0, 0 }; ;
+            return player.CurrentBoardPosition;
+        }
+
+        public override string ToString()
+        {
+            return $"You are naughty, spend three turns in prison";
         }
     }
 }

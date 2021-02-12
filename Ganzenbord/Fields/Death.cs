@@ -16,11 +16,15 @@ namespace Ganzenbord
             Grid.Children.Insert(1, SpecialImage);
         }
 
-        public override int[] ReturnMove(Player player)
+        public override int ReturnMove(Player player)
         {
             player.HasDied = true;
-            int[] output = new int[] { 0, 1 };
-            return output;
+            return 0;
+        }
+
+        public override string ToString()
+        {
+            return "You died, go back to start.";
         }
     }
 }

@@ -11,8 +11,7 @@ namespace Ganzenbord
 {
     internal class Game
     {
-        readonly private Dice _dice1;
-        readonly private Dice _dice2;
+        readonly private Dice _dice;
         public BoardData boardData;
         public Board _board;
         private readonly List<Player> PlayerList;
@@ -27,8 +26,8 @@ namespace Ganzenbord
         {
             _board = new Board();
             boardData = BoardData.GetBoardData();
-            _dice1 = new Dice();
-            _dice2 = new Dice();
+
+            _dice = new Dice();
             PlayerList = new List<Player>();
         }
 
@@ -43,14 +42,12 @@ namespace Ganzenbord
             MakeNewPlayer("Dries", null, new BitmapImage(new Uri("/Images/playerBlue.png", UriKind.Relative)));
             MakeNewPlayer("Kobe", null, new BitmapImage(new Uri("/Images/playerRed.png", UriKind.Relative)));
             MakeNewPlayer("Pieter", null, new BitmapImage(new Uri("/Images/playerYellow.png", UriKind.Relative)));
-
-            
         }
 
         public void RollDice()
         {
-            PlayerList[currentPlayer].Dice1 = _dice1.Roll();
-            PlayerList[currentPlayer].Dice2 = _dice1.Roll();
+            PlayerList[currentPlayer].Dice1 = _dice.Roll();
+            PlayerList[currentPlayer].Dice2 = _dice.Roll();
         }
 
         public void Run()
@@ -70,38 +67,36 @@ namespace Ganzenbord
                 CP.IsReversed = ToMove > 63;
                 CP.Move(ToMove);
                 _board.UpdateField(CP);
-                UpdateDisplay(DiceRolled, CurentTurn);
+                boardData.PlaySidebar.UpdateDisplay(DiceRolled, PropToBindTo.DiceRolled);
+                boardData.PlaySidebar.UpdateDisplay(CurentTurn, PropToBindTo.CurrentTurn);
                 MessageBox.Show($"{CP.Name} is  vertrokken...");
                 do
                 {
-                    int[] output = _board.BoardList.FirstOrDefault(x => x.Number == CP.CurrentBoardPosition).ReturnMove(CP);
-                    if (output[1] == 1)
+                    boardData.PlaySidebar.UpdateDisplay(DiceRolled, PropToBindTo.DiceRolled);
+                    boardData.PlaySidebar.UpdateDisplay(CurentTurn, PropToBindTo.CurrentTurn);
+
+                    Field currentField = _board.BoardList.FirstOrDefault(x => x.Number == CP.CurrentBoardPosition);
+                    int NummerOmNaarToeTeGaan = currentField.ReturnMove(CP);
+
+                    SpecialIsHit = NummerOmNaarToeTeGaan != CP.CurrentBoardPosition;
+
+                    if (NummerOmNaarToeTeGaan != CP.CurrentBoardPosition)
                     {
-                        MessageBox.Show($"{CP.Name} staat op ne special!");
-                        CP.IsReversed = output[0] > 63 ? true : false;
-                        CP.Move(output[0]);
+                        MessageBox.Show(currentField.ToString());
+
+                        CP.Move(NummerOmNaarToeTeGaan);
                         _board.UpdateField(CP);
-                        UpdateDisplay(DiceRolled, CurentTurn);
-                        MessageBox.Show($"{CP.Name} is vertrokken van de special..");
                     }
-                    else if (output[1] == 2)
+                    else if (CP.SkipTurn > 4) // de put
                     {
-                        MessageBox.Show($"{CP.Name} zit in de put!");
-                        foreach (var player in PlayerList)
-                        {
-                            if (player.SkipTurn > 4 && player != CP)
-                            {
-                                MessageBox.Show($"{player.Name} is vrij!");
-                                player.SkipTurn = 0;
-                            }
-                        }
+                        MessageBox.Show(currentField.ToString());
                     }
                     else
                     {
                         MessageBox.Show($"{CP.Name} blijft staan!");
                     }
 
-                    SpecialIsHit = output[1] == 0 || output[1] == 2 ? false : true;
+                    //SpecialIsHit = WatBenIk == 0 || WatBenIk == 2 ? false : true;
                 } while (SpecialIsHit);
             }
             else
@@ -110,15 +105,8 @@ namespace Ganzenbord
                 CP.SkipTurn--;
             }
             currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
-            UpdateDisplay(DiceRolled, CurentTurn);
 
             // TO ADD: special fields geven event-zinnetje weer , bvb gans: "Oh nee, een Gans achtervolgt je, ga X aantal plaatsen voorruit!!"
-        }
-
-        public void UpdateDisplay(string diceRolled, string currentTurn)
-        {
-            boardData.PlaySidebar.CurrentTurn = currentTurn;
-            boardData.PlaySidebar.DiceRolled = diceRolled;
         }
     }
 }
