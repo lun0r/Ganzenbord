@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ganzenbord
+﻿namespace Ganzenbord
 {
-    public enum PropToBindTo
+    public enum BINDEDPROP
     {
         Default,
         DiceRolled,

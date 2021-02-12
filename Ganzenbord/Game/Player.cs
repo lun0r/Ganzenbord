@@ -9,10 +9,11 @@ namespace Ganzenbord
         public int CurrentBoardPosition { get; set; }
         public int OldBoardPosition { get; set; }
         public Image Avatar { get; set; }
-        public BitmapImage Pion { get; set; }
         public int Dice1 { get; set; }
+
         public int Dice2 { get; set; }
         public bool HasDied { get; set; } = false;
+
         public bool IsReversed { get; set; } = false;
         public int SkipTurn { get; set; }
 
