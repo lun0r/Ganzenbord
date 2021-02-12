@@ -10,9 +10,10 @@ namespace Ganzenbord
 {
     public class Board
     {
-        private TimeSpan interval;
+        //private TimeSpan interval;
         public List<Field> BoardList { get; set; }
-        private DispatcherTimer dt = new DispatcherTimer();
+
+        private readonly DispatcherTimer dt = new DispatcherTimer();
 
         public Board()
         {
@@ -191,7 +192,7 @@ namespace Ganzenbord
         }
 
         private int stepsToTake;
-        private int pos = 0;
+        private int pos;
         private BitmapImage pion;
 
         public void UpdateField(Player player)
