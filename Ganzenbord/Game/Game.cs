@@ -105,8 +105,6 @@ namespace Ganzenbord
                 CP.SkipTurn--;
             }
             currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
-
-            // TO ADD: special fields geven event-zinnetje weer , bvb gans: "Oh nee, een Gans achtervolgt je, ga X aantal plaatsen voorruit!!"
         }
     }
 }

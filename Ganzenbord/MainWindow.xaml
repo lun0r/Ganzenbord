@@ -118,6 +118,14 @@
                 <ColumnDefinition Width="6*" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <Label
+                     x:Name="CurrentTurn2"
+                     Grid.Row="5"
+                     Grid.Column="1"
+                     Content="{Binding CurrentTurn, Mode=TwoWay}"
+                     Foreground="White">
+            </Label>
+
             <TextBox x:Name="CurrentTurn"
                      Grid.Row="2"
                      Grid.Column="1"

@@ -4,19 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Ganzenbord
 {
     public class Board
     {
+        private TimeSpan interval;
         public List<Field> BoardList { get; set; }
+        private DispatcherTimer dt = new DispatcherTimer();
+
+        public Board()
+        {
+            dt.Interval = new TimeSpan(0, 0, 1);
+            dt.Tick += Dt_Tick;
+        }
 
         public List<Field> CreateNewBoard()
         {
             BoardList = new List<Field>();
             SetSpiral();
             SetSpecials();
-            //FillBoardGrid();
 
             return BoardList;
         }
@@ -182,10 +190,39 @@ namespace Ganzenbord
             }
         }
 
+        private int stepsToTake;
+        private int pos = 0;
+        private BitmapImage pion;
+
         public void UpdateField(Player player)
         {
-            BoardList.FirstOrDefault(x => x.Number == player.OldBoardPosition).GamePiece.Source = null;
-            BoardList.FirstOrDefault(x => x.Number == player.CurrentBoardPosition).GamePiece.Source = player.Pion;
+            pos = 0;
+            stepsToTake = 0;
+
+            stepsToTake = player.CurrentBoardPosition - player.OldBoardPosition;
+            pos = player.OldBoardPosition;
+
+            pion = player.Pion;
+
+            dt.Start();
+        }
+
+        private void Dt_Tick(object sender, EventArgs e)
+        {
+            if (pos > 0)
+            {
+                BoardList.FirstOrDefault(x => x.Number == pos - 1).GamePiece.Source = null;
+
+                BoardList.FirstOrDefault(x => x.Number == pos - 1).GamePiece.Opacity = 100;
+            }
+            BoardList.FirstOrDefault(x => x.Number == pos).GamePiece.Opacity = 0.5;
+            BoardList.FirstOrDefault(x => x.Number == pos + 1).GamePiece.Source = pion;
+
+            pos++;
+            if (pos >= stepsToTake)
+            {
+                dt.Stop();
+            }
         }
     }
 }
