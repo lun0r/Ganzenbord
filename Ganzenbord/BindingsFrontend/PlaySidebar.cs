@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace Ganzenbord
 {
@@ -10,8 +11,6 @@ namespace Ganzenbord
         private string _videoPath;
 
         private string _currentTurn;
-
-        private int _currentPlayer;
 
         public string DiceRolled
         {
@@ -58,6 +57,31 @@ namespace Ganzenbord
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void UpdateDisplay(string message, PropToBindTo propToBindTo)
+        {
+            switch (propToBindTo)
+            {
+                case PropToBindTo.Default:
+                    MessageBox.Show("Error");
+                    break;
+
+                case PropToBindTo.DiceRolled:
+                    DiceRolled = message;
+                    break;
+
+                case PropToBindTo.VideoPath:
+                    VideoPath = message;
+                    break;
+
+                case PropToBindTo.CurrentTurn:
+                    CurrentTurn = message;
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

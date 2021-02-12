@@ -4,16 +4,11 @@ using System.Text;
 
 namespace Ganzenbord
 {
-    public enum SpecialFields
+    public enum PropToBindTo
     {
-        NotSpecial,
-        Goose,
-        Bridge,
-        Inn,
-        Well,
-        Maze,
-        Prison,
-        Death,
-        End,
+        Default,
+        DiceRolled,
+        VideoPath,
+        CurrentTurn,
     }
 }
