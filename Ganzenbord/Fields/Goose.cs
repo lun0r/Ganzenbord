@@ -6,11 +6,8 @@ namespace Ganzenbord
 {
     internal class Goose : Field
     {
-        public int ReturnValue { get; set; }
         public int GooseFollowsXPositions { get; set; }
         public Image SpecialImage { get; set; }
-
-
 
         public Goose(int number, int x, int y)
             : base(number, x, y)
@@ -26,13 +23,11 @@ namespace Ganzenbord
 
             if (player.IsReversed)
             {
-                ReturnValue = player.CurrentBoardPosition - GooseFollowsXPositions;
-                return ReturnValue;
+                return player.CurrentBoardPosition - GooseFollowsXPositions;
             }
             else
             {
-                ReturnValue = player.CurrentBoardPosition + GooseFollowsXPositions;
-                return ReturnValue;
+                return player.CurrentBoardPosition + GooseFollowsXPositions;
             }
         }
 

@@ -10,7 +10,7 @@ namespace Ganzenbord
         readonly private Dice _dice;
         public BoardData boardData;
         public Board _board;
-        private readonly List<Player> PlayerList;
+        public readonly List<Player> PlayerList;
 
         private int currentPlayer = 0;
 
@@ -41,13 +41,22 @@ namespace Ganzenbord
             _board.BoardList[0].Green.Visibility = Visibility.Visible;
         }
 
+        public void RollDice()
+        {
+            PlayerList[currentPlayer].Dice1 = _dice.Roll();
+            PlayerList[currentPlayer].Dice2 = _dice.Roll();
+        }
+
         public bool Run()
         {
-            RollDice();
             Player CP = PlayerList[currentPlayer];
             CP.IsReversed = false;
 
+            RollDice();
             string DiceRolled = $"Dice:  {CP.Dice1}  |  {CP.Dice2}";
+
+            boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
+
             int newFieldPos = CP.CurrentBoardPosition + CP.Dice1 + CP.Dice2;
 
             if (CP.SkipTurn > 0)
@@ -58,8 +67,7 @@ namespace Ganzenbord
             else
             {
                 CP.Move(newFieldPos);
-                boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
-                boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
+
                 MessageBox.Show($"{CP.Name} heeft {CP.Dice1 + CP.Dice2} geworpen, en zet aan");
                 _board.UpdateField(CP);
 
@@ -70,18 +78,13 @@ namespace Ganzenbord
             {
                 boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
                 boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
-                MessageBox.Show($"---Game over--- {CP.Name} Won!!!");
                 return true;
             }
             currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
 
+            boardData.PlaySidebar.UpdateDisplay("", BindedProp.DICEROLLED);
+            boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
             return false;
-        }
-
-        public void RollDice()
-        {
-            PlayerList[currentPlayer].Dice1 = _dice.Roll();
-            PlayerList[currentPlayer].Dice2 = _dice.Roll();
         }
 
         private void MakeMove(Player currentPlayer)
@@ -91,9 +94,6 @@ namespace Ganzenbord
 
             do
             {
-                boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
-                boardData.PlaySidebar.UpdateDisplay(currentPlayer.Name, BindedProp.CURRENTTURN);
-
                 Field currentField = _board.BoardList.FirstOrDefault(x => x.Number == currentPlayer.CurrentBoardPosition);
                 int desiredPosition = currentField.ReturnMove(currentPlayer);
 

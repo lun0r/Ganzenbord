@@ -29,6 +29,8 @@ namespace Ganzenbord
         public void Move(int newFieldPos)
         {
             IsReversed = newFieldPos > 63;
+            //dees klopt nog niet altijd. Als hij 63 passeerd, op een zwaan komt, en dan nog eens op een zwaan komt,
+            //is zijn "isreversed weer op false gezet door deze check (na de eerste zwaan)
 
             if (newFieldPos > 63)
             {

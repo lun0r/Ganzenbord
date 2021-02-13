@@ -42,12 +42,16 @@ namespace Ganzenbord
 
         private void ButtonDice_Click(object sender, RoutedEventArgs e)
         {
-            gameOver = _game.Run();
             if (gameOver)
             {
                 throwDice.IsEnabled = false;
                 boardData.PlaySidebar.DiceRolled = "Won!!!";
+
                 gameOver = false;
+            }
+            else
+            {
+                gameOver = _game.Run();
             }
         }
 
@@ -56,6 +60,7 @@ namespace Ganzenbord
             SidePanelSetup.Visibility = Visibility.Hidden;
             SidePanelPlaying.Visibility = Visibility.Visible;
             _game.StartGame();
+            boardData.PlaySidebar.UpdateDisplay(_game.PlayerList[0].Name, BindedProp.CURRENTTURN);
         }
 
         private void BtnQuit_Click(object sender, RoutedEventArgs e)
