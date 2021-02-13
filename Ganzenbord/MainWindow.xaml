@@ -81,28 +81,47 @@
               Visibility="Visible"
               DataContext="{Binding StartSidebar}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="300" />
                 <RowDefinition />
                 <RowDefinition />
-                <RowDefinition Height="87" />
+                <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition />
-                <ColumnDefinition Width="87" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="300" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Content="Start Game!"
-                    Grid.Row="3"
-                    Grid.Column="3"
-                    Click="StartGameClick" />
-            <TextBox Grid.Row="0"
-                     Text="{Binding PropStart, Mode=TwoWay}"></TextBox>
+            <Image Grid.Row="0" Grid.Column="1" x:Name="ImgAvatarPrev" />
 
-            <Slider  Grid.Row="1"
-                     Value="{Binding PropStart, Mode=TwoWay}"></Slider>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Text="{Binding PropStart, Mode=TwoWay}" />
+
+            <ComboBox x:Name="DropDwnPickColor"
+                      Grid.Row="2"
+                      Grid.Column="1">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button x:Name="BtnAddPlayer"
+                    Content="Add player!"
+                    Grid.Row="3"
+                    Grid.Column="1" />
+
+            <Button Content="Start Game!"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Click="StartGameClick" />
         </Grid>
 
         <Grid x:Name="SidePanelPlaying"
@@ -157,8 +176,7 @@
                           LoadedBehavior="Manual"
                           Source="{Binding VideoPath, Mode=TwoWay}"
                           Grid.Row="1"
-                          Grid.Column="1">
-            </MediaElement>
+                          Grid.Column="2" />
         </Grid>
     </Grid>
 </Window>
