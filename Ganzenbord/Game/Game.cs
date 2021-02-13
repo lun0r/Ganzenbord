@@ -34,11 +34,15 @@ namespace Ganzenbord
             MakeNewPlayer("Kobe", null, PawnColor.BLUE);
             MakeNewPlayer("Pieter", null, PawnColor.YELLOW);
             MakeNewPlayer("Michiel", null, PawnColor.GREEN);
+            MakeNewPlayer("Ward", null, PawnColor.RED);
+            MakeNewPlayer("Fitz", null, PawnColor.PURPLE);
 
-            _board.BoardList[0].Orange.Visibility = Visibility.Visible;
             _board.BoardList[0].Blue.Visibility = Visibility.Visible;
             _board.BoardList[0].Yellow.Visibility = Visibility.Visible;
             _board.BoardList[0].Green.Visibility = Visibility.Visible;
+            _board.BoardList[0].Red.Visibility = Visibility.Visible;
+            _board.BoardList[0].Purple.Visibility = Visibility.Visible;
+            _board.BoardList[0].Orange.Visibility = Visibility.Visible;
         }
 
         public void RollDice()

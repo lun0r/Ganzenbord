@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -11,37 +13,26 @@ namespace Ganzenbord
         public int X { get; set; }
         public int Y { get; set; }
         public int Number { get; set; }
-        public Grid Grid { get; set; }
-        public Label FieldNumber { get; set; }
+        public Grid Grid { get; set; } = new Grid();
+        public Label FieldNumber { get; set; } = new Label();
 
-        public Image Background { get; set; }
-        public Image GamePiece { get; set; }
-        public Image Red { get; set; }
-        public Image Purple { get; set; }
-        public Image Green { get; set; }
-        public Image Blue { get; set; }
-        public Image Yellow { get; set; }
-        public Image Orange { get; set; }
+        public Image Background { get; set; } = new Image();
+        public Image Red { get; set; } = new Image() { Name = "red" };
+        public Image Purple { get; set; } = new Image() { Name = "purple" };
+        public Image Green { get; set; } = new Image() { Name = "green" };
+        public Image Blue { get; set; } = new Image() { Name = "blue" };
+        public Image Yellow { get; set; } = new Image() { Name = "yellow" };
+        public Image Orange { get; set; } = new Image() { Name = "orange" };
         public WrapPanel PawnWrap { get; set; }
 
         public Field(int number, int x, int y)
         {
             X = x;
             Y = y;
-
             Number = number;
-            Grid = new Grid();
-            FieldNumber = new Label();
-
-            Background = new Image();
-            GamePiece = new Image();
-
             Grid.Children.Add(Background);
-
-            Grid.Children.Add(GamePiece);
-
             Grid.Children.Add(FieldNumber);
-            Grid.Children.Add(CreatePawns());
+            Grid.Children.Add(CreateImages());
         }
 
         public virtual int ReturnMove(Player player)
@@ -54,45 +45,24 @@ namespace Ganzenbord
             return "You arrived on a normal field, pass dice to next player.";
         }
 
-        public WrapPanel CreatePawns()
+        public WrapPanel CreateImages()
         {
             PawnWrap = new WrapPanel();
+
+            List<Image> PawnList = new List<Image> { Red, Green, Blue, Yellow, Orange, Purple };
+
             PawnWrap.Orientation = Orientation.Horizontal;
             PawnWrap.HorizontalAlignment = HorizontalAlignment.Center;
             PawnWrap.VerticalAlignment = VerticalAlignment.Center;
-            Red = new Image();
-            Green = new Image();
-            Blue = new Image();
-            Purple = new Image();
-            Orange = new Image();
-            Yellow = new Image();
 
-            
-            Red.Source = new BitmapImage(new Uri($"/Images/pawnred.png", UriKind.Relative));
-            Red.Stretch = Stretch.None;
-            Green.Source = new BitmapImage(new Uri($"/Images/pawngreen.png", UriKind.Relative));
-            Green.Stretch = Stretch.None;
-            Blue.Source = new BitmapImage(new Uri($"/Images/pawnblue.png", UriKind.Relative));
-            Blue.Stretch = Stretch.None;
-            Purple.Source = new BitmapImage(new Uri($"/Images/pawnpurple.png", UriKind.Relative));
-            Purple.Stretch = Stretch.None;
-            Orange.Source = new BitmapImage(new Uri($"/Images/pawnorange.png", UriKind.Relative));
-            Orange.Stretch = Stretch.None;
-            Yellow.Source = new BitmapImage(new Uri($"/Images/pawnyellow.png", UriKind.Relative));
-            Yellow.Stretch = Stretch.None;
+            foreach (var item in PawnList)
+            {
+                item.Source = new BitmapImage(new Uri($"/Images/pawn{item.Name}.png", UriKind.Relative));
+                item.Stretch = Stretch.None;
+                item.Visibility = Visibility.Collapsed;
+                PawnWrap.Children.Add(item);
+            }
 
-            Red.Visibility = Visibility.Collapsed;
-            Green.Visibility = Visibility.Collapsed;
-            Blue.Visibility = Visibility.Collapsed;
-            Purple.Visibility = Visibility.Collapsed;
-            Orange.Visibility = Visibility.Collapsed;
-            Yellow.Visibility = Visibility.Collapsed;
-            PawnWrap.Children.Add(Red);
-            PawnWrap.Children.Add(Green);
-            PawnWrap.Children.Add(Blue);
-            PawnWrap.Children.Add(Orange);
-            PawnWrap.Children.Add(Purple);
-            PawnWrap.Children.Add(Yellow);
             return PawnWrap;
         }
     }
