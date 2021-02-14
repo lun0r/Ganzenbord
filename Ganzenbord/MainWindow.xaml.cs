@@ -65,8 +65,7 @@ namespace Ganzenbord
 
         private void BtnAddPlayer_Click(object sender, RoutedEventArgs e)
         {
-            int index = DropDwnPickColor.SelectedIndex;
-            _game._playerFactory.AddPlayer(index, _game.Board);
+            _game._playerFactory.AddPlayer(DropDwnPickColor.SelectedIndex, _game.Board);
         }
 
         private void select_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
