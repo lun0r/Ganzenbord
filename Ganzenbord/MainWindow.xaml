@@ -31,18 +31,11 @@
               Grid.Column="1">
             <Grid.Resources>
                 <Style TargetType="Image">
-                    <Setter Property="Width"
-                            Value="{Binding Path=ActualWidth, ElementName=canvas1}" />
-                    <Setter Property="Height"
-                            Value="{Binding Path=ActualHeight, ElementName=canvas1}" />
+
                     <Setter Property="Stretch"
                             Value="Fill" />
                 </Style>
                 <Style TargetType="WrapPanel">
-                    <Setter Property="Width"
-                            Value="{Binding Path=ActualWidth, ElementName=canvas1}" />
-                    <Setter Property="Height"
-                            Value="{Binding Path=ActualHeight, ElementName=canvas1}" />
                 </Style>
                 <Style TargetType="Label">
                     <Setter Property="FontSize"
@@ -124,12 +117,11 @@
                 <ColumnDefinition Width="6*" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Label
-                     x:Name="CurrentTurn2"
-                     Grid.Row="5"
-                     Grid.Column="1"
-                     Content="{Binding CurrentTurn, Mode=TwoWay}"
-                     Foreground="White">
+            <Label x:Name="CurrentTurn2"
+                   Grid.Row="5"
+                   Grid.Column="1"
+                   Content="{Binding CurrentTurn, Mode=TwoWay}"
+                   Foreground="White">
             </Label>
 
             <TextBox x:Name="CurrentTurn"
@@ -152,7 +144,8 @@
                     x:Name="btnQuit"
                     Grid.Row="0"
                     Grid.Column="2"
-                    Background="Red" Click="BtnQuit_Click" />
+                    Background="Red"
+                    Click="BtnQuit_Click" />
             <MediaElement x:Name="mePlayer"
                           LoadedBehavior="Manual"
                           Source="{Binding VideoPath, Mode=TwoWay}"
