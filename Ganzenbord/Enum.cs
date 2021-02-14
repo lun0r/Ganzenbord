@@ -6,11 +6,15 @@
         DICEROLLED,
         VIDEOPATH,
         CURRENTTURN,
+        NAME
     }
 
     public enum Theme
     {
-        Default,
+        SELECTTHEME = 0,
+        CARCASONNE = 1,
+        GREYSCALE = 2,
+        STARWARS = 3,
     }
 
     public enum PawnColor

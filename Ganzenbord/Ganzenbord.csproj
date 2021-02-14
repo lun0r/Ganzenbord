@@ -14,95 +14,263 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Default\0.jpg" />
-    <None Remove="Default\63.jpg" />
-    <None Remove="Default\bridge.png" />
-    <None Remove="Default\death.png" />
-    <None Remove="Default\goose.png" />
-    <None Remove="Default\horizontal.jpg" />
-    <None Remove="Default\inn.png" />
-    <None Remove="Default\lefttop.jpg" />
-    <None Remove="Default\leftunder.jpg" />
-    <None Remove="Default\maze.png" />
-    <None Remove="Default\pawnblue.png" />
-    <None Remove="Default\pawngreen.png" />
-    <None Remove="Default\pawnorange.png" />
-    <None Remove="Default\pawnpurple.png" />
-    <None Remove="Default\pawnred.png" />
-    <None Remove="Default\pawnyellow.png" />
-    <None Remove="Default\prison.png" />
-    <None Remove="Default\righttop.jpg" />
-    <None Remove="Default\rightunder.jpg" />
-    <None Remove="Default\test.mp4" />
-    <None Remove="Default\vertical.jpg" />
-    <None Remove="Default\well.png" />
+    <None Remove="CARCASONNE\0.jpg" />
+    <None Remove="CARCASONNE\63.jpg" />
+    <None Remove="CARCASONNE\bridge.png" />
+    <None Remove="CARCASONNE\death.png" />
+    <None Remove="CARCASONNE\goose.png" />
+    <None Remove="CARCASONNE\horizontal.jpg" />
+    <None Remove="CARCASONNE\inn.png" />
+    <None Remove="CARCASONNE\lefttop.jpg" />
+    <None Remove="CARCASONNE\leftunder.jpg" />
+    <None Remove="CARCASONNE\maze.png" />
+    <None Remove="CARCASONNE\pawnblue.png" />
+    <None Remove="CARCASONNE\pawngreen.png" />
+    <None Remove="CARCASONNE\pawnorange.png" />
+    <None Remove="CARCASONNE\pawnpurple.png" />
+    <None Remove="CARCASONNE\pawnred.png" />
+    <None Remove="CARCASONNE\pawnyellow.png" />
+    <None Remove="CARCASONNE\prison.png" />
+    <None Remove="CARCASONNE\righttop.jpg" />
+    <None Remove="CARCASONNE\rightunder.jpg" />
+    <None Remove="CARCASONNE\test.mp4" />
+    <None Remove="CARCASONNE\vertical.jpg" />
+    <None Remove="CARCASONNE\well.png" />
+    <None Remove="GREYSCALE\0.jpg" />
+    <None Remove="GREYSCALE\63.jpg" />
+    <None Remove="GREYSCALE\bridge.png" />
+    <None Remove="GREYSCALE\death.png" />
+    <None Remove="GREYSCALE\goose.png" />
+    <None Remove="GREYSCALE\horizontal.jpg" />
+    <None Remove="GREYSCALE\inn.png" />
+    <None Remove="GREYSCALE\lefttop.jpg" />
+    <None Remove="GREYSCALE\leftunder.jpg" />
+    <None Remove="GREYSCALE\maze.png" />
+    <None Remove="GREYSCALE\pawnblue.png" />
+    <None Remove="GREYSCALE\pawngreen.png" />
+    <None Remove="GREYSCALE\pawnorange.png" />
+    <None Remove="GREYSCALE\pawnpurple.png" />
+    <None Remove="GREYSCALE\pawnred.png" />
+    <None Remove="GREYSCALE\pawnyellow.png" />
+    <None Remove="GREYSCALE\prison.png" />
+    <None Remove="GREYSCALE\righttop.jpg" />
+    <None Remove="GREYSCALE\rightunder.jpg" />
+    <None Remove="GREYSCALE\vertical.jpg" />
+    <None Remove="GREYSCALE\well.png" />
+    <None Remove="STARWARS\0.jpg" />
+    <None Remove="STARWARS\63.jpg" />
+    <None Remove="STARWARS\bridge.png" />
+    <None Remove="STARWARS\death.png" />
+    <None Remove="STARWARS\goose.png" />
+    <None Remove="STARWARS\horizontal.jpg" />
+    <None Remove="STARWARS\inn.png" />
+    <None Remove="STARWARS\lefttop.jpg" />
+    <None Remove="STARWARS\leftunder.jpg" />
+    <None Remove="STARWARS\maze.png" />
+    <None Remove="STARWARS\pawnblue.png" />
+    <None Remove="STARWARS\pawngreen.png" />
+    <None Remove="STARWARS\pawnorange.png" />
+    <None Remove="STARWARS\pawnpurple.png" />
+    <None Remove="STARWARS\pawnred.png" />
+    <None Remove="STARWARS\pawnyellow.png" />
+    <None Remove="STARWARS\prison.png" />
+    <None Remove="STARWARS\righttop.jpg" />
+    <None Remove="STARWARS\rightunder.jpg" />
+    <None Remove="STARWARS\vertical.jpg" />
+    <None Remove="STARWARS\well.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Default\0.jpg">
+    <Resource Include="CARCASONNE\0.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\63.jpg">
+    <Resource Include="CARCASONNE\63.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\bridge.png">
+    <Resource Include="CARCASONNE\bridge.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\death.png">
+    <Resource Include="CARCASONNE\death.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\goose.png">
+    <Resource Include="CARCASONNE\goose.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\horizontal.jpg">
+    <Resource Include="CARCASONNE\horizontal.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\inn.png">
+    <Resource Include="CARCASONNE\inn.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\lefttop.jpg">
+    <Resource Include="CARCASONNE\lefttop.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\leftunder.jpg">
+    <Resource Include="CARCASONNE\leftunder.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\maze.png">
+    <Resource Include="CARCASONNE\maze.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\pawnblue.png">
+    <Resource Include="CARCASONNE\pawnblue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\pawngreen.png">
+    <Resource Include="CARCASONNE\pawngreen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\pawnorange.png">
+    <Resource Include="CARCASONNE\pawnorange.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\pawnpurple.png">
+    <Resource Include="CARCASONNE\pawnpurple.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\pawnred.png">
+    <Resource Include="CARCASONNE\pawnred.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\pawnyellow.png">
+    <Resource Include="CARCASONNE\pawnyellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\prison.png">
+    <Resource Include="CARCASONNE\prison.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\righttop.jpg">
+    <Resource Include="CARCASONNE\righttop.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\rightunder.jpg">
+    <Resource Include="CARCASONNE\rightunder.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\test.mp4">
+    <Resource Include="CARCASONNE\test.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\vertical.jpg">
+    <Resource Include="CARCASONNE\vertical.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Default\well.png">
+    <Resource Include="CARCASONNE\well.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\0.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\63.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\bridge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\death.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\goose.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\horizontal.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\inn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\lefttop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\leftunder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\maze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\pawnblue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\pawngreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\pawnorange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\pawnpurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\pawnred.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\pawnyellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\prison.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\righttop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\rightunder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\vertical.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="GREYSCALE\well.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\0.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\63.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\bridge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\death.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\goose.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\horizontal.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\inn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\lefttop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\leftunder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\maze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\pawnblue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\pawngreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\pawnorange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\pawnpurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\pawnred.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\pawnyellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\prison.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\righttop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\rightunder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\vertical.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="STARWARS\well.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
