@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
@@ -65,7 +66,19 @@ namespace Ganzenbord
 
         private void BtnAddPlayer_Click(object sender, RoutedEventArgs e)
         {
-            _game._playerFactory.AddPlayer(DropDwnPickColor.SelectedIndex, _game.Board);
+            if (_game.PlayerList.Exists(x => x.Name == _boardData.StartSidebar.Name))
+            {
+                MessageBox.Show("This name was already picked.");
+            }
+            else if (_boardData.StartSidebar.Name == null)
+            {
+                MessageBox.Show("Please enter a name.");
+            }
+            else
+            {
+                int index = DropDwnPickColor.SelectedIndex;
+                _game._playerFactory.AddPlayer(index, _game.Board);
+            }
         }
 
         private void select_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)

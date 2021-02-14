@@ -71,6 +71,7 @@ namespace Ganzenbord
             {
                 case PawnColor.RED:
                     board.BoardList[0].Red.Visibility = Visibility.Visible;
+
                     break;
 
                 case PawnColor.GREEN:

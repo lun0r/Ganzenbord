@@ -2,7 +2,7 @@
 
 namespace Ganzenbord
 {
-    internal class Dice
+    public class Dice
     {
         private readonly Random rnd;
 
