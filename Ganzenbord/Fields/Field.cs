@@ -32,7 +32,7 @@ namespace Ganzenbord
             Number = number;
             Grid.Children.Add(Background);
             Grid.Children.Add(FieldNumber);
-            Grid.Children.Add(CreateImages());
+            Grid.Children.Add(CreateDefault());
         }
 
         public virtual int ReturnMove(Player player)
@@ -45,7 +45,7 @@ namespace Ganzenbord
             return "You arrived on a normal field, pass dice to next player.";
         }
 
-        public WrapPanel CreateImages()
+        public WrapPanel CreateDefault()
         {
             PawnWrap = new WrapPanel();
 
@@ -57,7 +57,7 @@ namespace Ganzenbord
 
             foreach (var item in PawnList)
             {
-                item.Source = new BitmapImage(new Uri($"/Images/pawn{item.Name}.png", UriKind.Relative));
+                item.Source = Board.SetImage($"pawn{ item.Name}.png");
                 item.Stretch = Stretch.None;
                 item.Visibility = Visibility.Collapsed;
                 PawnWrap.Children.Add(item);

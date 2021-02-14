@@ -10,6 +10,7 @@ namespace Ganzenbord
 {
     public class Board
     {
+        public static Theme ChosenTheme { get; set; } = Theme.Default;
         public List<Field> BoardList { get; set; }
 
         private readonly DispatcherTimer dt = new DispatcherTimer();
@@ -170,9 +171,9 @@ namespace Ganzenbord
             return currentField;
         }
 
-        private BitmapImage SetImage(string path)
+        public static BitmapImage SetImage(string path)
         {
-            return new BitmapImage(new Uri($"/Images/{path}", UriKind.Relative));
+            return new BitmapImage(new Uri($"/{ChosenTheme}/{path}", UriKind.Relative));
         }
 
         public void UpdateField(Player player)

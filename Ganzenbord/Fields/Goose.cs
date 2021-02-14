@@ -14,7 +14,7 @@ namespace Ganzenbord
         {
             SpecialImage = new Image
             {
-                Source = new BitmapImage(new Uri($"/Images/goose.png", UriKind.Relative))
+                Source = Board.SetImage("goose.png")
             };
             Grid.Children.Insert(1, SpecialImage);
         }
