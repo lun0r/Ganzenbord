@@ -8,6 +8,11 @@
         CURRENTTURN,
     }
 
+    public enum Theme
+    {
+        Default,
+    }
+
     public enum PawnColor
     {
         DEFAULT,

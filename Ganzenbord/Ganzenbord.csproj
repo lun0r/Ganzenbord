@@ -14,95 +14,95 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Images\0.jpg" />
-    <None Remove="Images\63.jpg" />
-    <None Remove="Images\bridge.png" />
-    <None Remove="Images\death.png" />
-    <None Remove="Images\goose.png" />
-    <None Remove="Images\horizontal.jpg" />
-    <None Remove="Images\inn.png" />
-    <None Remove="Images\lefttop.jpg" />
-    <None Remove="Images\leftunder.jpg" />
-    <None Remove="Images\maze.png" />
-    <None Remove="Images\pawnblue.png" />
-    <None Remove="Images\pawngreen.png" />
-    <None Remove="Images\pawnorange.png" />
-    <None Remove="Images\pawnpurple.png" />
-    <None Remove="Images\pawnred.png" />
-    <None Remove="Images\pawnyellow.png" />
-    <None Remove="Images\prison.png" />
-    <None Remove="Images\righttop.jpg" />
-    <None Remove="Images\rightunder.jpg" />
-    <None Remove="Images\test.mp4" />
-    <None Remove="Images\vertical.jpg" />
-    <None Remove="Images\well.png" />
+    <None Remove="Default\0.jpg" />
+    <None Remove="Default\63.jpg" />
+    <None Remove="Default\bridge.png" />
+    <None Remove="Default\death.png" />
+    <None Remove="Default\goose.png" />
+    <None Remove="Default\horizontal.jpg" />
+    <None Remove="Default\inn.png" />
+    <None Remove="Default\lefttop.jpg" />
+    <None Remove="Default\leftunder.jpg" />
+    <None Remove="Default\maze.png" />
+    <None Remove="Default\pawnblue.png" />
+    <None Remove="Default\pawngreen.png" />
+    <None Remove="Default\pawnorange.png" />
+    <None Remove="Default\pawnpurple.png" />
+    <None Remove="Default\pawnred.png" />
+    <None Remove="Default\pawnyellow.png" />
+    <None Remove="Default\prison.png" />
+    <None Remove="Default\righttop.jpg" />
+    <None Remove="Default\rightunder.jpg" />
+    <None Remove="Default\test.mp4" />
+    <None Remove="Default\vertical.jpg" />
+    <None Remove="Default\well.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\0.jpg">
+    <Resource Include="Default\0.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\63.jpg">
+    <Resource Include="Default\63.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\bridge.png">
+    <Resource Include="Default\bridge.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\death.png">
+    <Resource Include="Default\death.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\goose.png">
+    <Resource Include="Default\goose.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\horizontal.jpg">
+    <Resource Include="Default\horizontal.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\inn.png">
+    <Resource Include="Default\inn.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\lefttop.jpg">
+    <Resource Include="Default\lefttop.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\leftunder.jpg">
+    <Resource Include="Default\leftunder.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\maze.png">
+    <Resource Include="Default\maze.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\pawnblue.png">
+    <Resource Include="Default\pawnblue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\pawngreen.png">
+    <Resource Include="Default\pawngreen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\pawnorange.png">
+    <Resource Include="Default\pawnorange.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\pawnpurple.png">
+    <Resource Include="Default\pawnpurple.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\pawnred.png">
+    <Resource Include="Default\pawnred.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\pawnyellow.png">
+    <Resource Include="Default\pawnyellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\prison.png">
+    <Resource Include="Default\prison.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\righttop.jpg">
+    <Resource Include="Default\righttop.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\rightunder.jpg">
+    <Resource Include="Default\rightunder.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\test.mp4">
+    <Resource Include="Default\test.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\vertical.jpg">
+    <Resource Include="Default\vertical.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\well.png">
+    <Resource Include="Default\well.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
