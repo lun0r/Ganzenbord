@@ -11,9 +11,10 @@
 
     public enum Theme
     {
-        Default,
-        Greyscale,
-        NewTheme,
+        SELECTTHEME = 0,
+        CARCASONNE = 1,
+        GREYSCALE = 2,
+        STARWARS = 3,
     }
 
     public enum PawnColor

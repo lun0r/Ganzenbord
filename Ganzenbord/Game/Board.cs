@@ -11,12 +11,25 @@ namespace Ganzenbord
 {
     public class Board
     {
-        public static Theme ChosenTheme { get; set; } = Theme.NewTheme;
+        public static Theme ChosenTheme { get; set; } = Theme.CARCASONNE;
         public List<Field> BoardList { get; set; }
+        private Grid _grid;
 
         public Board(Grid boardGrid)
         {
             FillBoardGrid(boardGrid);
+            _grid = boardGrid;
+        }
+
+        public void ChangeTheme(int index, List<Player> playerList)
+        {
+            ChosenTheme = (Theme)index;
+
+            FillBoardGrid(_grid);
+            foreach (var player in playerList)
+            {
+                UpdateField(player);
+            }
         }
 
         public List<Field> CreateNewBoard()

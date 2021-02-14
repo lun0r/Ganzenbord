@@ -21,13 +21,14 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="700" />
-            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="300" />
+
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Border Grid.Row="1"
                 Grid.Column="1" />
         <Grid x:Name="BoardGrid"
-
               Grid.Row="1"
               Grid.Column="1">
             <Grid.Resources>
@@ -67,11 +68,27 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
-        <!--andere naam voor SetUI-->
+        <StackPanel Grid.Row="1"
+                    Grid.Column="2"
+                    Background="LightGray">
+
+            <ComboBox x:Name="CBSelectTheme"
+                      SelectionChanged="select_SelectionChanged">
+                <ComboBoxItem Content="Select theme"
+                              IsSelected="True"
+                              Name="Selecttheme" />
+                <ComboBoxItem Content="Carcasonne"
+                              Name="Default" />
+                <ComboBoxItem Content="Greyscale"
+                              Name="Greyscale" />
+                <ComboBoxItem Content="StarWars"
+                              Name="StarWars" />
+            </ComboBox>
+        </StackPanel>
 
         <Grid x:Name="SidePanelSetup"
               Grid.Row="1"
-              Grid.Column="2"
+              Grid.Column="3"
               Visibility="Visible"
               DataContext="{Binding StartSidebar}">
             <Grid.RowDefinitions>
@@ -91,12 +108,15 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Row="0" Grid.Column="1" x:Name="ImgAvatarPrev" Source="{Binding PropStart, Mode=TwoWay}" />
+            <Image Grid.Row="0"
+                   Grid.Column="1"
+                   x:Name="ImgAvatarPrev"
+                   Source="{Binding PropStart, Mode=TwoWay}" />
 
             <Label Content="Enter your name below"
                    FontSize="25"
-                    Grid.Row="2"
-                    Grid.Column="1" />
+                   Grid.Row="2"
+                   Grid.Column="1" />
 
             <TextBox x:Name="TxtPlayerName"
                      Text="{Binding Name, Mode=TwoWay}"
@@ -119,23 +139,25 @@
             <Button x:Name="BtnSelectAvatar"
                     Content="SelectAvatar"
                     Grid.Row="1"
-                    Grid.Column="1" Click="BtnSelectAvatar_Click" />
+                    Grid.Column="1"
+                    Click="BtnSelectAvatar_Click" />
 
             <Button x:Name="BtnAddPlayer"
                     Content="Add player!"
                     Grid.Row="5"
-                    Grid.Column="1" Click="BtnAddPlayer_Click" />
+                    Grid.Column="1"
+                    Click="BtnAddPlayer_Click" />
 
             <Button Content="Start Game!"
                     Grid.Row="6"
                     Grid.Column="1"
-                    Click="StartGameClick" />
+                    Click="BtnStartGame_Click" />
         </Grid>
 
         <Grid x:Name="SidePanelPlaying"
               Background="Black"
               Grid.Row="1"
-              Grid.Column="2"
+              Grid.Column="3"
               Visibility="Hidden"
               DataContext="{Binding PlaySidebar}">
             <Grid.RowDefinitions>
@@ -173,14 +195,18 @@
                     x:Name="throwDice"
                     Grid.Row="4"
                     Grid.Column="1"
-                    Click="ButtonDice_Click" />
+                    Click="BtnDice_Click" />
             <Button Content="X"
                     x:Name="btnQuit"
                     Grid.Row="0"
                     Grid.Column="2"
-                    Background="Red" Click="BtnQuit_Click" />
+                    Background="Red"
+                    Click="BtnQuit_Click" />
 
-            <Image Grid.Row="1" Grid.Column="1" x:Name="ImgAvatar" Source="{Binding VideoPath, Mode=TwoWay}" />
+            <Image Grid.Row="1"
+                   Grid.Column="1"
+                   x:Name="ImgAvatar"
+                   Source="{Binding VideoPath, Mode=TwoWay}" />
 
             <MediaElement x:Name="mePlayer"
                           LoadedBehavior="Manual"

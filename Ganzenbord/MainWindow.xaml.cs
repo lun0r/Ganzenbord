@@ -20,7 +20,7 @@ namespace Ganzenbord
             _game = new Game(BoardGrid);
         }
 
-        private void ButtonDice_Click(object sender, RoutedEventArgs e)
+        private void BtnDice_Click(object sender, RoutedEventArgs e)
         {
             if (gameOver)
             {
@@ -35,7 +35,7 @@ namespace Ganzenbord
             }
         }
 
-        private void StartGameClick(object sender, RoutedEventArgs e)
+        private void BtnStartGame_Click(object sender, RoutedEventArgs e)
         {
             SidePanelSetup.Visibility = Visibility.Hidden;
             SidePanelPlaying.Visibility = Visibility.Visible;
@@ -67,6 +67,14 @@ namespace Ganzenbord
         {
             int index = DropDwnPickColor.SelectedIndex;
             _game._playerFactory.AddPlayer(index, _game.Board);
+        }
+
+        private void select_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (CBSelectTheme.SelectedIndex != 0)
+            {
+                _game.Board.ChangeTheme(CBSelectTheme.SelectedIndex, _game.PlayerList);
+            }
         }
     }
 }
