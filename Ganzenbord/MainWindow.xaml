@@ -27,7 +27,7 @@
         <Border Grid.Row="1"
                 Grid.Column="1" />
         <Grid x:Name="BoardGrid"
-              DataContext="board"
+
               Grid.Row="1"
               Grid.Column="1">
             <Grid.Resources>
@@ -75,28 +75,61 @@
               Visibility="Visible"
               DataContext="{Binding StartSidebar}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="300" />
                 <RowDefinition />
                 <RowDefinition />
-                <RowDefinition Height="87" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition />
-                <ColumnDefinition Width="87" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="300" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Content="Start Game!"
-                    Grid.Row="3"
-                    Grid.Column="3"
-                    Click="StartGameClick" />
-            <TextBox Grid.Row="0"
-                     Text="{Binding PropStart, Mode=TwoWay}"></TextBox>
+            <Image Grid.Row="0" Grid.Column="1" x:Name="ImgAvatarPrev" Source="{Binding PropStart, Mode=TwoWay}" />
 
-            <Slider  Grid.Row="1"
-                     Value="{Binding PropStart, Mode=TwoWay}"></Slider>
+            <Label Content="Enter your name below"
+                   FontSize="25"
+                    Grid.Row="2"
+                    Grid.Column="1" />
+
+            <TextBox x:Name="TxtPlayerName"
+                     Text="{Binding Name, Mode=TwoWay}"
+                     Grid.Row="3"
+                     Grid.Column="1" />
+
+            <ComboBox x:Name="DropDwnPickColor"
+                      ItemsSource="{Binding PawnColor, Mode=TwoWay}"
+                      Grid.Row="4"
+                      Grid.Column="1">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button x:Name="BtnSelectAvatar"
+                    Content="SelectAvatar"
+                    Grid.Row="1"
+                    Grid.Column="1" Click="BtnSelectAvatar_Click" />
+
+            <Button x:Name="BtnAddPlayer"
+                    Content="Add player!"
+                    Grid.Row="5"
+                    Grid.Column="1" Click="BtnAddPlayer_Click" />
+
+            <Button Content="Start Game!"
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Click="StartGameClick" />
         </Grid>
 
         <Grid x:Name="SidePanelPlaying"
@@ -145,14 +178,15 @@
                     x:Name="btnQuit"
                     Grid.Row="0"
                     Grid.Column="2"
-                    Background="Red"
-                    Click="BtnQuit_Click" />
+                    Background="Red" Click="BtnQuit_Click" />
+
+            <Image Grid.Row="1" Grid.Column="1" x:Name="ImgAvatar" Source="{Binding VideoPath, Mode=TwoWay}" />
+
             <MediaElement x:Name="mePlayer"
                           LoadedBehavior="Manual"
                           Source="{Binding VideoPath, Mode=TwoWay}"
-                          Grid.Row="1"
-                          Grid.Column="1">
-            </MediaElement>
+                          Grid.Row="0"
+                          Grid.Column="1" />
         </Grid>
     </Grid>
 </Window>

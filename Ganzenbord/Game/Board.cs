@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -13,11 +14,9 @@ namespace Ganzenbord
         public static Theme ChosenTheme { get; set; } = Theme.Default;
         public List<Field> BoardList { get; set; }
 
-        private readonly DispatcherTimer dt = new DispatcherTimer();
-
-        public Board()
+        public Board(Grid boardGrid)
         {
-            dt.Interval = new TimeSpan(0, 0, 1);
+            FillBoardGrid(boardGrid);
         }
 
         public List<Field> CreateNewBoard()
@@ -110,7 +109,7 @@ namespace Ganzenbord
             }
         }
 
-        public Field MakeField(int counter, int x, int y)
+        private Field MakeField(int counter, int x, int y)
         {
             Field currentField;
 
@@ -171,7 +170,25 @@ namespace Ganzenbord
             return currentField;
         }
 
-        public static BitmapImage SetImage(string path)
+        private void FillBoardGrid(Grid boardGrid)
+        {
+            List<Field> boardList = CreateNewBoard();
+
+            foreach (var field in boardList)
+            {
+                if (field.Number != 0)
+                {
+                    field.FieldNumber.Content = field.Number;
+                }
+
+                boardGrid.Children.Add(field.Grid);
+
+                Grid.SetRow(field.Grid, field.X);
+                Grid.SetColumn(field.Grid, field.Y);
+            }
+        }
+
+public static BitmapImage SetImage(string path)
         {
             return new BitmapImage(new Uri($"/{ChosenTheme}/{path}", UriKind.Relative));
         }

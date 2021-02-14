@@ -8,7 +8,7 @@ namespace Ganzenbord
         public string Name { get; set; }
         public int CurrentBoardPosition { get; set; }
         public int OldBoardPosition { get; set; }
-        public Image Avatar { get; set; }
+        public string AvatarPath { get; set; }
         public int Dice1 { get; set; }
 
         public int Dice2 { get; set; }
@@ -20,16 +20,16 @@ namespace Ganzenbord
 
         public PawnColor Pawn { get; set; }
 
-        public Player(string name, Image avatar, PawnColor pawn)
+        public Player(string name, string avatarPath, PawnColor pawn)
         {
             Name = name;
-            Avatar = avatar;
+            AvatarPath = avatarPath;
             Pawn = pawn;
         }
 
         public void Move(int newFieldPos)
         {
-            IsReversed = newFieldPos > 63;
+            IsReversed = newFieldPos > 63 || OldBoardPosition > CurrentBoardPosition;
 
             if (newFieldPos > 63)
             {
