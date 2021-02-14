@@ -56,6 +56,7 @@ namespace Ganzenbord
             {
                 case PawnColor.RED:
                     board.BoardList[0].Red.Visibility = Visibility.Visible;
+
                     break;
 
                 case PawnColor.GREEN:
@@ -82,6 +83,7 @@ namespace Ganzenbord
                     break;
             }
 
+            //  TO FIX: _boardData.StartSidebar.PawnColor.RemoveAt(index);
             MakeNewPlayer(name, img, color);
         }
     }

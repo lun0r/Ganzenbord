@@ -119,20 +119,41 @@
                    Grid.Column="1" />
 
             <TextBox x:Name="TxtPlayerName"
-                     Text="{Binding Name, Mode=TwoWay}"
                      Grid.Row="3"
-                     Grid.Column="1" />
+                     Grid.Column="1"
+                     Text="{Binding Name, Mode=TwoWay}" />
+            <!--<ComboBox x:Name="CBPawnSelector"
+                      Grid.Row="4"
+                      Grid.Column="1">
+                <ComboBoxItem Name="CBRed"
+                              Content="Red"
+                              Foreground="Red" />
+                <ComboBoxItem Name="CBGreen"
+                              Content="Green"
+                              Foreground="Green" />
+                <ComboBoxItem Name="CBBlue"
+                              Content="Blue"
+                              Foreground="Blue" />
+                <ComboBoxItem Name="CBPurple"
+                              Content="Purple"
+                              Foreground="Purple" />
+                <ComboBoxItem Name="CBOrange"
+                              Content="Orange"
+                              Foreground="DarkOrange" />
+                <ComboBoxItem Name="CBYellow"
+                              Content="Yellow"
+                              Foreground="Yellow" />
+            </ComboBox>-->
 
             <ComboBox x:Name="DropDwnPickColor"
                       ItemsSource="{Binding PawnColor, Mode=TwoWay}"
                       Grid.Row="4"
-                      Grid.Column="1">
+                      Grid.Column="1"
+                      Text="Pick a color">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
 
-                            <TextBlock Text="{Binding Name}" />
-                        </StackPanel>
+                        <TextBlock Text="{Binding Name, Mode=TwoWay}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
