@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
@@ -13,27 +8,30 @@ namespace Ganzenbord
         private readonly List<Player> _playerList;
 
         private readonly BoardData _boardData;
-        private Pawn _pawn = new Pawn();
+        private List<Pawn> _pawnList;
 
         public PlayerFactory()
         {
             _playerList = new List<Player>(); ;
             _boardData = BoardData.GetBoardData();
+            _pawnList = new List<Pawn>();
+            MakePawnList();
+        }
 
-            //_pawnColors = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Yellow" };
+        private void MakePawnList()
+        {
+            _pawnList.Add(new Pawn("Red", PawnColor.RED));
+            _pawnList.Add(new Pawn("Blue", PawnColor.BLUE));
+            _pawnList.Add(new Pawn("Green", PawnColor.GREEN));
+            _pawnList.Add(new Pawn("Yellow", PawnColor.YELLOW));
+            _pawnList.Add(new Pawn("Purple", PawnColor.PURPLE));
+            _pawnList.Add(new Pawn("Orange", PawnColor.ORANGE));
 
-            //_boardData.StartSidebar.PropStart = @"C:\Users\1\Pictures\4_Jobs_That_Require_a_Background_in_Computers.jpeg";
-
-            //_boardData.StartSidebar.DropDown = _playerList;
+            _boardData.StartSidebar.PawnColor = _pawnList;
         }
 
         public List<Player> GetPlayerList()
         {
-            //MakeNewPlayer("Dries", null, PawnColor.ORANGE);
-            //MakeNewPlayer("Kobe", null, PawnColor.BLUE);
-            //MakeNewPlayer("Pieter", null, PawnColor.YELLOW);
-            //MakeNewPlayer("Michiel", null, PawnColor.GREEN);
-
             return _playerList;
         }
 
@@ -52,8 +50,7 @@ namespace Ganzenbord
             var name = _boardData.StartSidebar.Name;
             var img = _boardData.StartSidebar.AvatarPath;
 
-            List<Pawn> pawnList = _pawn.GetPawns();
-            PawnColor color = pawnList[index].PawnColor;
+            PawnColor color = _pawnList[index].PawnColor;
 
             switch (color)
             {

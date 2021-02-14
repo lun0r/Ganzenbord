@@ -1,12 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
@@ -17,7 +11,6 @@ namespace Ganzenbord
         private readonly BoardData _boardData;
         private Game _game;
         private bool gameOver = false;
-        // private Pawn _pawn;
 
         public MainWindow()
         {
@@ -25,13 +18,6 @@ namespace Ganzenbord
             _boardData = BoardData.GetBoardData();
             DataContext = _boardData;
             _game = new Game(BoardGrid);
-            //_pawn = new Pawn();
-            //_pawn.MakeSixPawns();
-
-            //_boardData.StartSidebar.PawnColor = _pawn.GetPawns();
-
-            //DropDwnPickColor.ItemsSource = _game.PlayerList;
-            //DropDwnPickColor.ItemsSource = typeof(Colors).GetProperties();
         }
 
         private void ButtonDice_Click(object sender, RoutedEventArgs e)
@@ -54,6 +40,7 @@ namespace Ganzenbord
             SidePanelSetup.Visibility = Visibility.Hidden;
             SidePanelPlaying.Visibility = Visibility.Visible;
             _boardData.PlaySidebar.UpdateDisplay(_game.PlayerList[0].Name, BindedProp.CURRENTTURN);
+            _boardData.PlaySidebar.VideoPath = _game.PlayerList[0].AvatarPath;
         }
 
         private void BtnQuit_Click(object sender, RoutedEventArgs e)

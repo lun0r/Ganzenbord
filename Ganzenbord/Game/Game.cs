@@ -22,7 +22,6 @@ namespace Ganzenbord
             PlayerList = _playerFactory.GetPlayerList();
             _dice = new Dice();
             Board = new Board(boardGrid);
-            //_playerFactory.ShowPlayers(_board);
         }
 
         private void RollDice()
@@ -61,7 +60,7 @@ namespace Ganzenbord
             if (CP.CurrentBoardPosition == 63) return true;
 
             currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
-
+            boardData.PlaySidebar.VideoPath = PlayerList[currentPlayer].AvatarPath;
             boardData.PlaySidebar.UpdateDisplay("", BindedProp.DICEROLLED);
             boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
 
