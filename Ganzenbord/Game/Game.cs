@@ -1,17 +1,31 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Ganzenbord
 {
-    internal class Game
+    public class Game : INotifyPropertyChanged
     {
         public PlayerFactory _playerFactory;
         private readonly Dice _dice;
         private readonly BoardData boardData;
         public Board Board;
-        public List<Player> PlayerList;
+        public static Game game;
+
+        private List<Player> _playerList;
+
+        public List<Player> PlayerList
+        {
+            get { return _playerList; }
+            set
+            {
+                _playerList = value;
+                OnPropertyChanged();
+            }
+        }
 
         private int currentPlayer = 0;
 
@@ -22,6 +36,12 @@ namespace Ganzenbord
             PlayerList = _playerFactory.GetPlayerList();
             _dice = new Dice();
             Board = new Board(boardGrid);
+            game = this;
+        }
+
+        public static Game GetGameInstance()
+        {
+            return game;
         }
 
         private void RollDice()
@@ -83,6 +103,13 @@ namespace Ganzenbord
                 currentPlayer.Move(desiredPosition);
                 Board.UpdateField(currentPlayer);
             } while (specialIsHit);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    internal class Maze : Field
+    public class Maze : Field
     {
         public Image SpecialImage { get; set; }
 

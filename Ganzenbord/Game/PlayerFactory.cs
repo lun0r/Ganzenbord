@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace Ganzenbord
 {
-    internal class PlayerFactory
+    public class PlayerFactory
     {
         private readonly List<Player> _playerList;
 
@@ -12,7 +12,7 @@ namespace Ganzenbord
 
         public PlayerFactory()
         {
-            _playerList = new List<Player>(); ;
+            _playerList = new List<Player>();
             _boardData = BoardData.GetBoardData();
             _pawnList = new List<Pawn>();
             MakePawnList();

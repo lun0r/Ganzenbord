@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ganzenbord
 {
-    internal class Field9 : Goose
+    public class Field9 : Goose
     {
         private int ReturnValue { get; set; }
         private bool FirstRound { get; set; } = true;

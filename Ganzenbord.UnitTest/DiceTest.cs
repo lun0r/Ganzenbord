@@ -3,7 +3,7 @@ using Ganzenbord;
 
 namespace Ganzenbord.UnitTest
 {
-    internal class DiceTest
+    public class DiceTest
     {
         private Dice _dice;
 

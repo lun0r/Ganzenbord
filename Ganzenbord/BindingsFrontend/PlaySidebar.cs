@@ -1,16 +1,33 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace Ganzenbord
 {
-    internal class PlaySidebar : INotifyPropertyChanged
+    public class PlaySidebar : INotifyPropertyChanged
     {
         private string _diceRolled;
 
         private string _videoPath;
 
         private string _currentTurn;
+        private List<Player> _playerList;
+
+        public List<Player> PlayerList
+        {
+            get { return _playerList; }
+            set
+            {
+                _playerList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public PlaySidebar()
+        {
+            PlayerList = new List<Player>();
+        }
 
         public string DiceRolled
         {

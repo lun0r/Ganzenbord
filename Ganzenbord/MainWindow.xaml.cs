@@ -3,6 +3,9 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System.Linq;
 
 namespace Ganzenbord
 {
@@ -19,6 +22,7 @@ namespace Ganzenbord
             _boardData = BoardData.GetBoardData();
             DataContext = _boardData;
             _game = new Game(BoardGrid);
+            PlayersListView.ItemsSource = _game.PlayerList;
         }
 
         private void BtnDice_Click(object sender, RoutedEventArgs e)
@@ -38,6 +42,7 @@ namespace Ganzenbord
 
         private void BtnStartGame_Click(object sender, RoutedEventArgs e)
         {
+            _boardData.PlaySidebar.PlayerList = _game.PlayerList;
             SidePanelSetup.Visibility = Visibility.Hidden;
             SidePanelPlaying.Visibility = Visibility.Visible;
             _boardData.PlaySidebar.UpdateDisplay(_game.PlayerList[0].Name, BindedProp.CURRENTTURN);

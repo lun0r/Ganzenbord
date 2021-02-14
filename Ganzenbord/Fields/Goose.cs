@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    internal class Goose : Field
+    public class Goose : Field
     {
         public int GooseFollowsXPositions { get; set; }
         public Image SpecialImage { get; set; }

@@ -1,6 +1,8 @@
-﻿namespace Ganzenbord
+﻿using System.Collections.Generic;
+
+namespace Ganzenbord
 {
-    internal class BoardData
+    public class BoardData
     {
         private static BoardData boardData;
         public PlaySidebar PlaySidebar { get; set; }
