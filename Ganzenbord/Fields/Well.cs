@@ -7,7 +7,7 @@ namespace Ganzenbord
     internal class Well : Field
     {
         public Image SpecialImage { get; set; }
-        public Player PlayerInWell { get; set; }
+        public static Player PlayerInWell { get; set; }
 
         public Well(int number, int x, int y)
             : base(number, x, y)
@@ -21,12 +21,6 @@ namespace Ganzenbord
 
         public override int ReturnMove(Player player)
         {
-            player.SkipTurn = 9999;
-
-            if (PlayerInWell != null)
-            {
-                PlayerInWell.SkipTurn = 0;
-            }
             PlayerInWell = player;
 
             return player.CurrentBoardPosition;

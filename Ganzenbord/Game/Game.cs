@@ -63,7 +63,7 @@ namespace Ganzenbord
 
             int newFieldPos = CP.CurrentBoardPosition + CP.Dice1 + CP.Dice2;
 
-            if (CP.SkipTurn > 0)
+            if (CP.SkipTurn > 0 || CP == Well.PlayerInWell)
             {
                 MessageBox.Show($"Sorry {CP.Name}, je moet een beurt overslaan!");
                 CP.SkipTurn--;
@@ -84,6 +84,7 @@ namespace Ganzenbord
                 boardData.PlaySidebar.UpdateDisplay(CP.Name, BindedProp.CURRENTTURN);
                 return true;
             }
+
             currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
 
             boardData.PlaySidebar.UpdateDisplay("", BindedProp.DICEROLLED);
