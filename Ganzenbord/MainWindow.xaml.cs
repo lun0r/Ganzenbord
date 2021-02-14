@@ -14,40 +14,24 @@ namespace Ganzenbord
     public partial class MainWindow : Window
 
     {
-        private readonly Game _game;
-
-        private readonly BoardData boardData;
+        private readonly BoardData _boardData;
+        private Game _game;
         private bool gameOver = false;
+        // private Pawn _pawn;
 
         public MainWindow()
         {
             InitializeComponent();
-            boardData = BoardData.GetBoardData();
-            DataContext = boardData;
-            _game = new Game();
+            _boardData = BoardData.GetBoardData();
+            DataContext = _boardData;
+            _game = new Game(BoardGrid);
+            //_pawn = new Pawn();
+            //_pawn.MakeSixPawns();
 
-            FillBoardGrid();
-            _game.StartGame();
+            //_boardData.StartSidebar.PawnColor = _pawn.GetPawns();
+
             //DropDwnPickColor.ItemsSource = _game.PlayerList;
-            DropDwnPickColor.ItemsSource = typeof(Colors).GetProperties();
-        }
-
-        private void FillBoardGrid()
-        {
-            List<Field> boardList = _game._board.CreateNewBoard();
-
-            foreach (var field in boardList)
-            {
-                if (field.Number != 0)
-                {
-                    field.FieldNumber.Content = field.Number;
-                }
-
-                BoardGrid.Children.Add(field.Grid);
-
-                Grid.SetRow(field.Grid, field.X);
-                Grid.SetColumn(field.Grid, field.Y);
-            }
+            //DropDwnPickColor.ItemsSource = typeof(Colors).GetProperties();
         }
 
         private void ButtonDice_Click(object sender, RoutedEventArgs e)
@@ -55,7 +39,7 @@ namespace Ganzenbord
             if (gameOver)
             {
                 throwDice.IsEnabled = false;
-                boardData.PlaySidebar.DiceRolled = "Won!!!";
+                _boardData.PlaySidebar.DiceRolled = "Won!!!";
 
                 gameOver = false;
             }
@@ -69,35 +53,33 @@ namespace Ganzenbord
         {
             SidePanelSetup.Visibility = Visibility.Hidden;
             SidePanelPlaying.Visibility = Visibility.Visible;
-            _game.StartGame();
-            boardData.PlaySidebar.UpdateDisplay(_game.PlayerList[0].Name, BindedProp.CURRENTTURN);
+            _boardData.PlaySidebar.UpdateDisplay(_game.PlayerList[0].Name, BindedProp.CURRENTTURN);
         }
 
         private void BtnQuit_Click(object sender, RoutedEventArgs e)
         {
-            //System.Windows.Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
+        }
 
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //if (openFileDialog.ShowDialog() == true)
-            //    boardData.PlaySidebar.UpdateDisplay(File.ReadAllText(openFileDialog.FileName), BindedProp.CURRENTTURN);
-
+        private void BtnSelectAvatar_Click(object sender, RoutedEventArgs e)
+        {
             var dlg = new OpenFileDialog();
+            bool? result = dlg.ShowDialog();
 
-            dlg.DefaultExt = ".png";
-            dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
-
-            // Display OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Get the selected file name and display in a TextBox
-            if (result == true)
+            if ((bool)result)
             {
-                // Open document
+                dlg.DefaultExt = ".png";
+                dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
                 string filename = dlg.FileName;
-                //boardData.PlaySidebar.UpdateDisplay(filename, BindedProp.CURRENTTURN);
-                boardData.PlaySidebar.VideoPath = filename;
-                //testimg.Source = new BitmapImage(new Uri(filename));
+                ImgAvatarPrev.Source = new BitmapImage(new Uri(filename));
+                _boardData.StartSidebar.AvatarPath = filename;
             }
+        }
+
+        private void BtnAddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            int index = DropDwnPickColor.SelectedIndex;
+            _game._playerFactory.AddPlayer(index, _game.Board);
         }
     }
 }

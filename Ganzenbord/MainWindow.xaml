@@ -26,7 +26,7 @@
         <Border Grid.Row="1"
                 Grid.Column="1" />
         <Grid x:Name="BoardGrid"
-              DataContext="board"
+
               Grid.Row="1"
               Grid.Column="1">
             <Grid.Resources>
@@ -86,6 +86,9 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
 
@@ -94,32 +97,43 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Row="0" Grid.Column="1" x:Name="ImgAvatarPrev" />
+            <Image Grid.Row="0" Grid.Column="1" x:Name="ImgAvatarPrev" Source="{Binding PropStart, Mode=TwoWay}" />
 
-            <TextBox Grid.Row="1"
-                     Grid.Column="1"
-                     Text="{Binding PropStart, Mode=TwoWay}" />
+            <Label Content="Enter your name below"
+                   FontSize="25"
+                    Grid.Row="2"
+                    Grid.Column="1" />
+
+            <TextBox x:Name="TxtPlayerName"
+                     Text="{Binding Name, Mode=TwoWay}"
+                     Grid.Row="3"
+                     Grid.Column="1" />
 
             <ComboBox x:Name="DropDwnPickColor"
-                      Grid.Row="2"
+                      ItemsSource="{Binding PawnColor, Mode=TwoWay}"
+                      Grid.Row="4"
                       Grid.Column="1">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+
                             <TextBlock Text="{Binding Name}" />
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+            <Button x:Name="BtnSelectAvatar"
+                    Content="SelectAvatar"
+                    Grid.Row="1"
+                    Grid.Column="1" Click="BtnSelectAvatar_Click" />
 
             <Button x:Name="BtnAddPlayer"
                     Content="Add player!"
-                    Grid.Row="3"
-                    Grid.Column="1" />
+                    Grid.Row="5"
+                    Grid.Column="1" Click="BtnAddPlayer_Click" />
 
             <Button Content="Start Game!"
-                    Grid.Row="4"
+                    Grid.Row="6"
                     Grid.Column="1"
                     Click="StartGameClick" />
         </Grid>
