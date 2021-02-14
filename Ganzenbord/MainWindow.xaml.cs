@@ -83,7 +83,7 @@ namespace Ganzenbord
 
         private void select_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (CBSelectTheme.SelectedIndex != 0)
+            if (CBSelectTheme.SelectedIndex != 0) // TODO remove check on zero
             {
                 _game.Board.ChangeTheme(CBSelectTheme.SelectedIndex, _game.PlayerList);
             }

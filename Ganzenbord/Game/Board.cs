@@ -22,7 +22,7 @@ namespace Ganzenbord
 
         public void ChangeTheme(int index, List<Player> playerList)
         {
-            ChosenTheme = (Theme)index;
+            ChosenTheme = (Theme)index + 1;
 
             FillBoardGrid(_grid);
             foreach (var player in playerList)
