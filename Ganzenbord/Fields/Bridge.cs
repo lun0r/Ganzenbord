@@ -11,8 +11,11 @@ namespace Ganzenbord
         public Bridge(int number, int x, int y)
             : base(number, x, y)
         {
-            SpecialImage = new Image();
-            SpecialImage.Source = new BitmapImage(new Uri($"/Images/bridge.png", UriKind.Relative));
+            SpecialImage = new Image
+            {
+                Source = new BitmapImage(new Uri($"/Images/bridge.png", UriKind.Relative))
+            };
+
             Grid.Children.Insert(1, SpecialImage);
         }
 

@@ -11,8 +11,10 @@ namespace Ganzenbord
         public Prison(int number, int x, int y)
             : base(number, x, y)
         {
-            SpecialImage = new Image();
-            SpecialImage.Source = new BitmapImage(new Uri($"/Images/prison.png", UriKind.Relative));
+            SpecialImage = new Image
+            {
+                Source = new BitmapImage(new Uri($"/Images/prison.png", UriKind.Relative))
+            };
             Grid.Children.Insert(1, SpecialImage);
         }
 

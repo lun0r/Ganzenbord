@@ -12,8 +12,10 @@ namespace Ganzenbord
         public Well(int number, int x, int y)
             : base(number, x, y)
         {
-            SpecialImage = new Image();
-            SpecialImage.Source = new BitmapImage(new Uri($"/Images/well.png", UriKind.Relative));
+            SpecialImage = new Image
+            {
+                Source = new BitmapImage(new Uri($"/Images/well.png", UriKind.Relative))
+            };
             Grid.Children.Insert(1, SpecialImage);
         }
 

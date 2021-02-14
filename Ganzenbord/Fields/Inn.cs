@@ -11,8 +11,10 @@ namespace Ganzenbord
         public Inn(int number, int x, int y)
             : base(number, x, y)
         {
-            SpecialImage = new Image();
-            SpecialImage.Source = new BitmapImage(new Uri($"/Images/inn.png", UriKind.Relative));
+            SpecialImage = new Image
+            {
+                Source = new BitmapImage(new Uri($"/Images/inn.png", UriKind.Relative))
+            };
             Grid.Children.Insert(1, SpecialImage);
         }
 
