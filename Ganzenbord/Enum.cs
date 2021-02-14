@@ -12,6 +12,8 @@
     public enum Theme
     {
         Default,
+        Greyscale,
+        NewTheme,
     }
 
     public enum PawnColor

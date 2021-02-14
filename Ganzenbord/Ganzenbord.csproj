@@ -36,6 +36,48 @@
     <None Remove="Default\test.mp4" />
     <None Remove="Default\vertical.jpg" />
     <None Remove="Default\well.png" />
+    <None Remove="Greyscale\0.jpg" />
+    <None Remove="Greyscale\63.jpg" />
+    <None Remove="Greyscale\bridge.png" />
+    <None Remove="Greyscale\death.png" />
+    <None Remove="Greyscale\goose.png" />
+    <None Remove="Greyscale\horizontal.jpg" />
+    <None Remove="Greyscale\inn.png" />
+    <None Remove="Greyscale\lefttop.jpg" />
+    <None Remove="Greyscale\leftunder.jpg" />
+    <None Remove="Greyscale\maze.png" />
+    <None Remove="Greyscale\pawnblue.png" />
+    <None Remove="Greyscale\pawngreen.png" />
+    <None Remove="Greyscale\pawnorange.png" />
+    <None Remove="Greyscale\pawnpurple.png" />
+    <None Remove="Greyscale\pawnred.png" />
+    <None Remove="Greyscale\pawnyellow.png" />
+    <None Remove="Greyscale\prison.png" />
+    <None Remove="Greyscale\righttop.jpg" />
+    <None Remove="Greyscale\rightunder.jpg" />
+    <None Remove="Greyscale\vertical.jpg" />
+    <None Remove="Greyscale\well.png" />
+    <None Remove="NewTheme\0.jpg" />
+    <None Remove="NewTheme\63.jpg" />
+    <None Remove="NewTheme\bridge.png" />
+    <None Remove="NewTheme\death.png" />
+    <None Remove="NewTheme\goose.png" />
+    <None Remove="NewTheme\horizontal.jpg" />
+    <None Remove="NewTheme\inn.png" />
+    <None Remove="NewTheme\lefttop.jpg" />
+    <None Remove="NewTheme\leftunder.jpg" />
+    <None Remove="NewTheme\maze.png" />
+    <None Remove="NewTheme\pawnblue.png" />
+    <None Remove="NewTheme\pawngreen.png" />
+    <None Remove="NewTheme\pawnorange.png" />
+    <None Remove="NewTheme\pawnpurple.png" />
+    <None Remove="NewTheme\pawnred.png" />
+    <None Remove="NewTheme\pawnyellow.png" />
+    <None Remove="NewTheme\prison.png" />
+    <None Remove="NewTheme\righttop.jpg" />
+    <None Remove="NewTheme\rightunder.jpg" />
+    <None Remove="NewTheme\vertical.jpg" />
+    <None Remove="NewTheme\well.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -103,6 +145,132 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Default\well.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\0.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\63.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\bridge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\death.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\goose.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\horizontal.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\inn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\lefttop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\leftunder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\maze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\pawnblue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\pawngreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\pawnorange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\pawnpurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\pawnred.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\pawnyellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\prison.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\righttop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\rightunder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\vertical.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Greyscale\well.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\0.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\63.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\bridge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\death.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\goose.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\horizontal.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\inn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\lefttop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\leftunder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\maze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\pawnblue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\pawngreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\pawnorange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\pawnpurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\pawnred.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\pawnyellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\prison.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\righttop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\rightunder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\vertical.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NewTheme\well.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

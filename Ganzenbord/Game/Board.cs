@@ -11,7 +11,7 @@ namespace Ganzenbord
 {
     public class Board
     {
-        public static Theme ChosenTheme { get; set; } = Theme.Default;
+        public static Theme ChosenTheme { get; set; } = Theme.NewTheme;
         public List<Field> BoardList { get; set; }
 
         public Board(Grid boardGrid)
@@ -188,7 +188,7 @@ namespace Ganzenbord
             }
         }
 
-public static BitmapImage SetImage(string path)
+        public static BitmapImage SetImage(string path)
         {
             return new BitmapImage(new Uri($"/{ChosenTheme}/{path}", UriKind.Relative));
         }
