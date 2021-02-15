@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace Ganzenbord
 {
-    public class Game : INotifyPropertyChanged
+    public class Game
     {
         public PlayerFactory _playerFactory;
         private readonly Dice _dice;
@@ -16,17 +16,7 @@ namespace Ganzenbord
         public Board Board;
         public static Game game;
 
-        private List<Player> _playerList;
-
-        public List<Player> PlayerList
-        {
-            get { return _playerList; }
-            set
-            {
-                _playerList = value;
-                OnPropertyChanged();
-            }
-        }
+        public List<Player> PlayerList { get; set; }
 
         private int currentPlayer = 0;
 
@@ -111,13 +101,6 @@ namespace Ganzenbord
                 currentPlayer.Move(desiredPosition);
                 Board.UpdateField(currentPlayer);
             } while (specialIsHit);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
