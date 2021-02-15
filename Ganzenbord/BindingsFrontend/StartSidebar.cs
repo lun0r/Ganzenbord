@@ -2,18 +2,15 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace Ganzenbord
 {
     public class StartSidebar : INotifyPropertyChanged
     {
-        private string _avatarPath;
-
-        // private List<Pawn> _pownColor;
         private string _name;
-
         private ObservableCollection<Pawn> _pawnColor;
+        private string _avatarPath;
 
         public string Name
         {
