@@ -6,7 +6,8 @@
         DICEROLLED,
         VIDEOPATH,
         CURRENTTURN,
-        NAME
+        NAME,
+        FIELDMESSAGE,
     }
 
     public enum Theme

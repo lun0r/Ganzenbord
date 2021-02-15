@@ -12,7 +12,7 @@ namespace Ganzenbord
     {
         public static Theme ChosenTheme { get; set; } = Theme.CARCASONNE;
         public List<Field> BoardList { get; set; }
-        private Grid _grid;
+        private readonly Grid _grid;
 
         public Board(Grid boardGrid)
         {
@@ -172,6 +172,10 @@ namespace Ganzenbord
 
                 case 63:
                     currentField = new GameOver(counter, x, y);
+                    break;
+
+                case 12:
+                    currentField = new BridgeEnd(counter, x, y);
                     break;
 
                 default:

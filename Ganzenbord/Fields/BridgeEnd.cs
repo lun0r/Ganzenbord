@@ -4,29 +4,29 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    public class Inn : Field
+    public class BridgeEnd : Field
     {
         public Image SpecialImage { get; set; }
 
-        public Inn(int number, int x, int y)
+        public BridgeEnd(int number, int x, int y)
             : base(number, x, y)
         {
             SpecialImage = new Image
             {
-                Source = Board.SetImage("inn.png")
+                Source = Board.SetImage("bridge.png")
             };
+            SpecialImage.Opacity = 0.7;
             Grid.Children.Insert(1, SpecialImage);
         }
 
         public override int ReturnMove(Player player)
         {
-            player.SkipTurn = 1;
-            return player.CurrentBoardPosition;
+            return base.ReturnMove(player);
         }
 
         public override string ToString()
         {
-            return "You will spend the night in the inn, Skip one turn.";
+            return "You arrived at the other side of the bridge.";
         }
     }
 }

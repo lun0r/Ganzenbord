@@ -65,6 +65,7 @@ namespace Ganzenbord
 
             if (CP.SkipTurn > 0 || CP == Well.PlayerInWell)
             {
+                boardData.PlaySidebar.UpdateDisplay($"Sorry {CP.Name}, je moet een beurt overslaan!", BindedProp.FIELDMESSAGE);
                 MessageBox.Show($"Sorry {CP.Name}, je moet een beurt overslaan!");
                 CP.SkipTurn--;
             }
@@ -72,17 +73,22 @@ namespace Ganzenbord
             {
                 CP.Move(newFieldPos);
 
+                boardData.PlaySidebar.UpdateDisplay($"{CP.Name} heeft {CP.Dice1 + CP.Dice2} geworpen, en zet aan", BindedProp.FIELDMESSAGE);
                 MessageBox.Show($"{CP.Name} heeft {CP.Dice1 + CP.Dice2} geworpen, en zet aan");
                 Board.UpdateField(CP);
 
                 MakeMove(CP);
             }
 
-            if (CP.CurrentBoardPosition == 63) return true;
+            if (CP.CurrentBoardPosition == 63)
+            {
+                boardData.PlaySidebar.UpdateDisplay($"{CP.Name} has won the game !!!", BindedProp.FIELDMESSAGE);
+                return true;
+            }
 
             currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
-            boardData.PlaySidebar.VideoPath = PlayerList[currentPlayer].AvatarPath;
-            boardData.PlaySidebar.UpdateDisplay("", BindedProp.DICEROLLED);
+            boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
+
             boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
 
             return false;
@@ -98,6 +104,7 @@ namespace Ganzenbord
                 int desiredPosition = currentField.ReturnMove(currentPlayer);
 
                 specialIsHit = desiredPosition != currentPlayer.CurrentBoardPosition;
+                boardData.PlaySidebar.UpdateDisplay(currentField.ToString(), BindedProp.FIELDMESSAGE);
 
                 MessageBox.Show(currentField.ToString());
 

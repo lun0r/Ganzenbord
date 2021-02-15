@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Ganzenbord
 {
@@ -12,21 +14,20 @@ namespace Ganzenbord
         private string _videoPath;
 
         private string _currentTurn;
-        private List<Player> _playerList;
+        private string _fieldMessage;
+        private ObservableCollection<string> _listOfMessages;
 
-        public List<Player> PlayerList
+        public ObservableCollection<string> ListOfMessages
         {
-            get { return _playerList; }
+            get { return _listOfMessages; }
             set
             {
-                _playerList = value;
-                OnPropertyChanged();
+                if (_listOfMessages != value)
+                {
+                    _listOfMessages = value;
+                    OnPropertyChanged();
+                }
             }
-        }
-
-        public PlaySidebar()
-        {
-            PlayerList = new List<Player>();
         }
 
         public string DiceRolled
@@ -42,7 +43,7 @@ namespace Ganzenbord
             }
         }
 
-        public string VideoPath
+        public string ImagePath
         {
             get { return _videoPath; }
             set
@@ -69,6 +70,26 @@ namespace Ganzenbord
             }
         }
 
+        public string FieldMessage
+        {
+            get { return _fieldMessage; }
+            set
+            {
+                if (_fieldMessage != value)
+                {
+                    _fieldMessage = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public PlaySidebar()
+        {
+            ListOfMessages = new ObservableCollection<string>();
+            ImagePath = "/avatar.png";
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -89,11 +110,16 @@ namespace Ganzenbord
                     break;
 
                 case BindedProp.VIDEOPATH:
-                    VideoPath = message;
+                    ImagePath = message;
                     break;
 
                 case BindedProp.CURRENTTURN:
                     CurrentTurn = message;
+                    break;
+
+                case BindedProp.FIELDMESSAGE:
+
+                    ListOfMessages.Insert(0, message);
                     break;
 
                 default:
