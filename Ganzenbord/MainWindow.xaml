@@ -69,12 +69,13 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
         </Grid>
 
         <StackPanel Grid.Row="1"
                     Visibility="Visible"
-                    Grid.Column="2"
+                    Grid.Column="3"
                     Background="LightGray">
 
             <Label Content="Pick a theme:" />
@@ -139,32 +140,30 @@
                     <DataTemplate>
 
                         <TextBlock Text="{Binding Name, Mode=TwoWay}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <Button x:Name="BtnSelectAvatar"
-                    Content="SelectAvatar"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Click="BtnSelectAvatar_Click" />
 
-            <Button x:Name="BtnAddPlayer"
-                    Content="Add player!"
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    Click="BtnAddPlayer_Click" />
+                        <Button x:Name="BtnSelectAvatar"
+                                Content="SelectAvatar"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Click="BtnSelectAvatar_Click" />
 
-            <Button Content="Start Game!"
-                    Grid.Row="6"
-                    Grid.Column="1"
-                    Click="BtnStartGame_Click" />
+                        <Button x:Name="BtnAddPlayer"
+                                Content="Add player!"
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                Click="BtnAddPlayer_Click" />
+
+                        <Button Content="Start Game!"
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                Click="BtnStartGame_Click" />
         </Grid>
 
         <Grid x:Name="SidePanelPlaying"
-              Background="Black"
+              Background="#e1ddbf"
               Grid.Row="1"
-              Grid.Column="3"
-              Visibility="Collapsed"
+              Grid.Column="2"
+              Visibility="Visible"
               DataContext="{Binding PlaySidebar}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.7*" />
@@ -194,11 +193,13 @@
                 <TextBox x:Name="DiceRolled"
                          Margin="5"
                          FontSize="25"
+                         Background="Transparent"
                          Text="{Binding DiceRolled, Mode=TwoWay}"></TextBox>
                 <Button Content="Throw dice"
                         x:Name="throwDice"
                         Grid.Row="5"
                         Margin="5"
+                        Background="#4c837a"
                         Click="BtnDice_Click"
                         Height="40" />
             </StackPanel>
@@ -207,16 +208,18 @@
                     x:Name="btnQuit"
                     Grid.Row="0"
                     Margin="10"
-                    Background="Red"
+                    Background="#4c837a"
                     Click="BtnQuit_Click" />
 
             <Image Grid.Row="2"
                    x:Name="ImgAvatar"
+                   Margin="10"
                    Source="{Binding ImagePath, Mode=TwoWay}" />
 
             <StackPanel Grid.Row="3"
                         Orientation="Vertical">
-                <ListBox  ItemsSource="{Binding ListOfMessages, Mode=TwoWay}">
+                <ListBox  ItemsSource="{Binding ListOfMessages, Mode=TwoWay}"
+                          Background="Transparent">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
