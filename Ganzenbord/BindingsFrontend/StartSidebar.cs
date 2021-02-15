@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
@@ -11,6 +12,7 @@ namespace Ganzenbord
 
         private List<Pawn> _pownColor;
         private string _name;
+        private ObservableCollection<Pawn> _pownColor;
 
         public string Name
         {
@@ -25,7 +27,7 @@ namespace Ganzenbord
             }
         }
 
-        public List<Pawn> PawnColor
+        public ObservableCollection<Pawn> PawnColor
         {
             get { return _pownColor; }
             set

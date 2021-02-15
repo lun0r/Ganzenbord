@@ -116,15 +116,16 @@
 
             <ComboBox x:Name="CBSelectTheme"
                       SelectionChanged="select_SelectionChanged">
-                <ComboBoxItem Content="Select theme"
-                              IsSelected="True"
-                              Name="Selecttheme" />
+
                 <ComboBoxItem Content="Carcasonne"
+                              IsSelected="True"
                               Name="Default" />
                 <ComboBoxItem Content="Greyscale"
                               Name="Greyscale" />
                 <ComboBoxItem Content="StarWars"
                               Name="StarWars" />
+                <ComboBoxItem Content="Paint"
+                              Name="NewTheme" />
             </ComboBox>
         </StackPanel>
 

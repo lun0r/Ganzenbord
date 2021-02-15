@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Ganzenbord
@@ -8,13 +9,13 @@ namespace Ganzenbord
         private readonly List<Player> _playerList;
 
         private readonly BoardData _boardData;
-        private List<Pawn> _pawnList;
+        private ObservableCollection<Pawn> _pawnList;
 
         public PlayerFactory()
         {
             _playerList = new List<Player>();
             _boardData = BoardData.GetBoardData();
-            _pawnList = new List<Pawn>();
+            _pawnList = new ObservableCollection<Pawn>();
             MakePawnList();
         }
 
@@ -41,10 +42,6 @@ namespace Ganzenbord
             _playerList.Add(player);
         }
 
-        public void ShowPlayers(Board board)
-        {
-        }
-
         public void AddPlayer(int index, Board board)
         {
             var name = _boardData.StartSidebar.Name;
@@ -52,6 +49,24 @@ namespace Ganzenbord
 
             PawnColor color = _pawnList[index].PawnColor;
 
+            //check for valid input
+            PutPlayerOnBoard(color, board);
+            ClearScreen(index);
+            MakeNewPlayer(name, img, color);
+        }
+
+        private void CheckInputValid()
+        {
+        }
+
+        private void ClearScreen(int index)
+        {
+            //_boardData.StartSidebar.PawnColor.RemoveAt(index);
+            _boardData.StartSidebar.PawnColor[5].Name = "testje";
+        }
+
+        private void PutPlayerOnBoard(PawnColor color, Board board)
+        {
             switch (color)
             {
                 case PawnColor.RED:
@@ -82,9 +97,6 @@ namespace Ganzenbord
                 default:
                     break;
             }
-
-            //  TO FIX: _boardData.StartSidebar.PawnColor.RemoveAt(index);
-            MakeNewPlayer(name, img, color);
         }
     }
 }
