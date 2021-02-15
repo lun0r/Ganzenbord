@@ -45,10 +45,17 @@ namespace Ganzenbord
 
         private void BtnStartGame_Click(object sender, RoutedEventArgs e)
         {
-            SidePanelSetup.Visibility = Visibility.Hidden;
-            SidePanelPlaying.Visibility = Visibility.Visible;
-            _boardData.PlaySidebar.UpdateDisplay(_game.PlayerList[0].Name, BindedProp.CURRENTTURN);
-            _boardData.PlaySidebar.ImagePath = _game.PlayerList[0].AvatarPath;
+            if (_game.PlayerList.Count < 2)
+            {
+                MessageBox.Show("You need at least 2 players");
+            }
+            else
+            {
+                SidePanelSetup.Visibility = Visibility.Hidden;
+                SidePanelPlaying.Visibility = Visibility.Visible;
+                _boardData.PlaySidebar.UpdateDisplay(_game.PlayerList[0].Name, BindedProp.CURRENTTURN);
+                _boardData.PlaySidebar.ImagePath = _game.PlayerList[0].AvatarPath;
+            }
         }
 
         private void BtnQuit_Click(object sender, RoutedEventArgs e)
@@ -73,19 +80,7 @@ namespace Ganzenbord
 
         private void BtnAddPlayer_Click(object sender, RoutedEventArgs e)
         {
-            if (_game.PlayerList.Exists(x => x.Name == _boardData.StartSidebar.Name))
-            {
-                MessageBox.Show("This name was already picked.");
-            }
-            else if (_boardData.StartSidebar.Name == null)
-            {
-                MessageBox.Show("Please enter a name.");
-            }
-            else
-            {
-                int index = DropDwnPickColor.SelectedIndex;
-                _game._playerFactory.AddPlayer(index, _game.Board);
-            }
+            _game._playerFactory.AddPlayer(DropDwnPickColor.SelectedIndex, _game.Board);
         }
 
         private void Select_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
