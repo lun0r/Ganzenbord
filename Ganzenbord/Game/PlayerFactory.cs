@@ -47,22 +47,46 @@ namespace Ganzenbord
             var name = _boardData.StartSidebar.Name;
             var img = _boardData.StartSidebar.AvatarPath;
 
-            PawnColor color = _pawnList[index].PawnColor;
-
             //check for valid input
-            PutPlayerOnBoard(color, board);
-            ClearScreen(index);
-            MakeNewPlayer(name, img, color);
+            bool validInput = CheckInputValid(index);
+
+            if (validInput)
+            {
+                PutPlayerOnBoard(_pawnList[index].PawnColor, board);
+                ClearScreen(index);
+                MakeNewPlayer(name, img, _pawnList[index].PawnColor);
+            }
         }
 
-        private void CheckInputValid()
+        private bool CheckInputValid(int index)
         {
+            if (index < 0)
+            {
+                MessageBox.Show("Select a color");
+                return false;
+            }
+
+            if (_playerList.Exists(x => x.Name == _boardData.StartSidebar.Name))
+            {
+                MessageBox.Show("This name was already picked.");
+                return false;
+            }
+            else if (_boardData.StartSidebar.Name == null)
+            {
+                MessageBox.Show("Please enter a name.");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void ClearScreen(int index)
         {
-            //_boardData.StartSidebar.PawnColor.RemoveAt(index);
-            _boardData.StartSidebar.PawnColor[5].Name = "testje";
+            _boardData.StartSidebar.PawnColor.RemoveAt(index);
+            _boardData.StartSidebar.Name = "";
+            _boardData.StartSidebar.AvatarPath = "/avatar.png";
         }
 
         private void PutPlayerOnBoard(PawnColor color, Board board)
