@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="avatar.png" />
     <None Remove="CARCASONNE\0.jpg" />
     <None Remove="CARCASONNE\63.jpg" />
     <None Remove="CARCASONNE\bridge.png" />
@@ -57,8 +58,7 @@
     <None Remove="GREYSCALE\rightunder.jpg" />
     <None Remove="GREYSCALE\vertical.jpg" />
     <None Remove="GREYSCALE\well.png" />
-    <None Remove="NEW
-		  \0.jpg" />
+    <None Remove="NEW&#xD;&#xA;		  \0.jpg" />
     <None Remove="NEWTHEME\63.jpg" />
     <None Remove="NEWTHEME\bridge.png" />
     <None Remove="NEWTHEME\death.png" />
@@ -104,6 +104,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="avatar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="CARCASONNE\0.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

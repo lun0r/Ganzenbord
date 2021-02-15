@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ganzenbord"
-        d:DataContext="{d:DesignInstance Type=local:BoardData}"
+        d:DataContext="{Binding BoardData}"
         mc:Ignorable="d"
         Title="MainWindow"
         Height="750"
@@ -22,10 +22,13 @@
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="700" />
             <ColumnDefinition Width="100" />
-            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="250" />
 
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
+        <Grid.Resources>
+        </Grid.Resources>
+
         <Border Grid.Row="1"
                 Grid.Column="1" />
         <Grid x:Name="BoardGrid"
@@ -46,6 +49,7 @@
                             Value="GhostWhite" />
                 </Style>
             </Grid.Resources>
+
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -69,11 +73,13 @@
         </Grid>
 
         <StackPanel Grid.Row="1"
+                    Visibility="Visible"
                     Grid.Column="2"
                     Background="LightGray">
 
+            <Label Content="Pick a theme:" />
             <ComboBox x:Name="CBSelectTheme"
-                      SelectionChanged="select_SelectionChanged">
+                      SelectionChanged="Select_SelectionChanged">
 
                 <ComboBoxItem Content="Carcasonne"
                               IsSelected="True"
@@ -83,7 +89,7 @@
                 <ComboBoxItem Content="StarWars"
                               Name="StarWars" />
                 <ComboBoxItem Content="Paint"
-                              Name="NewTheme" />
+                              Name="Paint" />
             </ComboBox>
         </StackPanel>
 
@@ -105,14 +111,14 @@
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition />
-                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="250" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <Image Grid.Row="0"
                    Grid.Column="1"
                    x:Name="ImgAvatarPrev"
-                   Source="{Binding PropStart, Mode=TwoWay}" />
+                   Source="{Binding AvatarPath, Mode=TwoWay}" />
 
             <Label Content="Enter your name below"
                    FontSize="25"
@@ -123,28 +129,6 @@
                      Grid.Row="3"
                      Grid.Column="1"
                      Text="{Binding Name, Mode=TwoWay}" />
-            <!--<ComboBox x:Name="CBPawnSelector"
-                      Grid.Row="4"
-                      Grid.Column="1">
-                <ComboBoxItem Name="CBRed"
-                              Content="Red"
-                              Foreground="Red" />
-                <ComboBoxItem Name="CBGreen"
-                              Content="Green"
-                              Foreground="Green" />
-                <ComboBoxItem Name="CBBlue"
-                              Content="Blue"
-                              Foreground="Blue" />
-                <ComboBoxItem Name="CBPurple"
-                              Content="Purple"
-                              Foreground="Purple" />
-                <ComboBoxItem Name="CBOrange"
-                              Content="Orange"
-                              Foreground="DarkOrange" />
-                <ComboBoxItem Name="CBYellow"
-                              Content="Yellow"
-                              Foreground="Yellow" />
-            </ComboBox>-->
 
             <ComboBox x:Name="DropDwnPickColor"
                       ItemsSource="{Binding PawnColor, Mode=TwoWay}"
@@ -180,61 +164,81 @@
               Background="Black"
               Grid.Row="1"
               Grid.Column="3"
-              Visibility="Hidden"
+              Visibility="Collapsed"
               DataContext="{Binding PlaySidebar}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.5*" />
-                <RowDefinition Height="2.5*" />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="0.7*" />
+                <RowDefinition Height="0.7*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="5*" />
+
+                <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="6*" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label x:Name="CurrentTurn2"
-                   Grid.Row="5"
-                   Grid.Column="1"
-                   Content="{Binding CurrentTurn, Mode=TwoWay}"
-                   Foreground="White">
-            </Label>
 
+                <ColumnDefinition Width="6*" />
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="ListBoxItem">
+                </Style>
+            </Grid.Resources>
             <TextBox x:Name="CurrentTurn"
-                     Grid.Row="2"
-                     Grid.Column="1"
+                     Margin="5"
+                     Grid.Row="1"
                      FontSize="25"
                      Text="{Binding CurrentTurn, Mode=TwoWay}"></TextBox>
-            <TextBox x:Name="DiceRolled"
-                     Grid.Row="3"
-                     FontSize="25"
-                     Grid.Column="1"
-                     Text="{Binding DiceRolled, Mode=TwoWay}"></TextBox>
 
-            <Button Content="Throw dice(test)"
-                    x:Name="throwDice"
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Click="BtnDice_Click" />
-            <Button Content="X"
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="4">
+
+                <TextBox x:Name="DiceRolled"
+                         Margin="5"
+                         FontSize="25"
+                         Text="{Binding DiceRolled, Mode=TwoWay}"></TextBox>
+                <Button Content="Throw dice"
+                        x:Name="throwDice"
+                        Grid.Row="5"
+                        Margin="5"
+                        Click="BtnDice_Click"
+                        Height="40" />
+            </StackPanel>
+
+            <Button Content="Quit Game"
                     x:Name="btnQuit"
                     Grid.Row="0"
-                    Grid.Column="2"
+                    Margin="10"
                     Background="Red"
                     Click="BtnQuit_Click" />
 
-            <Image Grid.Row="1"
-                   Grid.Column="1"
+            <Image Grid.Row="2"
                    x:Name="ImgAvatar"
-                   Source="{Binding VideoPath, Mode=TwoWay}" />
+                   Source="{Binding ImagePath, Mode=TwoWay}" />
 
-            <MediaElement x:Name="mePlayer"
-                          LoadedBehavior="Manual"
-                          Source="{Binding VideoPath, Mode=TwoWay}"
-                          Grid.Row="0"
-                          Grid.Column="1" />
+            <StackPanel Grid.Row="3"
+                        Orientation="Vertical">
+                <ListBox  ItemsSource="{Binding ListOfMessages, Mode=TwoWay}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+
+                                <Border Width="230"
+                                        Margin="2"
+                                        BorderBrush="Gray"
+                                        BorderThickness="0,0,0,5">
+                                    <TextBlock Text="{Binding}"
+                                               Padding="4"
+                                               TextWrapping="Wrap"
+                                               Width="230"
+                                               HorizontalAlignment="Center"
+                                               FontFamily="Arial"
+                                               FontSize="24"
+                                               Foreground="CornflowerBlue" />
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

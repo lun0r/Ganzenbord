@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    internal class Inn : Field
+    public class Inn : Field
     {
         public Image SpecialImage { get; set; }
 
@@ -26,7 +26,7 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            return "You will spend the night in the inn, Skip one turn";
+            return "You will spend the night in the inn, Skip one turn.";
         }
     }
 }

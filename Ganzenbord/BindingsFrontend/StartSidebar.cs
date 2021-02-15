@@ -6,11 +6,14 @@ using System.Windows.Media;
 
 namespace Ganzenbord
 {
-    internal class StartSidebar : INotifyPropertyChanged
+    public class StartSidebar : INotifyPropertyChanged
     {
         private string _avatarPath;
+
+        // private List<Pawn> _pownColor;
         private string _name;
-        private ObservableCollection<Pawn> _pownColor;
+
+        private ObservableCollection<Pawn> _pawnColor;
 
         public string Name
         {
@@ -27,12 +30,12 @@ namespace Ganzenbord
 
         public ObservableCollection<Pawn> PawnColor
         {
-            get { return _pownColor; }
+            get { return _pawnColor; }
             set
             {
-                if (_pownColor != value)
+                if (_pawnColor != value)
                 {
-                    _pownColor = value;
+                    _pawnColor = value;
                     OnPropertyChanged();
                 }
             }
@@ -49,6 +52,11 @@ namespace Ganzenbord
                     OnPropertyChanged();
                 }
             }
+        }
+
+        public StartSidebar()
+        {
+            _avatarPath = "/avatar.png";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

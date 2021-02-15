@@ -1,17 +1,52 @@
-﻿using System.Windows.Controls;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    public class Player
+    public class Player : INotifyPropertyChanged
     {
         public string Name { get; set; }
-        public int CurrentBoardPosition { get; set; }
+        private int _currentBoardPosition;
+
+        public int CurrentBoardPosition
+        {
+            get { return _currentBoardPosition; }
+            set
+            {
+                _currentBoardPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int OldBoardPosition { get; set; }
         public string AvatarPath { get; set; }
-        public int Dice1 { get; set; }
 
-        public int Dice2 { get; set; }
+        private int _dice1;
+
+        public int Dice1
+        {
+            get { return _dice1; }
+            set
+            {
+                _dice1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _dice2;
+
+        public int Dice2
+        {
+            get { return _dice2; }
+            set
+            {
+                _dice2 = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool HasDied { get; set; } = false;
 
         public bool IsReversed { get; set; } = false;
@@ -39,6 +74,13 @@ namespace Ganzenbord
             OldBoardPosition = CurrentBoardPosition;
 
             CurrentBoardPosition = newFieldPos;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

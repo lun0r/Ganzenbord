@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    internal class Death : Field
+    public class Death : Field
     {
         public Image SpecialImage { get; set; }
 

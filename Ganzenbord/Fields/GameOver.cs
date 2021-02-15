@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    internal class GameOver : Field
+    public class GameOver : Field
     {
         public Image SpecialImage { get; set; }
 
@@ -17,6 +17,7 @@ namespace Ganzenbord
         public override int ReturnMove(Player player)
         {
             MessageBox.Show($"{player.Name} won !!!");
+
             return 63;
         }
 

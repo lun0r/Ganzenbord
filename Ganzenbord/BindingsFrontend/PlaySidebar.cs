@@ -1,16 +1,34 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Ganzenbord
 {
-    internal class PlaySidebar : INotifyPropertyChanged
+    public class PlaySidebar : INotifyPropertyChanged
     {
         private string _diceRolled;
 
         private string _videoPath;
 
         private string _currentTurn;
+        private string _fieldMessage;
+        private ObservableCollection<string> _listOfMessages;
+
+        public ObservableCollection<string> ListOfMessages
+        {
+            get { return _listOfMessages; }
+            set
+            {
+                if (_listOfMessages != value)
+                {
+                    _listOfMessages = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public string DiceRolled
         {
@@ -25,7 +43,7 @@ namespace Ganzenbord
             }
         }
 
-        public string VideoPath
+        public string ImagePath
         {
             get { return _videoPath; }
             set
@@ -52,6 +70,26 @@ namespace Ganzenbord
             }
         }
 
+        public string FieldMessage
+        {
+            get { return _fieldMessage; }
+            set
+            {
+                if (_fieldMessage != value)
+                {
+                    _fieldMessage = value;
+
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public PlaySidebar()
+        {
+            ListOfMessages = new ObservableCollection<string>();
+            ImagePath = "/avatar.png";
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -72,11 +110,16 @@ namespace Ganzenbord
                     break;
 
                 case BindedProp.VIDEOPATH:
-                    VideoPath = message;
+                    ImagePath = message;
                     break;
 
                 case BindedProp.CURRENTTURN:
                     CurrentTurn = message;
+                    break;
+
+                case BindedProp.FIELDMESSAGE:
+
+                    ListOfMessages.Insert(0, message);
                     break;
 
                 default:

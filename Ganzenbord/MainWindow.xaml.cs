@@ -3,6 +3,9 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System.Linq;
 
 namespace Ganzenbord
 {
@@ -10,30 +13,34 @@ namespace Ganzenbord
 
     {
         private readonly BoardData _boardData;
-        private Game _game;
+        private readonly Game _game;
         private bool gameOver = false;
 
         public MainWindow()
         {
             InitializeComponent();
             _boardData = BoardData.GetBoardData();
-            DataContext = _boardData;
+            this.DataContext = _boardData;
             _game = new Game(BoardGrid);
         }
 
         private void BtnDice_Click(object sender, RoutedEventArgs e)
         {
+            DiceRolled.Opacity = 1;
+            throwDice.IsEnabled = false;
             if (gameOver)
             {
                 throwDice.IsEnabled = false;
                 _boardData.PlaySidebar.DiceRolled = "Won!!!";
 
-                gameOver = false;
+                // hier een knop "restart", if pushed > gameOver = False & reset alle positions
             }
             else
             {
                 gameOver = _game.Run();
+                throwDice.IsEnabled = true;
             }
+            DiceRolled.Opacity = 0.5;
         }
 
         private void BtnStartGame_Click(object sender, RoutedEventArgs e)
@@ -41,7 +48,7 @@ namespace Ganzenbord
             SidePanelSetup.Visibility = Visibility.Hidden;
             SidePanelPlaying.Visibility = Visibility.Visible;
             _boardData.PlaySidebar.UpdateDisplay(_game.PlayerList[0].Name, BindedProp.CURRENTTURN);
-            _boardData.PlaySidebar.VideoPath = _game.PlayerList[0].AvatarPath;
+            _boardData.PlaySidebar.ImagePath = _game.PlayerList[0].AvatarPath;
         }
 
         private void BtnQuit_Click(object sender, RoutedEventArgs e)
@@ -81,9 +88,9 @@ namespace Ganzenbord
             }
         }
 
-        private void select_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void Select_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (CBSelectTheme.SelectedIndex != 0) // TODO remove check on zero
+            if (_game != null)
             {
                 _game.Board.ChangeTheme(CBSelectTheme.SelectedIndex, _game.PlayerList);
             }
