@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 
 namespace Ganzenbord
 {
@@ -26,7 +25,7 @@ namespace Ganzenbord
 
         public void ChangeTheme(int index, List<Player> playerList)
         {
-            ChosenTheme = (Theme)index;
+            ChosenTheme = (Theme)index + 1;
 
             FillBoardGrid(_grid);
             foreach (var player in playerList)

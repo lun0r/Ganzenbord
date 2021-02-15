@@ -57,6 +57,29 @@
     <None Remove="GREYSCALE\rightunder.jpg" />
     <None Remove="GREYSCALE\vertical.jpg" />
     <None Remove="GREYSCALE\well.png" />
+    <None Remove="NEW
+		  \0.jpg" />
+    <None Remove="NEWTHEME\63.jpg" />
+    <None Remove="NEWTHEME\bridge.png" />
+    <None Remove="NEWTHEME\death.png" />
+    <None Remove="NEWTHEME\goose.png" />
+    <None Remove="NEWTHEME\horizontal.jpg" />
+    <None Remove="NEWTHEME\inn.png" />
+    <None Remove="NEWTHEME\lefttop.jpg" />
+    <None Remove="NEWTHEME\leftunder.jpg" />
+    <None Remove="NEWTHEME\maze.png" />
+    <None Remove="NEWTHEME\pawnblue.png" />
+    <None Remove="NEWTHEME\pawngreen.png" />
+    <None Remove="NEWTHEME\pawnorange.png" />
+    <None Remove="NEWTHEME\pawnpurple.png" />
+    <None Remove="NEWTHEME\pawnred.png" />
+    <None Remove="NEWTHEME\pawnyellow.png" />
+    <None Remove="NEWTHEME\prison.png" />
+    <None Remove="NEWTHEME\righttop.jpg" />
+    <None Remove="NEWTHEME\rightunder.jpg" />
+    <None Remove="NEWTHEME\vertical.jpg" />
+    <None Remove="NEWTHEME\vertical.png" />
+    <None Remove="NEWTHEME\well.png" />
     <None Remove="STARWARS\0.jpg" />
     <None Remove="STARWARS\63.jpg" />
     <None Remove="STARWARS\bridge.png" />
@@ -208,6 +231,72 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="GREYSCALE\well.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\0.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\63.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\bridge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\death.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\goose.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\horizontal.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\inn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\lefttop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\leftunder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\maze.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\pawnblue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\pawngreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\pawnorange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\pawnpurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\pawnred.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\pawnyellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\prison.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\righttop.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\rightunder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\vertical.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\vertical.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="NEWTHEME\well.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="STARWARS\0.jpg">

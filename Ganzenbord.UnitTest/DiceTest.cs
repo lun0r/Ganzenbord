@@ -7,11 +7,13 @@ namespace Ganzenbord.UnitTest
     public class DiceTest
     {
         private Dice _dice;
+        private Field _field;
 
         [SetUp]
         public void Setup()
         {
             _dice = new Dice();
+            _field = new Field(1, 1, 1);
         }
 
         [Test]
