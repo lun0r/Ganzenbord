@@ -1,6 +1,6 @@
 ﻿namespace Ganzenbord
 {
-    internal class Pawn
+    public class Pawn
     {
         public string Name { get; set; }
         public PawnColor PawnColor { get; set; }

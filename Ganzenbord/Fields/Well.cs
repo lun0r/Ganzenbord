@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    internal class Well : Field
+    public class Well : Field
     {
         public Image SpecialImage { get; set; }
         public static Player PlayerInWell { get; set; }

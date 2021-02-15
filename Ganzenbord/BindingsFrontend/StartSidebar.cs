@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace Ganzenbord
 {
-    internal class StartSidebar : INotifyPropertyChanged
+    public class StartSidebar : INotifyPropertyChanged
     {
         private string _avatarPath;
         private string _name;

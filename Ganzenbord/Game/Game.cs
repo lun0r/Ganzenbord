@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace Ganzenbord
 {
-    internal class Game
+    public class Game
     {
         public PlayerFactory _playerFactory;
         private readonly Dice _dice;

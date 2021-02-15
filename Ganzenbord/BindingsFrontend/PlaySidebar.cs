@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace Ganzenbord
 {
-    internal class PlaySidebar : INotifyPropertyChanged
+    public class PlaySidebar : INotifyPropertyChanged
     {
         private string _diceRolled;
 

@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace Ganzenbord
 {
-    internal class PlayerFactory
+    public class PlayerFactory
     {
         private readonly List<Player> _playerList;
 

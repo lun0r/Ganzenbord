@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    internal class GameOver : Field
+    public class GameOver : Field
     {
         public Image SpecialImage { get; set; }
 
