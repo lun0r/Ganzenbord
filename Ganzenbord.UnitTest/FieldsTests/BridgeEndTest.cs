@@ -30,3 +30,4 @@ namespace Ganzenbord.UnitTest
             Assert.That(result == expectedResult);
         }
     }
+}

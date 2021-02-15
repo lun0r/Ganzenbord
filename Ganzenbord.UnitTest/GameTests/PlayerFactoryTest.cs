@@ -20,7 +20,7 @@ namespace Ganzenbord.UnitTest
             //arrange
 
             //act
-            int result;
+            int result = 0;
 
             //assert
             Assert.That(result == expectedResult);
@@ -28,3 +28,4 @@ namespace Ganzenbord.UnitTest
 
 
     }
+}
