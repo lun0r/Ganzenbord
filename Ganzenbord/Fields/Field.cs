@@ -70,14 +70,11 @@ namespace Ganzenbord
 
 /* TODO: Game logica methoden voor: while run / dice methodes(sound effects) /
  * field methoden: update gamepiece, (maybe) scramble board?,
- * >? aanmaken nieuwe player? (hoeveel spelers, naam, avatar ingeven, form voor de mainform? of aan de zijkant?)
- * layout.. rechterluik
- * layout.. map pieces instellen
- * layout.. design map pieces
+
+ * unit testen fixen (michiel)
+ * Interfaces implementeren
+ * design fine-tunen
+ * zijbalk met spelers weergeven
  * Pagina -> spelregels uitleg
- *
- * SpecialField: Field (inheritance) + opbouwen board vanuit Backend.
- * methode execute fixen -> voor elke optie inheriten van executeable methode "Square", functionaliteit zit dan in vakje zelf
- *
- * huidige plaatsen meegeven in venstertje
+
  */
