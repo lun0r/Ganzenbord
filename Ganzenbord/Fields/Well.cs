@@ -30,7 +30,7 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            return $"{CurrentPlayer.Name} fell in the well, wait for the next sucker to escape!";
+            return $"{CurrentPlayer.Name} fell in the well, wait for the next sucker!";
         }
     }
 }

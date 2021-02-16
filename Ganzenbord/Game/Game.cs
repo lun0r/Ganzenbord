@@ -31,11 +31,11 @@ namespace Ganzenbord
             Board = new Board(boardGrid);
 
             makeMoveDelay = new DispatcherTimer();
-            makeMoveDelay.Interval = new TimeSpan(0, 0, 0, 0, 700);
+            makeMoveDelay.Interval = new TimeSpan(0, 0, 0, 1, 2);
             makeMoveDelay.Tick += MakeMove;
 
             makeSpecialMoveDelay = new DispatcherTimer();
-            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 0, 2, 500);
+            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 0, 2, 0);
             makeSpecialMoveDelay.Tick += GooseMove;
         }
 
@@ -57,7 +57,7 @@ namespace Ganzenbord
 
             if (cP.SkipTurn > 0 || cP == Well.PlayerInWell)
             {
-                boardData.PlaySidebar.UpdateDisplay($" {cP.Name} has to skip this turn!", BindedProp.FIELDMESSAGE);
+                boardData.PlaySidebar.UpdateDisplay($"{cP.Name} has to skip this turn. Roll the dice to start!", BindedProp.FIELDMESSAGE);
 
                 cP.SkipTurn--;
 

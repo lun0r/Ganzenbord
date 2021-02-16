@@ -28,7 +28,7 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            return $"{CurrentPlayer.Name} will spend the night, Skip one turn!";
+            return $"{CurrentPlayer.Name} will spend the night. Roll the dice to start your turn!";
         }
     }
 }
