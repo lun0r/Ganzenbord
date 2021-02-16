@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace Ganzenbord
 {
@@ -14,11 +12,14 @@ namespace Ganzenbord
         private readonly Dice _dice;
         private readonly BoardData boardData;
         public Board Board;
-        public static Game game;
-
-        public List<Player> PlayerList { get; set; }
+        private DispatcherTimer makeMoveDelay;
+        private DispatcherTimer makeSpecialMoveDelay;
+        private Player cP;
 
         private int currentPlayer = 0;
+        private bool specialIsHit = true;
+
+        public List<Player> PlayerList { get; set; }
 
         public Game(Grid boardGrid)
         {
@@ -27,12 +28,14 @@ namespace Ganzenbord
             PlayerList = _playerFactory.GetPlayerList();
             _dice = new Dice();
             Board = new Board(boardGrid);
-            game = this;
-        }
 
-        public static Game GetGameInstance()
-        {
-            return game;
+            makeMoveDelay = new DispatcherTimer();
+            makeMoveDelay.Interval = new TimeSpan(0, 0, 2);
+            makeMoveDelay.Tick += MakeMove;
+
+            makeSpecialMoveDelay = new DispatcherTimer();
+            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 2);
+            makeSpecialMoveDelay.Tick += GooseMove;
         }
 
         private void RollDice()
@@ -43,64 +46,76 @@ namespace Ganzenbord
 
         public bool Run()
         {
-            Player CP = PlayerList[currentPlayer];
-            CP.IsReversed = false;
+            cP = PlayerList[currentPlayer];
+            cP.IsReversed = false;
 
             RollDice();
-            string DiceRolled = $"Dice:  {CP.Dice1}  |  {CP.Dice2}";
+            string DiceRolled = $"Dice:  {cP.Dice1}  |  {cP.Dice2}";
 
             boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
 
-            int newFieldPos = CP.CurrentBoardPosition + CP.Dice1 + CP.Dice2;
-
-            if (CP.SkipTurn > 0 || CP == Well.PlayerInWell)
+            if (cP.SkipTurn > 0 || cP == Well.PlayerInWell)
             {
-                boardData.PlaySidebar.UpdateDisplay($"Sorry {CP.Name}, je moet een beurt overslaan!", BindedProp.FIELDMESSAGE);
-                MessageBox.Show($"Sorry {CP.Name}, je moet een beurt overslaan!");
-                CP.SkipTurn--;
+                boardData.PlaySidebar.UpdateDisplay($"Sorry {cP.Name}, je moet een beurt overslaan!", BindedProp.FIELDMESSAGE);
+
+                cP.SkipTurn--;
+
+                currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
+                boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
+
+                boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
             }
             else
             {
-                CP.Move(newFieldPos);
+                int newFieldPos = cP.CurrentBoardPosition + cP.Dice1 + cP.Dice2;
+                cP.Move(newFieldPos);
 
-                boardData.PlaySidebar.UpdateDisplay($"{CP.Name} heeft {CP.Dice1 + CP.Dice2} geworpen, en zet aan", BindedProp.FIELDMESSAGE);
-                MessageBox.Show($"{CP.Name} heeft {CP.Dice1 + CP.Dice2} geworpen, en zet aan");
-                Board.UpdateField(CP);
+                boardData.PlaySidebar.UpdateDisplay($"{cP.Name} heeft {cP.Dice1 + cP.Dice2} geworpen, en zet aan", BindedProp.FIELDMESSAGE);
 
-                MakeMove(CP);
+                makeMoveDelay.Start();
             }
 
-            if (CP.CurrentBoardPosition == 63)
+            if (cP.CurrentBoardPosition == 63)
             {
-                boardData.PlaySidebar.UpdateDisplay($"{CP.Name} has won the game !!!", BindedProp.FIELDMESSAGE);
+                boardData.PlaySidebar.UpdateDisplay($"{cP.Name} has won the game !!!", BindedProp.FIELDMESSAGE);
                 return true;
             }
-
-            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
-            boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
-
-            boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
 
             return false;
         }
 
-        private void MakeMove(Player currentPlayer)
+        public void MakeMove(object sender, EventArgs e)
         {
-            bool specialIsHit;
+            Board.UpdateField(cP);
 
-            do
+            makeMoveDelay.Stop();
+            makeSpecialMoveDelay.Start();
+        }
+
+        public void GooseMove(object sender, EventArgs e)
+        {
+            Field currentField = Board.BoardList.FirstOrDefault(x => x.Number == cP.CurrentBoardPosition);
+            int desiredPosition = currentField.ReturnMove(cP);
+
+            specialIsHit = desiredPosition != cP.CurrentBoardPosition;
+            boardData.PlaySidebar.UpdateDisplay(currentField.ToString(), BindedProp.FIELDMESSAGE);
+
+            cP.Move(desiredPosition);
+            Board.UpdateField(cP);
+
+            if (specialIsHit)
             {
-                Field currentField = Board.BoardList.FirstOrDefault(x => x.Number == currentPlayer.CurrentBoardPosition);
-                int desiredPosition = currentField.ReturnMove(currentPlayer);
+                makeSpecialMoveDelay.Stop();
+                makeSpecialMoveDelay.Start();
+            }
+            else
+            {
+                makeSpecialMoveDelay.Stop();
+            }
+            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
+            boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
 
-                specialIsHit = desiredPosition != currentPlayer.CurrentBoardPosition;
-                boardData.PlaySidebar.UpdateDisplay(currentField.ToString(), BindedProp.FIELDMESSAGE);
-
-                MessageBox.Show(currentField.ToString());
-
-                currentPlayer.Move(desiredPosition);
-                Board.UpdateField(currentPlayer);
-            } while (specialIsHit);
+            boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
         }
     }
 }

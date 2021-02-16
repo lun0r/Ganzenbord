@@ -70,7 +70,7 @@ namespace Ganzenbord
                 MessageBox.Show("This name was already picked.");
                 return false;
             }
-            else if (_boardData.StartSidebar.Name == null)
+            else if (_boardData.StartSidebar.Name == null || _boardData.StartSidebar.Name == "")
             {
                 MessageBox.Show("Please enter a name.");
                 return false;
