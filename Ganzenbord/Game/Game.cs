@@ -113,7 +113,7 @@ namespace Ganzenbord
                 MessageBox.Show($"Congratulations {cP}, you have won!!!");
                 MainWindow.SetGameOver();
             }
-            else
+            if (!specialIsHit)
             {
                 boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
 
