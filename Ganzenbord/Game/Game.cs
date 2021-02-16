@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
@@ -46,12 +47,6 @@ namespace Ganzenbord
 
         public bool Run()
         {
-            //if (CP.CurrentBoardPosition == 63)
-            //{
-            //    boardData.PlaySidebar.UpdateDisplay($"{CP.Name} has won the game !!!", BindedProp.FIELDMESSAGE);
-            //    return true;
-            //}
-
             cP = PlayerList[currentPlayer];
             cP.IsReversed = false;
 
@@ -115,6 +110,7 @@ namespace Ganzenbord
 
             if (desiredPosition == 63)
             {
+                MessageBox.Show($"Congratulations {cP}, you have won!!!");
                 MainWindow.SetGameOver();
             }
             else
