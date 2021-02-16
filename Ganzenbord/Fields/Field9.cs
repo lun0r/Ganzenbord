@@ -19,7 +19,7 @@ namespace Ganzenbord
         {
             if (!player.HasDied)
             {
-                CurrentPlayer = player;
+                CurrentPlayerField9 = player;
                 if (player.Dice1 == 5 || player.Dice1 == 4 && player.Dice2 == 5 || player.Dice2 == 4)
                 {
                     ReturnValue = 26;
