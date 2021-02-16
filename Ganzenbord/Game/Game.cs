@@ -13,8 +13,8 @@ namespace Ganzenbord
         private readonly Dice _dice;
         private readonly BoardData boardData;
         public Board Board;
-        private DispatcherTimer makeMoveDelay;
-        private DispatcherTimer makeSpecialMoveDelay;
+        private readonly DispatcherTimer makeMoveDelay;
+        private readonly DispatcherTimer makeSpecialMoveDelay;
         private Player cP;
 
         private int currentPlayer = 0;
@@ -30,12 +30,16 @@ namespace Ganzenbord
             _dice = new Dice();
             Board = new Board(boardGrid);
 
-            makeMoveDelay = new DispatcherTimer();
-            makeMoveDelay.Interval = new TimeSpan(0, 0, 0, 1, 2);
+            makeMoveDelay = new DispatcherTimer
+            {
+                Interval = new TimeSpan(0, 0, 0, 0, 900)
+            };
             makeMoveDelay.Tick += MakeMove;
 
-            makeSpecialMoveDelay = new DispatcherTimer();
-            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 0, 2, 0);
+            makeSpecialMoveDelay = new DispatcherTimer
+            {
+                Interval = new TimeSpan(0, 0, 0, 0, 900)
+            };
             makeSpecialMoveDelay.Tick += GooseMove;
         }
 
@@ -58,11 +62,11 @@ namespace Ganzenbord
             if (cP.SkipTurn > 0 || cP == Well.PlayerInWell)
             {
                 boardData.PlaySidebar.UpdateDisplay($"{cP.Name} has to skip this turn. Roll the dice to start!", BindedProp.FIELDMESSAGE);
+                int NextPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1;
+                boardData.PlaySidebar.UpdateDisplay(PlayerList[NextPlayer].Name, BindedProp.CURRENTTURN);
 
                 cP.SkipTurn--;
 
-                boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
-                boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
                 MainWindow.EnableDiceButton();
             }
             else
@@ -72,7 +76,7 @@ namespace Ganzenbord
                 makeMoveDelay.Start();
             }
 
-            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
+            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1;
             return false;
         }
 
@@ -110,8 +114,10 @@ namespace Ganzenbord
 
             if (desiredPosition == 63)
             {
-                MessageBox.Show($"Congratulations {cP}, you have won!!!");
+                MessageBox.Show($"Congratulations {cP.Name}, you have won!!!");
                 MainWindow.SetGameOver();
+                makeSpecialMoveDelay.Stop();
+                specialIsHit = false;
             }
             if (!specialIsHit)
             {

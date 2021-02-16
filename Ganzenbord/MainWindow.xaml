@@ -223,7 +223,8 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Grid.Row="3"
-                       Margin="5" />
+                       Margin="5">
+                </Label>
 
                 <TextBox x:Name="TxtPlayerName"
                          Grid.Row="4"

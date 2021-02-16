@@ -13,8 +13,6 @@ namespace Ganzenbord
         public static Theme ChosenTheme { get; set; } = Theme.CARCASONNE;
         public List<Field> BoardList { get; set; }
 
-        //public List<Field> UnitTestList { get; set; }
-
         private readonly Grid _grid;
 
         public Board(Grid boardGrid)

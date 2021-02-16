@@ -8,7 +8,7 @@ namespace Ganzenbord
     {
         private readonly List<Player> _playerList;
         private readonly BoardData _boardData;
-        private ObservableCollection<Pawn> _pawnList;
+        private readonly ObservableCollection<Pawn> _pawnList;
 
         public PlayerFactory()
         {
@@ -46,7 +46,6 @@ namespace Ganzenbord
             var name = _boardData.StartSidebar.Name;
             var img = _boardData.StartSidebar.AvatarPath;
 
-            //check for valid input
             bool validInput = CheckInputValid(index);
 
             if (validInput)

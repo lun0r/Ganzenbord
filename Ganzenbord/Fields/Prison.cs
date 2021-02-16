@@ -29,7 +29,7 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            return $"{CurrentPlayer.Name} was naughty and willspend 3 turns in prison. Roll the dice!";
+            return $"{CurrentPlayer.Name} was naughty and will skip 3 turns.";
         }
     }
 }

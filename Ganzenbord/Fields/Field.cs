@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
@@ -31,7 +32,7 @@ namespace Ganzenbord
             Y = y;
             Number = number;
             Grid.Children.Add(Background);
-            Grid.Children.Add(FieldNumber);
+            Grid.Children.Add(AddDropShadow(FieldNumber));
             Grid.Children.Add(CreateDefault());
         }
 
@@ -65,16 +66,25 @@ namespace Ganzenbord
 
             return PawnWrap;
         }
+
+        private Label AddDropShadow(Label label)
+        {
+            DropShadowEffect myDropShadowEffect = new DropShadowEffect();
+            Color myShadowColor = new Color
+            {
+                ScA = 100,
+                ScB = 0,
+                ScG = 0,
+                ScR = 0
+            };
+            myDropShadowEffect.Color = myShadowColor;
+            myDropShadowEffect.Direction = 320;
+            myDropShadowEffect.ShadowDepth = 3;
+            myDropShadowEffect.BlurRadius = 3;
+            myDropShadowEffect.Opacity = 1;
+            label.Effect = myDropShadowEffect;
+
+            return label;
+        }
     }
 }
-
-/* TODO: Game logica methoden voor: while run / dice methodes(sound effects) /
- * field methoden: update gamepiece, (maybe) scramble board?,
-
- * unit testen fixen (michiel)
- * Interfaces implementeren
- * design fine-tunen
- * zijbalk met spelers weergeven
- * Pagina -> spelregels uitleg
-
- */
