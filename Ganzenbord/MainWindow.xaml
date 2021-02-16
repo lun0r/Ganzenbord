@@ -138,13 +138,11 @@
                     </Button>
                 </StackPanel>
 
-                <!--PlayersDisplay-->
-
                 <StackPanel Orientation="Vertical">
 
-                    <Grid
-                           Width="80">
+                    <Grid Width="100">
                         <ListBox     x:Name="PlayersDisplay"
+                                    Background="#04253a"
                                   ItemsSource="{Binding StartSidebar.PlayersDisplay, Mode=TwoWay}">
 
                             <ListBox.ItemTemplate>
@@ -152,11 +150,12 @@
                                     <Grid Height="80"
                                           Width="80">
                                         <Image Source="{Binding AvatarPath, Mode=TwoWay}"
-                                        Margin="5,3"
+
                                         Height="80"
-                                        HorizontalAlignment="Stretch" />
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch" />
                                         <Image Source="{Binding PawnImagePath, Mode=TwoWay}"
-                                        Margin="5,3"
+
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Bottom"
                                         Height="35" />

@@ -61,8 +61,8 @@ namespace Ganzenbord
 
                 cP.SkipTurn--;
 
-                //boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
-                boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
+                int NextPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1;
+                boardData.PlaySidebar.UpdateDisplay(PlayerList[NextPlayer].Name, BindedProp.CURRENTTURN);
                 _playerFactory.SetNextPlayerFirst();
                 MainWindow.EnableDiceButton();
             }
