@@ -10,11 +10,10 @@ namespace Ganzenbord
     public class PlaySidebar : INotifyPropertyChanged
     {
         private string _diceRolled;
-
         private string _videoPath;
-
         private string _currentTurn;
         private string _fieldMessage;
+
         private ObservableCollection<string> _listOfMessages;
 
         public ObservableCollection<string> ListOfMessages
@@ -77,6 +76,7 @@ namespace Ganzenbord
             {
                 if (_fieldMessage != value)
                 {
+                    ListOfMessages.Insert(0, _fieldMessage);
                     _fieldMessage = value;
 
                     OnPropertyChanged();
@@ -118,8 +118,8 @@ namespace Ganzenbord
                     break;
 
                 case BindedProp.FIELDMESSAGE:
+                    FieldMessage = message;
 
-                    ListOfMessages.Insert(0, message);
                     break;
 
                 default:
