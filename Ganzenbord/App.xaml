@@ -4,5 +4,45 @@
              xmlns:local="clr-namespace:Ganzenbord"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius"
+                    Value="4" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background"
+                    Value="#04253a" />
+            <Setter Property="Foreground"
+                    Value="WhiteSmoke" />
+
+            <Setter Property="Margin"
+                    Value="5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+
+                    <Setter Property="Background"
+                            Value="DarkGoldenrod" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Grid"
+               x:Key="BGGreen">
+            <Setter Property="Background"
+                    Value="#4c837a" />
+        </Style>
     </Application.Resources>
 </Application>
