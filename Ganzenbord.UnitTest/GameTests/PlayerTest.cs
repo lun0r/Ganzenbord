@@ -15,7 +15,7 @@ namespace Ganzenbord.UnitTest
 
         [TestCase(60, 60)]
         [TestCase(65, 61)]
-        public void PlayerMove_WhenCalled_ChangeCurrentPosition(int NewPosition, int expectedResult)
+        public void Move_WhenCalled_ChangeCurrentPosition(int NewPosition, int expectedResult)
         {
             _player.Move(NewPosition);
             int result = _player.CurrentBoardPosition;
@@ -24,7 +24,7 @@ namespace Ganzenbord.UnitTest
         }
 
         [TestCase(75, true)]
-        public void PlayerMove_WhenCalledAndReversed_ChangeCurrentPosition(int NewPosition, bool expectedresult)
+        public void Move_WhenCalledAndReversed_ChangeCurrentPosition(int NewPosition, bool expectedresult)
         {
             _player.IsReversed = true;
             _player.Move(NewPosition);
