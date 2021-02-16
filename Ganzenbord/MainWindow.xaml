@@ -343,10 +343,12 @@
                              Margin="5"
                              FontSize="25"
                              Text="{Binding DiceRolled, Mode=TwoWay}"></TextBox>
-                    <Button Content="Throw dice"
+                    <Button Content="Roll the dice!"
                             x:Name="throwDice"
                             Grid.Row="5"
                             Margin="5"
+                            Foreground="WhiteSmoke"
+                            FontSize="20"
                             Click="BtnDice_Click"
                             Height="40" />
                 </StackPanel>

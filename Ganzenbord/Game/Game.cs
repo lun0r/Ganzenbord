@@ -30,11 +30,11 @@ namespace Ganzenbord
             Board = new Board(boardGrid);
 
             makeMoveDelay = new DispatcherTimer();
-            makeMoveDelay.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            makeMoveDelay.Interval = new TimeSpan(0, 0, 0, 0, 700);
             makeMoveDelay.Tick += MakeMove;
 
             makeSpecialMoveDelay = new DispatcherTimer();
-            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 0, 2, 500);
             makeSpecialMoveDelay.Tick += GooseMove;
         }
 
@@ -62,7 +62,7 @@ namespace Ganzenbord
 
             if (cP.SkipTurn > 0 || cP == Well.PlayerInWell)
             {
-                boardData.PlaySidebar.UpdateDisplay($"Sorry {cP.Name}, je moet een beurt overslaan!", BindedProp.FIELDMESSAGE);
+                boardData.PlaySidebar.UpdateDisplay($" {cP.Name} has to skip this turn!", BindedProp.FIELDMESSAGE);
 
                 cP.SkipTurn--;
 
@@ -72,7 +72,7 @@ namespace Ganzenbord
             }
             else
             {
-                boardData.PlaySidebar.UpdateDisplay($"{cP.Name} heeft {cP.Dice1 + cP.Dice2} geworpen, en zet aan", BindedProp.FIELDMESSAGE);
+                boardData.PlaySidebar.UpdateDisplay($"{cP.Name} Rolled \"{cP.Dice1 + cP.Dice2}\" and moves to position {cP.CurrentBoardPosition + cP.Dice1 + cP.Dice2}.", BindedProp.FIELDMESSAGE);
 
                 makeMoveDelay.Start();
             }
