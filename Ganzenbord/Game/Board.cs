@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
-    public class Board
+    public class Board : IBoard
     {
         public static Theme ChosenTheme { get; set; } = Theme.CARCASONNE;
         public List<Field> BoardList { get; set; }
@@ -21,7 +21,7 @@ namespace Ganzenbord
             _grid = boardGrid;
         }
 
-        public void ChangeTheme(int index, List<Player> playerList)
+        public void ChangeTheme(int index, IEnumerable<Player> playerList)
         {
             ChosenTheme = (Theme)index + 1;
 
@@ -32,7 +32,7 @@ namespace Ganzenbord
             }
         }
 
-        public List<Field> CreateNewBoard()
+        public IEnumerable<Field> CreateNewBoard()
         {
             BoardList = new List<Field>();
             SetSpiral();
@@ -189,7 +189,7 @@ namespace Ganzenbord
 
         private void FillBoardGrid(Grid boardGrid)
         {
-            List<Field> boardList = CreateNewBoard();
+            IEnumerable<Field> boardList = CreateNewBoard();
 
             foreach (var field in boardList)
             {

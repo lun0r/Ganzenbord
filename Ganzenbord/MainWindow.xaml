@@ -138,36 +138,33 @@
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical"
-                            VerticalAlignment="Bottom"
-                            Margin="10"
-                            Width="95"
-                            Grid.Row="1"
-                            Grid.Column="3">
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="3"></Image>
-                    </Button>
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="5,3"></Image>
-                    </Button>
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="5,3"></Image>
-                    </Button>
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="5,3"></Image>
-                    </Button>
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="5,3"></Image>
-                    </Button>
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="5,3"></Image>
-                    </Button>
+                <!--PlayersDisplay-->
+
+                <StackPanel Orientation="Vertical">
+
+                    <Grid
+                           Width="80">
+                        <ListBox     x:Name="PlayersDisplay"
+                                  ItemsSource="{Binding StartSidebar.PlayersDisplay, Mode=TwoWay}">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="80"
+                                          Width="80">
+                                        <Image Source="{Binding AvatarPath, Mode=TwoWay}"
+                                        Margin="5,3"
+                                        Height="80"
+                                        HorizontalAlignment="Stretch" />
+                                        <Image Source="{Binding PawnImagePath, Mode=TwoWay}"
+                                        Margin="5,3"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Height="35" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
                 </StackPanel>
             </StackPanel>
         </Border>

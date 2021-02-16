@@ -17,7 +17,7 @@ namespace Ganzenbord.UnitTest
             _player = new Player("", "", PawnColor.BLUE);
         }
         [Test]
-        public void Method_WhenCalledUpon_ExpectedResult()
+        public void Method_WhenCalled_ExpectedResult()
         {
             //arrange
             _player.CurrentBoardPosition = 42;

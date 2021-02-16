@@ -20,7 +20,7 @@ namespace Ganzenbord
         private int currentPlayer = 0;
         private bool specialIsHit = true;
 
-        public List<Player> PlayerList { get; set; }
+        public IList<Player> PlayerList { get; set; }
 
         public Game(Grid boardGrid)
         {
@@ -67,6 +67,9 @@ namespace Ganzenbord
 
                 cP.SkipTurn--;
 
+                //boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
+                boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
+                _playerFactory.SetNextPlayerFirst();
                 MainWindow.EnableDiceButton();
             }
             else
@@ -121,8 +124,9 @@ namespace Ganzenbord
             }
             if (!specialIsHit)
             {
-                boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
+                //boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
 
+                _playerFactory.SetNextPlayerFirst();
                 boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
             }
         }

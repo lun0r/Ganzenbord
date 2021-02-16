@@ -10,6 +10,8 @@ namespace Ganzenbord
     {
         private string _name;
         private ObservableCollection<Pawn> _pawnColor;
+        private ObservableCollection<Player> _playersDisplay;
+
         private string _avatarPath;
 
         public string Name
@@ -38,6 +40,19 @@ namespace Ganzenbord
             }
         }
 
+        public ObservableCollection<Player> PlayersDisplay
+        {
+            get { return _playersDisplay; }
+            set
+            {
+                if (_playersDisplay != value)
+                {
+                    _playersDisplay = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public string AvatarPath
         {
             get { return _avatarPath; }
@@ -53,6 +68,8 @@ namespace Ganzenbord
 
         public StartSidebar()
         {
+            _playersDisplay = new ObservableCollection<Player>();
+
             _avatarPath = "/avatar.png";
         }
 

@@ -16,17 +16,17 @@ namespace Ganzenbord.UnitTest
             _player = new Player("", "", PawnColor.BLUE);
             _bridgeEnd = new BridgeEnd(1, 1, 1);
         }
-        [TestCase(12,12)]
-        public void Method_WhenCalledUpon_ExpectedResult(int currentBoardPosition, int expectedResult)
+        [Test]
+        public void ReturnMove_WhenCalled_ReturnCurrentPosition()
         {
             //arrange
-            _player.CurrentBoardPosition = currentBoardPosition;
+            _player.CurrentBoardPosition = 12;
 
             //act
             int result = _bridgeEnd.ReturnMove(_player);
 
             //assert
-            Assert.That(expectedResult == result);
+            Assert.That(12 == result);
         }
     }
 }

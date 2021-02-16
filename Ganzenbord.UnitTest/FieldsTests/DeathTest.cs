@@ -18,7 +18,7 @@ namespace Ganzenbord.UnitTest
         }
 
         [Test]
-        public void Method_WhenCalledUpon_ExpectedResult()
+        public void ReturnMove_WhenCalled_GoBackToStart()
         {
             //arrange
             _player.HasDied = false;

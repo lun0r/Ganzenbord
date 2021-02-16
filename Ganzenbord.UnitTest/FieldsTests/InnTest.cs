@@ -19,17 +19,30 @@ namespace Ganzenbord.UnitTest
         }
         [Test]
 
-        public void Method_WhenCalledUpon_ExpectedResult()
+        public void ReturnMove_WhenCalled_ReturnCurrentPosition()
         {
             //arrange
             _player.CurrentBoardPosition = 19;
-            _player.SkipTurn = 0;
 
             //act
             int result = _inn.ReturnMove(_player);
 
             //assert
             Assert.That(19 == result || _player.SkipTurn == 1);
+        }
+
+        [Test]
+        public void ReturnMove_WhenCalled_SkipFirstTurn()
+        {
+            //arrange
+            _player.CurrentBoardPosition = 19;
+            _player.SkipTurn = 0;
+
+            //act
+            _inn.ReturnMove(_player);
+
+            //assert
+            Assert.That(_player.SkipTurn == 1);
         }
     }
 }
