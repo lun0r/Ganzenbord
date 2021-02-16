@@ -7,7 +7,6 @@ namespace Ganzenbord
     public class PlayerFactory
     {
         private readonly List<Player> _playerList;
-
         private readonly BoardData _boardData;
         private ObservableCollection<Pawn> _pawnList;
 
@@ -53,8 +52,8 @@ namespace Ganzenbord
             if (validInput)
             {
                 PutPlayerOnBoard(_pawnList[index].PawnColor, board);
-                ClearScreen(index);
                 MakeNewPlayer(name, img, _pawnList[index].PawnColor);
+                ClearScreen(index);
             }
         }
 
@@ -71,7 +70,7 @@ namespace Ganzenbord
                 MessageBox.Show("This name was already picked.");
                 return false;
             }
-            else if (_boardData.StartSidebar.Name == null)
+            else if (_boardData.StartSidebar.Name == null || _boardData.StartSidebar.Name == "")
             {
                 MessageBox.Show("Please enter a name.");
                 return false;

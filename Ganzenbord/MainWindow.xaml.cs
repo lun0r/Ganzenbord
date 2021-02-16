@@ -15,6 +15,7 @@ namespace Ganzenbord
         private readonly BoardData _boardData;
         private readonly Game _game;
         private bool gameOver = false;
+        private static MainWindow _thisInstance;
 
         public MainWindow()
         {
@@ -22,25 +23,32 @@ namespace Ganzenbord
             _boardData = BoardData.GetBoardData();
             this.DataContext = _boardData;
             _game = new Game(BoardGrid);
+            _thisInstance = this;
+        }
+
+        public static void EnableDiceButton()
+        {
+            _thisInstance.throwDice.IsEnabled = true;
+            _thisInstance.DiceRolled.Clear();
+        }
+
+        public static void SetGameOver()
+        {
+            _thisInstance.gameOver = true;
         }
 
         private void BtnDice_Click(object sender, RoutedEventArgs e)
         {
-            DiceRolled.Opacity = 1;
             throwDice.IsEnabled = false;
             if (gameOver)
             {
-                throwDice.IsEnabled = false;
-                _boardData.PlaySidebar.DiceRolled = "Won!!!";
-
-                // hier een knop "restart", if pushed > gameOver = False & reset alle positions
+                MessageBox.Show("The game is over, press 'RESTART' for a new game!");
+                _thisInstance.throwDice.IsEnabled = false;
             }
             else
             {
-                gameOver = _game.Run();
-                throwDice.IsEnabled = true;
+                _game.Run();
             }
-            DiceRolled.Opacity = 0.5;
         }
 
         private void BtnStartGame_Click(object sender, RoutedEventArgs e)
@@ -52,7 +60,9 @@ namespace Ganzenbord
             else
             {
                 SidePanelSetup.Visibility = Visibility.Hidden;
+                SidePanelSetupBorder.Visibility = Visibility.Hidden;
                 SidePanelPlaying.Visibility = Visibility.Visible;
+                SidePanelPlayingBorder.Visibility = Visibility.Visible;
                 _boardData.PlaySidebar.UpdateDisplay(_game.PlayerList[0].Name, BindedProp.CURRENTTURN);
                 _boardData.PlaySidebar.ImagePath = _game.PlayerList[0].AvatarPath;
             }
