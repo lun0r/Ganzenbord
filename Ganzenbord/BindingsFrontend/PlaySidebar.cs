@@ -62,7 +62,6 @@ namespace Ganzenbord
             {
                 if (_currentTurn != value)
                 {
-                    //werk lijst bij aan de hand van value en/of oude waarde in _currentturn
                     _currentTurn = value;
 
                     OnPropertyChanged();
@@ -98,7 +97,7 @@ namespace Ganzenbord
             ImagePath = "/avatar.png";
         }
 
-        public void UpdateDisplay(string message, BindedProp propToBindTo, Image pawnImage = null)
+        public void UpdateDisplay(string message, BindedProp propToBindTo)
         {
             switch (propToBindTo)
             {
@@ -122,8 +121,6 @@ namespace Ganzenbord
                     FieldMessage = message;
 
                     break;
-   //             case BindedProp.PAWNCOLOR:
-     //               PawnImage = pawnImage;
 
                 default:
                     break;
