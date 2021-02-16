@@ -97,13 +97,6 @@ namespace Ganzenbord
             ImagePath = "/avatar.png";
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public void UpdateDisplay(string message, BindedProp propToBindTo)
         {
             switch (propToBindTo)
@@ -132,6 +125,13 @@ namespace Ganzenbord
                 default:
                     break;
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

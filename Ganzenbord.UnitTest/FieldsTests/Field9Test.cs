@@ -7,9 +7,10 @@ namespace Ganzenbord.UnitTest
     [Apartment(ApartmentState.STA)]
     public class Field9Test
     {
-        Player _player;
-        Field9 _field9;
+        private Player _player;
+        private Field9 _field9;
 
+        [Apartment(ApartmentState.STA)]
         [SetUp]
         public void Setup()
         {

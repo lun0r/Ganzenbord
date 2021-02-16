@@ -7,7 +7,7 @@ namespace Ganzenbord
     public class Field9 : Goose
     {
         private int ReturnValue { get; set; }
-        private bool FirstRound { get; set; } = true;
+        public Player CurrentPlayer { get; set; }
 
         public Field9(int number, int x, int y)
             : base(number, x, y)
@@ -19,6 +19,7 @@ namespace Ganzenbord
         {
             if (!player.HasDied)
             {
+                CurrentPlayer = player;
                 if (player.Dice1 == 5 || player.Dice1 == 4 && player.Dice2 == 5 || player.Dice2 == 4)
                 {
                     ReturnValue = 26;
@@ -31,21 +32,22 @@ namespace Ganzenbord
                 }
                 ReturnValue = 0;
             }
-            FirstRound = false;
+
             return base.ReturnMove(player);
         }
 
         public override string ToString()
         {
-            if (ReturnValue == 0)
+            if (CurrentPlayer.Dice1 + CurrentPlayer.Dice2 == 9)
             {
-                return base.ToString();
+                if (CurrentPlayer.HasDied)
+                {
+                    return $"{CurrentPlayer.Name} died, revived and threw nine. Lucky!";
+                }
+
+                return $"{CurrentPlayer.Name} rolled \"9\" on the first move, you move to {ReturnValue}.";
             }
-            if (FirstRound)
-            {
-                return $"You arrived 9 in first move,  you move to {ReturnValue}.";
-            }
-            return "You died, revived and threw nine. You where born lucky!";
+            return base.ToString();
         }
     }
 }
