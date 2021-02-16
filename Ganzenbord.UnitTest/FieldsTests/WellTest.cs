@@ -20,7 +20,7 @@ namespace Ganzenbord.UnitTest
             _well = new Well(1, 1, 1);
         }
         [Test]
-        public void Method_WhenCalledUpon_ReturnsBoardPosition()
+        public void ReturnMove_WhenCalled_ReturnsBoardPosition()
         {
             //arrange
             _playerInWell.CurrentBoardPosition = 31;
@@ -33,7 +33,7 @@ namespace Ganzenbord.UnitTest
         }
 
         [Test]
-        public void Method_WhenCalledUpon_ChangesSkipTurnTo9999()
+        public void ReturnMove_WhenCalled_ChangesSkipTurnTo9999()
         {
             ////arrange
             //int x = _well.ReturnMove(_playerInWell);
@@ -48,7 +48,7 @@ namespace Ganzenbord.UnitTest
         }
 
         [Test]
-        public void Method_WhenCalledUpon_ReplacesPlayerInWell()
+        public void ReturnMove_WhenCalled_ReplacesPlayerInWell()
         {
             ////arrange
             //int x = _well.ReturnMove(_newPlayer);

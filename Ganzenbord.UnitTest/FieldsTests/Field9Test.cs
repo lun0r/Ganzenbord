@@ -21,7 +21,8 @@ namespace Ganzenbord.UnitTest
         [TestCase(5, 4, false, 26)]
         [TestCase(5, 4, true, 18)]
         [TestCase(1, 1, true, 11)]
-        public void Method_WhenCalledUpon_ExpectedResult(int dice1, int dice2, bool hasDied, int expectedResult)
+
+        public void ReturnMove_WhenCalled_GoToCorrectPosition(int dice1, int dice2, bool hasDied, int expectedResult)
         {
             //arrange
             _player.Dice1 = dice1;
