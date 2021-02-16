@@ -114,19 +114,18 @@ namespace Ganzenbord
                 MainWindow.EnableDiceButton();
             }
 
+            if (!specialIsHit)
+            {
+                _playerFactory.SetNextPlayerFirst();
+                boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
+            }
             if (desiredPosition == 63)
             {
-                MessageBox.Show($"Congratulations {cP.Name}, you have won!!!");
+                //MessageBox.Show($"Congratulations {cP.Name}, you have won!!!");
+                boardData.PlaySidebar.UpdateDisplay($"{cP.Name} won", BindedProp.CURRENTTURN);
                 MainWindow.SetGameOver();
                 makeSpecialMoveDelay.Stop();
                 specialIsHit = false;
-            }
-            if (!specialIsHit)
-            {
-                //boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
-
-                _playerFactory.SetNextPlayerFirst();
-                boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
             }
         }
     }
