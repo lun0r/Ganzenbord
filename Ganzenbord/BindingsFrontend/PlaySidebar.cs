@@ -76,7 +76,11 @@ namespace Ganzenbord
             {
                 if (_fieldMessage != value)
                 {
-                    ListOfMessages.Insert(0, _fieldMessage);
+                    if (_fieldMessage != null)
+                    {
+                        ListOfMessages.Insert(0, _fieldMessage);
+                    }
+
                     _fieldMessage = value;
 
                     OnPropertyChanged();
@@ -87,6 +91,9 @@ namespace Ganzenbord
         public PlaySidebar()
         {
             ListOfMessages = new ObservableCollection<string>();
+
+            string startMessage = $"Roll the dice to start the game!";
+            FieldMessage = startMessage;
             ImagePath = "/avatar.png";
         }
 
