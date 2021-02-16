@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Linq;
 
 namespace Ganzenbord
 {
     public class PlayerFactory
     {
-        private readonly List<Player> _playerList;
+        private readonly List<Player> _playerList; //.Exists() werkt enkel op een list
         private readonly BoardData _boardData;
         private ObservableCollection<Pawn> _pawnList;
 
@@ -30,7 +31,7 @@ namespace Ganzenbord
             _boardData.StartSidebar.PawnColor = _pawnList;
         }
 
-        public List<Player> GetPlayerList()
+        public IList<Player> GetPlayerList()
         {
             return _playerList;
         }
@@ -46,7 +47,6 @@ namespace Ganzenbord
             var name = _boardData.StartSidebar.Name;
             var img = _boardData.StartSidebar.AvatarPath;
 
-            //check for valid input
             bool validInput = CheckInputValid(index);
 
             if (validInput)

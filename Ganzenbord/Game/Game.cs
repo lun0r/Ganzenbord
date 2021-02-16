@@ -12,14 +12,14 @@ namespace Ganzenbord
         private readonly Dice _dice;
         private readonly BoardData boardData;
         public Board Board;
-        private DispatcherTimer makeMoveDelay;
-        private DispatcherTimer makeSpecialMoveDelay;
+        private readonly DispatcherTimer makeMoveDelay;
+        private readonly DispatcherTimer makeSpecialMoveDelay;
         private Player cP;
 
         private int currentPlayer = 0;
         private bool specialIsHit = true;
 
-        public List<Player> PlayerList { get; set; }
+        public IList<Player> PlayerList { get; set; }
 
         public Game(Grid boardGrid)
         {
@@ -46,12 +46,6 @@ namespace Ganzenbord
 
         public bool Run()
         {
-            //if (CP.CurrentBoardPosition == 63)
-            //{
-            //    boardData.PlaySidebar.UpdateDisplay($"{CP.Name} has won the game !!!", BindedProp.FIELDMESSAGE);
-            //    return true;
-            //}
-
             cP = PlayerList[currentPlayer];
             cP.IsReversed = false;
 
