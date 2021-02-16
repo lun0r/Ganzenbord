@@ -1,34 +1,32 @@
 using NUnit.Framework;
 using Ganzenbord;
+using System.Threading;
 
 namespace Ganzenbord.UnitTest
 {
-
+    [Apartment(ApartmentState.STA)]
     public class BridgeTest
     {
-        Player _player;
+        private Player _player;
         Bridge _bridge;
 
         [SetUp]
         public void Setup()
         {
-            _player = new Player("", "", PawnColor.BLUE);
             _bridge = new Bridge(1, 1, 1);
+            _player = new Player("", "", PawnColor.BLUE);
         }
-        [TestCase(1, 1, false, 10, 20)]
-        public void Method_WhenCalledUpon_ExpectedResult(int dice1, int dice2, bool isReversed, int currentBoardPosition, int expectedResult)
+        [Test]
+        public void Method_WhenCalledUpon_ExpectedResult()
         {
             //arrange
-            _player.Dice1 = dice1;
-            _player.Dice2 = dice2;
-            _player.CurrentBoardPosition = currentBoardPosition;
-            _player.IsReversed = isReversed;
+            _player.CurrentBoardPosition = 6;
 
             //act
             int result = _bridge.ReturnMove(_player);
 
             //assert
-            Assert.That(result == expectedResult);
+            Assert.That(12 == result);
         }
     }
 }

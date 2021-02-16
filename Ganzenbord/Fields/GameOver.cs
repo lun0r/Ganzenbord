@@ -17,7 +17,7 @@ namespace Ganzenbord
         public override int ReturnMove(Player player)
         {
             CurrentPlayer = player;
-            MessageBox.Show($"{player.Name} won !!!");
+           
 
             return 63;
         }

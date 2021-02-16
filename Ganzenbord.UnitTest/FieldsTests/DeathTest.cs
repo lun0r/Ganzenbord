@@ -25,6 +25,7 @@ namespace Ganzenbord.UnitTest
 
             //act
             int result = _death.ReturnMove(_player);
+            
 
             //assert
             Assert.That(result == 0 && _player.HasDied == true);
