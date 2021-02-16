@@ -19,7 +19,7 @@ namespace Ganzenbord.UnitTest
         }
         [Test]
 
-        public void Method_WhenCalledUpon_ExpectedResult()
+        public void Method_WhenCalled_ExpectedResult()
         {
             //arrange
             _player.CurrentBoardPosition = 19;
@@ -29,7 +29,21 @@ namespace Ganzenbord.UnitTest
             int result = _prison.ReturnMove(_player);
 
             //assert
-            Assert.That(19 == result || _player.SkipTurn == 3);
+            Assert.That(19 == result);
+        }
+
+        [Test]
+        public void ReturnMove_WhenCalled_SkipThreeTurns()
+        {
+            //arrange
+            _player.CurrentBoardPosition = 19;
+            _player.SkipTurn = 0;
+
+            //act
+            _prison.ReturnMove(_player);
+
+            //assert
+            Assert.That(_player.SkipTurn == 3);
         }
     }
 }

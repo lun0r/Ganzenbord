@@ -17,7 +17,7 @@ namespace Ganzenbord.UnitTest
         }
 
         [Test]
-        public void DiceRoll_WhenCalledUpon_ProvidesRandom()
+        public void DiceRoll_WhenCalled_ProvidesRandom()
         {
             //arrange
 

@@ -17,7 +17,7 @@ namespace Ganzenbord.UnitTest
             _gameOver = new GameOver(1, 1, 1);
         }
         [Test]
-        public void Method_WhenCalledUpon_ExpectedResult()
+        public void ReturnMove_WhenCalled_ReturnField63()
         {
             //arrange
             _player.CurrentBoardPosition = 63;

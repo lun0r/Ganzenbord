@@ -18,7 +18,7 @@ namespace Ganzenbord.UnitTest
         }
         [TestCase(5, 5)]
         [TestCase(7, 7)]
-        public void Method_WhenCalledUpon_ExpectedResult(int currentBoardPosition, int expectedResult)
+        public void ReturnMove_WhenCalled_ReturnCurrentPosition(int currentBoardPosition, int expectedResult)
         {
             //arrange
           

@@ -19,7 +19,7 @@ namespace Ganzenbord.UnitTest
 
         [TestCase(5, 5, false, 10, 20)]
         [TestCase(5, 5, true, 10, 0)]
-        public void ReturnMove_WhenCalledUpon_ProvidesNewPosition(int dice1, int dice2, bool isReversed, int currentBoardPosition, int expectedResult)
+        public void ReturnMove_WhenCalled_GoToNewPosition(int dice1, int dice2, bool isReversed, int currentBoardPosition, int expectedResult)
         {
             //arrange
             _player.Dice1 = dice1;
