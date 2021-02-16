@@ -40,6 +40,7 @@ namespace Ganzenbord
         {
             Player player = new Player(name, avatar, pawn);
             _playerList.Add(player);
+            _boardData.StartSidebar.PlayersDisplay.Add(player);
         }
 
         public void AddPlayer(int index, Board board)
@@ -120,6 +121,14 @@ namespace Ganzenbord
                 default:
                     break;
             }
+        }
+
+        public void SetNextPlayerFirst()
+        {
+            Player currentPlayer = _boardData.StartSidebar.PlayersDisplay[0];
+
+            _boardData.StartSidebar.PlayersDisplay.RemoveAt(0);
+            _boardData.StartSidebar.PlayersDisplay.Add(currentPlayer);
         }
     }
 }

@@ -117,6 +117,7 @@ namespace Ganzenbord
             {
                 boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
 
+                _playerFactory.SetNextPlayerFirst();
                 boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
             }
         }
