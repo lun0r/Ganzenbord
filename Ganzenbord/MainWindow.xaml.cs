@@ -15,6 +15,7 @@ namespace Ganzenbord
         private readonly BoardData _boardData;
         private readonly Game _game;
         private bool gameOver = false;
+        private static MainWindow _thisInstance;
 
         public MainWindow()
         {
@@ -22,6 +23,12 @@ namespace Ganzenbord
             _boardData = BoardData.GetBoardData();
             this.DataContext = _boardData;
             _game = new Game(BoardGrid);
+            _thisInstance = this;
+        }
+
+        public static void EnableDiceButton()
+        {
+            _thisInstance.throwDice.IsEnabled = true;
         }
 
         private void BtnDice_Click(object sender, RoutedEventArgs e)
@@ -38,7 +45,6 @@ namespace Ganzenbord
             else
             {
                 gameOver = _game.Run();
-                throwDice.IsEnabled = true;
             }
             DiceRolled.Opacity = 0.5;
         }

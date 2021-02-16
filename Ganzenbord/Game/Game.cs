@@ -30,11 +30,11 @@ namespace Ganzenbord
             Board = new Board(boardGrid);
 
             makeMoveDelay = new DispatcherTimer();
-            makeMoveDelay.Interval = new TimeSpan(0, 0, 2);
+            makeMoveDelay.Interval = new TimeSpan(0, 0, 0, 1, 500);
             makeMoveDelay.Tick += MakeMove;
 
             makeSpecialMoveDelay = new DispatcherTimer();
-            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 1);
+            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 0, 1, 500);
             makeSpecialMoveDelay.Tick += GooseMove;
         }
 
@@ -62,6 +62,7 @@ namespace Ganzenbord
 
                 boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
                 boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
+                MainWindow.EnableDiceButton();
             }
             else
             {
@@ -104,6 +105,7 @@ namespace Ganzenbord
             else
             {
                 makeSpecialMoveDelay.Stop();
+                MainWindow.EnableDiceButton();
             }
 
             boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
