@@ -1,10 +1,12 @@
 using NUnit.Framework;
 using Ganzenbord;
+using System.Threading;
 
 namespace Ganzenbord.UnitTest
 {
-
+    [Apartment(ApartmentState.STA)]
     public class PrisonTest
+        //nog testen: of na 3 beurten wel verplaatst
     {
         Player _player;
         Prison _prison;
@@ -15,20 +17,33 @@ namespace Ganzenbord.UnitTest
             _player = new Player("", "", PawnColor.BLUE);
             _prison = new Prison(1, 1, 1);
         }
-        [TestCase(1, 1, false, 10, 20)]
-        public void Method_WhenCalledUpon_ExpectedResult(int dice1, int dice2, bool isReversed, int currentBoardPosition, int expectedResult)
+        [Test]
+
+        public void Method_WhenCalled_ExpectedResult()
         {
             //arrange
-            _player.Dice1 = dice1;
-            _player.Dice2 = dice2;
-            _player.CurrentBoardPosition = currentBoardPosition;
-            _player.IsReversed = isReversed;
+            _player.CurrentBoardPosition = 19;
+            _player.SkipTurn = 0;
 
             //act
             int result = _prison.ReturnMove(_player);
 
             //assert
-            Assert.That(result == expectedResult);
+            Assert.That(19 == result);
+        }
+
+        [Test]
+        public void ReturnMove_WhenCalled_SkipThreeTurns()
+        {
+            //arrange
+            _player.CurrentBoardPosition = 19;
+            _player.SkipTurn = 0;
+
+            //act
+            _prison.ReturnMove(_player);
+
+            //assert
+            Assert.That(_player.SkipTurn == 3);
         }
     }
 }

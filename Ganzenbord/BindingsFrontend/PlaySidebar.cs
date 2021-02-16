@@ -10,11 +10,10 @@ namespace Ganzenbord
     public class PlaySidebar : INotifyPropertyChanged
     {
         private string _diceRolled;
-
         private string _videoPath;
-
         private string _currentTurn;
         private string _fieldMessage;
+
         private ObservableCollection<string> _listOfMessages;
 
         public ObservableCollection<string> ListOfMessages
@@ -63,6 +62,7 @@ namespace Ganzenbord
             {
                 if (_currentTurn != value)
                 {
+                    //werk lijst bij aan de hand van value en/of oude waarde in _currentturn
                     _currentTurn = value;
 
                     OnPropertyChanged();
@@ -77,6 +77,11 @@ namespace Ganzenbord
             {
                 if (_fieldMessage != value)
                 {
+                    if (_fieldMessage != null)
+                    {
+                        ListOfMessages.Insert(0, _fieldMessage);
+                    }
+
                     _fieldMessage = value;
 
                     OnPropertyChanged();
@@ -87,17 +92,13 @@ namespace Ganzenbord
         public PlaySidebar()
         {
             ListOfMessages = new ObservableCollection<string>();
+
+            string startMessage = $"Roll the dice to start the game!";
+            FieldMessage = startMessage;
             ImagePath = "/avatar.png";
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public void UpdateDisplay(string message, BindedProp propToBindTo)
+        public void UpdateDisplay(string message, BindedProp propToBindTo, Image pawnImage = null)
         {
             switch (propToBindTo)
             {
@@ -118,13 +119,22 @@ namespace Ganzenbord
                     break;
 
                 case BindedProp.FIELDMESSAGE:
+                    FieldMessage = message;
 
-                    ListOfMessages.Insert(0, message);
                     break;
+   //             case BindedProp.PAWNCOLOR:
+     //               PawnImage = pawnImage;
 
                 default:
                     break;
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

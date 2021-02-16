@@ -7,6 +7,7 @@ namespace Ganzenbord
     public class Prison : Field
     {
         public Image SpecialImage { get; set; }
+        public Player CurrentPlayer { get; set; }
 
         public Prison(int number, int x, int y)
             : base(number, x, y)
@@ -20,6 +21,7 @@ namespace Ganzenbord
 
         public override int ReturnMove(Player player)
         {
+            CurrentPlayer = player;
             player.SkipTurn = 3;
 
             return player.CurrentBoardPosition;
@@ -27,7 +29,7 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            return $"You are naughty, spend three turns in prison";
+            return $"{CurrentPlayer.Name} was naughty and willspend 3 turns in prison. Roll the dice!";
         }
     }
 }

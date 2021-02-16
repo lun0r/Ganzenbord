@@ -30,6 +30,7 @@ namespace Ganzenbord
         {
             _thisInstance.throwDice.IsEnabled = true;
             _thisInstance.DiceRolled.Clear();
+            _thisInstance.DiceRolled.Clear();
         }
 
         public static void SetGameOver()

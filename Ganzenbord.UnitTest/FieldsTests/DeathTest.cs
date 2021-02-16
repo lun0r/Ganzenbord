@@ -1,12 +1,14 @@
 using NUnit.Framework;
 using Ganzenbord;
+using System.Threading;
 
 namespace Ganzenbord.UnitTest
 {
+    [Apartment(ApartmentState.STA)]
     public class DeathTest
     {
-        Player _player;
-        Death _death;
+        private Player _player;
+        private Death _death;
 
         [SetUp]
         public void Setup()
@@ -14,20 +16,19 @@ namespace Ganzenbord.UnitTest
             _player = new Player("", "", PawnColor.BLUE);
             _death = new Death(1, 1, 1);
         }
-        [TestCase(1, 1, false, 10, 20)]
-        public void Method_WhenCalledUpon_ExpectedResult(int dice1, int dice2, bool isReversed, int currentBoardPosition, int expectedResult)
+
+        [Test]
+        public void ReturnMove_WhenCalled_GoBackToStart()
         {
             //arrange
-            _player.Dice1 = dice1;
-            _player.Dice2 = dice2;
-            _player.CurrentBoardPosition = currentBoardPosition;
-            _player.IsReversed = isReversed;
+            _player.HasDied = false;
 
             //act
             int result = _death.ReturnMove(_player);
+            
 
             //assert
-            Assert.That(result == expectedResult);
+            Assert.That(result == 0 && _player.HasDied == true);
         }
     }
 }

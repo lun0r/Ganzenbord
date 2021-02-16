@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 
 namespace Ganzenbord
 {
     public class GameOver : Field
     {
         public Image SpecialImage { get; set; }
+        public Player CurrentPlayer { get; set; }
 
         public GameOver(int number, int x, int y)
             : base(number, x, y)
@@ -16,14 +16,15 @@ namespace Ganzenbord
 
         public override int ReturnMove(Player player)
         {
-            MessageBox.Show($"{player.Name} won !!!");
+            CurrentPlayer = player;
+           
 
             return 63;
         }
 
         public override string ToString()
         {
-            return "well done!";
+            return $"Well done {CurrentPlayer.Name}! You Rock!";
         }
     }
 }
