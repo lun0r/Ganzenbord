@@ -30,11 +30,11 @@ namespace Ganzenbord
             Board = new Board(boardGrid);
 
             makeMoveDelay = new DispatcherTimer();
-            makeMoveDelay.Interval = new TimeSpan(0, 0, 0, 1, 500);
+            makeMoveDelay.Interval = new TimeSpan(0, 0, 0, 0, 500);
             makeMoveDelay.Tick += MakeMove;
 
             makeSpecialMoveDelay = new DispatcherTimer();
-            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 0, 1, 500);
+            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 0, 0, 500);
             makeSpecialMoveDelay.Tick += GooseMove;
         }
 
@@ -46,6 +46,12 @@ namespace Ganzenbord
 
         public bool Run()
         {
+            //if (CP.CurrentBoardPosition == 63)
+            //{
+            //    boardData.PlaySidebar.UpdateDisplay($"{CP.Name} has won the game !!!", BindedProp.FIELDMESSAGE);
+            //    return true;
+            //}
+
             cP = PlayerList[currentPlayer];
             cP.IsReversed = false;
 
@@ -93,7 +99,6 @@ namespace Ganzenbord
             specialIsHit = desiredPosition != cP.CurrentBoardPosition;
 
             boardData.PlaySidebar.UpdateDisplay(currentField.ToString(), BindedProp.FIELDMESSAGE);
-
             cP.Move(desiredPosition);
             Board.UpdateField(cP);
 
@@ -108,9 +113,16 @@ namespace Ganzenbord
                 MainWindow.EnableDiceButton();
             }
 
-            boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
+            if (desiredPosition == 63)
+            {
+                MainWindow.SetGameOver();
+            }
+            else
+            {
+                boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
 
-            boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
+                boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
+            }
         }
     }
 }

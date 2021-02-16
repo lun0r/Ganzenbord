@@ -170,11 +170,12 @@
             </StackPanel>
         </Border>
 
-        <Border Background="#4c837a"
-                BorderBrush="#4c837a"
-                Grid.Row="1"
-                Grid.Column="2"
-                CornerRadius="10">
+        <Border  x:Name="SidePanelSetupBorder"
+                 Background="#4c837a"
+                 BorderBrush="#4c837a"
+                 Grid.Row="1"
+                 Grid.Column="2"
+                 CornerRadius="10">
             <Grid x:Name="SidePanelSetup"
                   Margin="10"
                   Background="#4c837a"
@@ -260,12 +261,13 @@
             </Grid>
         </Border>
 
-        <Border Background="#4c837a"
-                BorderBrush="#4c837a"
-                Grid.Row="1"
-                Grid.Column="2"
-                Visibility="Collapsed"
-                CornerRadius="10">
+        <Border  x:Name="SidePanelPlayingBorder"
+                 Background="#4c837a"
+                 BorderBrush="#4c837a"
+                 Grid.Row="1"
+                 Grid.Column="2"
+                 Visibility="Collapsed"
+                 CornerRadius="10">
 
             <Grid x:Name="SidePanelPlaying"
                   Margin="10"
