@@ -70,11 +70,6 @@ namespace Ganzenbord
                 makeMoveDelay.Start();
             }
 
-            if (cP.CurrentBoardPosition == 63)
-            {
-                boardData.PlaySidebar.UpdateDisplay($"{cP.Name} has won the game !!!", BindedProp.FIELDMESSAGE);
-                return true;
-            }
             currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
             return false;
         }
