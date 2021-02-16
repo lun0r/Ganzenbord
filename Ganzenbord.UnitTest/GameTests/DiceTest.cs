@@ -1,19 +1,19 @@
 ﻿using NUnit.Framework;
 using Ganzenbord;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Ganzenbord.UnitTest
 {
+    [Apartment(ApartmentState.STA)]
     public class DiceTest
     {
         private Dice _dice;
-        private Field _field;
 
         [SetUp]
         public void Setup()
         {
             _dice = new Dice();
-            _field = new Field(1, 1, 1);
         }
 
         [Test]

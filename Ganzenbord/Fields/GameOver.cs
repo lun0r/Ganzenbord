@@ -8,6 +8,7 @@ namespace Ganzenbord
     public class GameOver : Field
     {
         public Image SpecialImage { get; set; }
+        private Player Champion { get; set; }
 
         public GameOver(int number, int x, int y)
             : base(number, x, y)
@@ -16,14 +17,14 @@ namespace Ganzenbord
 
         public override int ReturnMove(Player player)
         {
-            MessageBox.Show($"{player.Name} won !!!");
+            Champion = player;
 
             return 63;
         }
 
         public override string ToString()
         {
-            return "well done!";
+            return $"{Champion}: Well done !";
         }
     }
 }

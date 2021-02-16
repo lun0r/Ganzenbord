@@ -31,7 +31,7 @@ namespace Ganzenbord.UnitTest
             int result = _goose.ReturnMove(_player);
 
             //assert
-            Assert.AreEqual(result, expectedResult); // result rechts, links verwacht.
+            Assert.AreEqual(expectedResult, result); // result rechts, links verwacht.
         }
     }
 }
