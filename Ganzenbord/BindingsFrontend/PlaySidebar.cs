@@ -62,6 +62,7 @@ namespace Ganzenbord
             {
                 if (_currentTurn != value)
                 {
+                    //werk lijst bij aan de hand van value en/of oude waarde in _currentturn
                     _currentTurn = value;
 
                     OnPropertyChanged();
@@ -97,14 +98,7 @@ namespace Ganzenbord
             ImagePath = "/avatar.png";
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public void UpdateDisplay(string message, BindedProp propToBindTo)
+        public void UpdateDisplay(string message, BindedProp propToBindTo, Image pawnImage = null)
         {
             switch (propToBindTo)
             {
@@ -128,10 +122,19 @@ namespace Ganzenbord
                     FieldMessage = message;
 
                     break;
+   //             case BindedProp.PAWNCOLOR:
+     //               PawnImage = pawnImage;
 
                 default:
                     break;
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

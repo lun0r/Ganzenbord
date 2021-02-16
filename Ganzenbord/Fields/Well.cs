@@ -8,6 +8,7 @@ namespace Ganzenbord
     {
         public Image SpecialImage { get; set; }
         public static Player PlayerInWell { get; set; }
+        public Player CurrentPlayer { get; set; }
 
         public Well(int number, int x, int y)
             : base(number, x, y)
@@ -21,6 +22,7 @@ namespace Ganzenbord
 
         public override int ReturnMove(Player player)
         {
+            CurrentPlayer = player;
             PlayerInWell = player;
 
             return player.CurrentBoardPosition;
@@ -28,7 +30,7 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            return $"You fell in the well, wait for the next sucker to use as a ladder and escape";
+            return $"{CurrentPlayer.Name} fell in the well, wait for the next sucker!";
         }
     }
 }

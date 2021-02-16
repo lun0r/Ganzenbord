@@ -26,7 +26,7 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            return "You arrived at the other side of the bridge.";
+            return base.ToString();
         }
     }
 }

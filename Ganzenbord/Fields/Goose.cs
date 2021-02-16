@@ -8,6 +8,7 @@ namespace Ganzenbord
     {
         public int GooseFollowsXPositions { get; set; }
         public Image SpecialImage { get; set; }
+        public Player CurrentPlayer { get; set; }
 
         public Goose(int number, int x, int y)
             : base(number, x, y)
@@ -21,6 +22,7 @@ namespace Ganzenbord
 
         public override int ReturnMove(Player player)
         {
+            CurrentPlayer = player;
             GooseFollowsXPositions = player.Dice1 + player.Dice2;
 
             if (player.IsReversed)
@@ -35,7 +37,7 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            return $"I am a Goose, i will hunt you for {GooseFollowsXPositions} tiles.";
+            return $"{CurrentPlayer.Name} hit a Goose, he will chase you for {GooseFollowsXPositions} tiles!";
         }
     }
 }

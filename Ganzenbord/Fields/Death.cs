@@ -7,6 +7,7 @@ namespace Ganzenbord
     public class Death : Field
     {
         public Image SpecialImage { get; set; }
+        public Player CurrentPlayer { get; set; }
 
         public Death(int number, int x, int y)
             : base(number, x, y)
@@ -20,13 +21,14 @@ namespace Ganzenbord
 
         public override int ReturnMove(Player player)
         {
+            CurrentPlayer = player;
             player.HasDied = true;
             return 0;
         }
 
         public override string ToString()
         {
-            return "You died, go back to start.";
+            return $"{CurrentPlayer.Name} has died. Roll the dice to start your turn! ";
         }
     }
 }

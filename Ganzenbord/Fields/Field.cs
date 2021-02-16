@@ -42,7 +42,7 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            return "You arrived on a normal field, pass dice to next player.";
+            return "You may roll the dice to start your turn.";
         }
 
         public WrapPanel CreateDefault()
