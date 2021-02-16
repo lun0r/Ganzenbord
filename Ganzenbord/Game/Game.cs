@@ -34,7 +34,7 @@ namespace Ganzenbord
             makeMoveDelay.Tick += MakeMove;
 
             makeSpecialMoveDelay = new DispatcherTimer();
-            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 2);
+            makeSpecialMoveDelay.Interval = new TimeSpan(0, 0, 1);
             makeSpecialMoveDelay.Tick += GooseMove;
         }
 
@@ -60,16 +60,11 @@ namespace Ganzenbord
 
                 cP.SkipTurn--;
 
-                currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
                 boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
-
                 boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
             }
             else
             {
-                int newFieldPos = cP.CurrentBoardPosition + cP.Dice1 + cP.Dice2;
-                cP.Move(newFieldPos);
-
                 boardData.PlaySidebar.UpdateDisplay($"{cP.Name} heeft {cP.Dice1 + cP.Dice2} geworpen, en zet aan", BindedProp.FIELDMESSAGE);
 
                 makeMoveDelay.Start();
@@ -80,12 +75,14 @@ namespace Ganzenbord
                 boardData.PlaySidebar.UpdateDisplay($"{cP.Name} has won the game !!!", BindedProp.FIELDMESSAGE);
                 return true;
             }
-
+            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
             return false;
         }
 
         public void MakeMove(object sender, EventArgs e)
         {
+            int newFieldPos = cP.CurrentBoardPosition + cP.Dice1 + cP.Dice2;
+            cP.Move(newFieldPos);
             Board.UpdateField(cP);
 
             makeMoveDelay.Stop();
@@ -98,6 +95,7 @@ namespace Ganzenbord
             int desiredPosition = currentField.ReturnMove(cP);
 
             specialIsHit = desiredPosition != cP.CurrentBoardPosition;
+
             boardData.PlaySidebar.UpdateDisplay(currentField.ToString(), BindedProp.FIELDMESSAGE);
 
             cP.Move(desiredPosition);
@@ -112,7 +110,7 @@ namespace Ganzenbord
             {
                 makeSpecialMoveDelay.Stop();
             }
-            currentPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1; // select next player in list
+
             boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
 
             boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
