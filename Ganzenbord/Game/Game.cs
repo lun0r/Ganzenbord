@@ -62,6 +62,7 @@ namespace Ganzenbord
             if (cP.SkipTurn > 0 || cP == Well.PlayerInWell)
             {
                 boardData.PlaySidebar.UpdateDisplay($"{cP.Name} has to skip this turn. Roll the dice to start!", BindedProp.FIELDMESSAGE);
+
                 int NextPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1;
                 boardData.PlaySidebar.UpdateDisplay(PlayerList[NextPlayer].Name, BindedProp.CURRENTTURN);
 
