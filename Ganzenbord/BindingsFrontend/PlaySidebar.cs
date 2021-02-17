@@ -74,17 +74,14 @@ namespace Ganzenbord
             get { return _fieldMessage; }
             set
             {
-                if (_fieldMessage != value)
+                if (_fieldMessage != null)
                 {
-                    if (_fieldMessage != null)
-                    {
-                        ListOfMessages.Insert(0, _fieldMessage);
-                    }
-
-                    _fieldMessage = value;
-
-                    OnPropertyChanged();
+                    ListOfMessages.Insert(0, _fieldMessage);
                 }
+
+                _fieldMessage = value;
+
+                OnPropertyChanged();
             }
         }
 

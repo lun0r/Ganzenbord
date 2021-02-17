@@ -322,7 +322,7 @@
                   DataContext="{Binding PlaySidebar}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="45" />
 
                     <RowDefinition Height="3*" />
                     <RowDefinition Height="5*" />
@@ -353,7 +353,7 @@
                         Margin="5"
                         Padding="5"
                         BorderBrush="#04253a">
-                    <Label FontSize="30"
+                    <Label FontSize="27"
                            Foreground="WhiteSmoke">
                         <TextBlock Text="{Binding FieldMessage, Mode=TwoWay}"
                                    TextWrapping="WrapWithOverflow"
@@ -362,11 +362,16 @@
                     </Label>
                 </Border>
 
-                <TextBox x:Name="DiceRolled"
-                         Margin="5"
-                         FontSize="25"
-                         Grid.Row="1"
-                         Text="{Binding DiceRolled, Mode=TwoWay}"></TextBox>
+                <Label Content="{Binding DiceRolled, Mode=TwoWay}"
+                       x:Name="DiceRolled"
+                       FontSize="30"
+                       Foreground="WhiteSmoke"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Grid.Row="1"
+                       Margin="0">
+                </Label>
 
                 <Button Content="Roll the dice!"
                         x:Name="throwDice"

@@ -32,13 +32,13 @@ namespace Ganzenbord
 
             makeMoveDelay = new DispatcherTimer
             {
-                Interval = new TimeSpan(0, 0, 0, 0, 900)
+                Interval = new TimeSpan(0, 0, 0, 0, 500)
             };
             makeMoveDelay.Tick += MakeMove;
 
             makeSpecialMoveDelay = new DispatcherTimer
             {
-                Interval = new TimeSpan(0, 0, 0, 0, 900)
+                Interval = new TimeSpan(0, 0, 0, 2, 500)
             };
             makeSpecialMoveDelay.Tick += GooseMove;
         }
@@ -55,7 +55,7 @@ namespace Ganzenbord
             cP.IsReversed = false;
 
             RollDice();
-            string DiceRolled = $"Dice:  {cP.Dice1}  |  {cP.Dice2}";
+            string DiceRolled = $"{cP.Dice1}    |    {cP.Dice2}";
 
             boardData.PlaySidebar.UpdateDisplay(DiceRolled, BindedProp.DICEROLLED);
 
@@ -121,18 +121,10 @@ namespace Ganzenbord
             }
             if (desiredPosition == 63)
             {
-                //MessageBox.Show($"Congratulations {cP.Name}, you have won!!!");
                 boardData.PlaySidebar.UpdateDisplay($"{cP.Name} won", BindedProp.CURRENTTURN);
                 MainWindow.SetGameOver();
                 makeSpecialMoveDelay.Stop();
                 specialIsHit = false;
-            }
-            if (!specialIsHit)
-            {
-                boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
-
-                _playerFactory.SetNextPlayerFirst();
-                boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
             }
         }
     }

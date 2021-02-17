@@ -45,7 +45,7 @@ namespace Ganzenbord
                     return $"{CurrentPlayerField9.Name} died, revived and threw nine. Lucky!";
                 }
 
-                return $"{CurrentPlayerField9.Name} rolled \"9\" on the first move, you move to {ReturnValue}.";
+                return $"{CurrentPlayerField9.Name} rolled \"9\" on the 1st turn, go to {ReturnValue}.";
             }
             return $"{CurrentPlayerField9.Name} hit a Goose, he will chase you for {GooseFollowsXPositions} tiles!";
         }
