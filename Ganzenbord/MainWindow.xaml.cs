@@ -29,8 +29,8 @@ namespace Ganzenbord
         public static void EnableDiceButton()
         {
             _thisInstance.throwDice.IsEnabled = true;
-            _thisInstance.DiceRolled.Clear();
-            _thisInstance.DiceRolled.Clear();
+
+            _thisInstance.DiceRolled.Content = "Roll the Dice";
         }
 
         public static void SetGameOver()
