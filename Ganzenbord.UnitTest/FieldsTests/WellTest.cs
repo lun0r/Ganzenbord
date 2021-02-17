@@ -6,11 +6,10 @@ namespace Ganzenbord.UnitTest
 {
     [Apartment(ApartmentState.STA)]
     public class WellTest
-        //nog testen: of als iemand bijkomt, hij wel verplaatst?
     {
-        Player _playerInWell;
-        Player _newPlayer;
-        Well _well;
+        private Player _playerInWell;
+        private Player _newPlayer;
+        private Well _well;
 
         [SetUp]
         public void Setup()
@@ -19,6 +18,7 @@ namespace Ganzenbord.UnitTest
             _newPlayer = new Player("", "", PawnColor.GREEN);
             _well = new Well(1, 1, 1);
         }
+
         [Test]
         public void ReturnMove_WhenCalled_ReturnsBoardPosition()
         {
@@ -43,7 +43,7 @@ namespace Ganzenbord.UnitTest
 
             ////assert
             //Assert.That(_playerInWell == result);
-            Assert.That(true);
+            Assert.That(false);
             //can't run test because PlayerInWell is a static property
         }
 
@@ -58,7 +58,7 @@ namespace Ganzenbord.UnitTest
 
             ////assert
             //Assert.That(_newPlayer == result);
-            Assert.That(true);
+            Assert.That(false);
             //can't run test because PlayerInWell is a static property
         }
     }

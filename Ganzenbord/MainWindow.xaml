@@ -232,6 +232,7 @@
                            FontSize="40"
                            Margin="0"
                            Padding="0"
+                           FontWeight="Bold"
                            Foreground="WhiteSmoke"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center" />
@@ -253,6 +254,7 @@
                 <TextBox x:Name="TxtPlayerName"
                          Grid.Row="4"
                          TextAlignment="Center"
+                         VerticalAlignment="Center"
                          FontSize="30"
                          Background="WhiteSmoke"
                          Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -343,6 +345,7 @@
                     <Label Content="{Binding CurrentTurn, Mode=TwoWay}"
                            FontSize="36"
                            Margin="0,0,0,0"
+                           FontWeight="Bold"
                            Padding="0,0,0,0"
                            Foreground="WhiteSmoke"
                            VerticalAlignment="Top"

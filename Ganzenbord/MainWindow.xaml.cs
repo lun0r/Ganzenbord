@@ -1,11 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using System.Linq;
 
 namespace Ganzenbord
 {
