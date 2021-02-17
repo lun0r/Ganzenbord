@@ -62,6 +62,7 @@ namespace Ganzenbord
             if (cP.SkipTurn > 0 || cP == Well.PlayerInWell)
             {
                 boardData.PlaySidebar.UpdateDisplay($"{cP.Name} has to skip this turn. Roll the dice to start!", BindedProp.FIELDMESSAGE);
+
                 int NextPlayer = currentPlayer == PlayerList.Count - 1 ? 0 : currentPlayer + 1;
                 boardData.PlaySidebar.UpdateDisplay(PlayerList[NextPlayer].Name, BindedProp.CURRENTTURN);
 
@@ -113,9 +114,15 @@ namespace Ganzenbord
                 MainWindow.EnableDiceButton();
             }
 
+            if (!specialIsHit)
+            {
+                _playerFactory.SetNextPlayerFirst();
+                boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
+            }
             if (desiredPosition == 63)
             {
-                MessageBox.Show($"Congratulations {cP.Name}, you have won!!!");
+                //MessageBox.Show($"Congratulations {cP.Name}, you have won!!!");
+                boardData.PlaySidebar.UpdateDisplay($"{cP.Name} won", BindedProp.CURRENTTURN);
                 MainWindow.SetGameOver();
                 makeSpecialMoveDelay.Stop();
                 specialIsHit = false;
