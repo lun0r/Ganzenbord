@@ -27,10 +27,5 @@ namespace Ganzenbord.UnitTest
             //assert
             Assert.That(result <= 6 || result >= 1);
         }
-
-
     }
-
-
-
 }
