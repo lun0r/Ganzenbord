@@ -16,12 +16,12 @@
           Background="#e1ddbf">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="700" />
+            <RowDefinition Height="750" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="700" />
+            <ColumnDefinition Width="750" />
             <ColumnDefinition Width="250" />
             <ColumnDefinition Width="125" />
             <ColumnDefinition Width="1*" />
@@ -140,31 +140,58 @@
 
                 <!--PlayersDisplay-->
 
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Top">
 
-                    <Grid
-                           Width="100">
-                        <ListBox  x:Name="PlayersDisplay"
-                                  Background="#04253a"
-                                  ItemsSource="{Binding StartSidebar.PlayersDisplay, Mode=TwoWay}">
+                    <Border Width="3"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Height="105"
+                            CornerRadius="0"
+                            BorderBrush="#04253a"
+                            BorderThickness="3,0,0,0"></Border>
+                    <StackPanel Orientation="Vertical"
+                                VerticalAlignment="Top">
+                        <Border Width="90"
+                                Height="0"
+                                Margin="12,0"></Border>
+                        <ListBox     x:Name="PlayersDisplay"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                     Background="Transparent"
+                                     HorizontalAlignment="Center"
+                                     BorderBrush="Transparent"
+                                     ItemsSource="{Binding StartSidebar.PlayersDisplay, Mode=TwoWay}">
 
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Height="80"
-                                          Width="80">
-                                        <Image Source="{Binding AvatarPath, Mode=TwoWay}"
-                                        Height="80"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch" />
-                                        <Image Source="{Binding PawnImagePath, Mode=TwoWay}"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Bottom"
-                                        Height="35" />
-                                    </Grid>
+                                    <Border BorderBrush="#04253a"
+                                            Background="#04253a"
+                                            Padding="3">
+                                        <Grid Height="90"
+                                              Width="90">
+                                            <Image Source="{Binding AvatarPath, Mode=TwoWay}"
+                                                   Margin="5,3"
+                                                   Stretch="Fill"
+                                                   HorizontalAlignment="Stretch" />
+                                            <Image Source="{Binding PawnImagePath, Mode=TwoWay}"
+                                                   Margin="5,3"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Bottom"
+                                                   Height="35" />
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                    </Grid>
+                    </StackPanel>
+                    <Border Width="3"
+                            Height="105"
+                            CornerRadius="0"
+                            BorderBrush="#04253a"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            BorderThickness="3,0,0,0"></Border>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -310,15 +337,15 @@
                     </Style>
                 </Grid.Resources>
                 <Border Background="#04253a"
-                        Padding="0"
+                        Padding="0,0,0,0"
                         Grid.Row="0"
                         Margin="5">
                     <Label Content="{Binding CurrentTurn, Mode=TwoWay}"
-                           FontSize="40"
-                           Margin="0"
-                           Padding="0"
+                           FontSize="36"
+                           Margin="0,0,0,0"
+                           Padding="0,0,0,0"
                            Foreground="WhiteSmoke"
-                           VerticalAlignment="Center"
+                           VerticalAlignment="Top"
                            HorizontalAlignment="Center" />
                 </Border>
                 <Border Grid.Row="2"
@@ -363,7 +390,7 @@
                                     <Grid Margin="5">
 
                                         <Border Width="200"
-                                                Padding="1"
+                                                Padding="0"
                                                 BorderBrush="#04253a"
                                                 BorderThickness="0,3,0,3"
                                                 HorizontalAlignment="Center">

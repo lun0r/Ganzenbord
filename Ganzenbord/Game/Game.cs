@@ -127,6 +127,13 @@ namespace Ganzenbord
                 makeSpecialMoveDelay.Stop();
                 specialIsHit = false;
             }
+            if (!specialIsHit)
+            {
+                boardData.PlaySidebar.ImagePath = PlayerList[currentPlayer].AvatarPath;
+
+                _playerFactory.SetNextPlayerFirst();
+                boardData.PlaySidebar.UpdateDisplay(PlayerList[currentPlayer].Name, BindedProp.CURRENTTURN);
+            }
         }
     }
 }
