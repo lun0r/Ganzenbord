@@ -24,12 +24,14 @@ namespace Ganzenbord
         public int SkipTurn { get; set; }
 
         public PawnColor Pawn { get; set; }
+        public string PawnImagePath { get; set; }
 
         public Player(string name, string avatarPath, PawnColor pawn)
         {
             Name = name;
             AvatarPath = avatarPath;
             Pawn = pawn;
+            PawnImagePath = "/CARCASONNE/" + "pawn" + pawn.ToString().ToLower() + ".png";
         }
 
         public void Move(int newFieldPos)

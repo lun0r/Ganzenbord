@@ -7,7 +7,7 @@ namespace Ganzenbord
     public class Field9 : Goose
     {
         private int ReturnValue { get; set; }
-        public Player CurrentPlayer { get; set; }
+        public Player CurrentPlayerField9 { get; set; }
 
         public Field9(int number, int x, int y)
             : base(number, x, y)
@@ -19,7 +19,7 @@ namespace Ganzenbord
         {
             if (!player.HasDied)
             {
-                CurrentPlayer = player;
+                CurrentPlayerField9 = player;
                 if (player.Dice1 == 5 || player.Dice1 == 4 && player.Dice2 == 5 || player.Dice2 == 4)
                 {
                     ReturnValue = 26;
@@ -38,16 +38,16 @@ namespace Ganzenbord
 
         public override string ToString()
         {
-            if (CurrentPlayer.Dice1 + CurrentPlayer.Dice2 == 9)
+            if (CurrentPlayerField9.Dice1 + CurrentPlayerField9.Dice2 == 9)
             {
-                if (CurrentPlayer.HasDied)
+                if (CurrentPlayerField9.HasDied)
                 {
-                    return $"{CurrentPlayer.Name} died, revived and threw nine. Lucky!";
+                    return $"{CurrentPlayerField9.Name} died, revived and threw nine. Lucky!";
                 }
 
-                return $"{CurrentPlayer.Name} rolled \"9\" on the first move, you move to {ReturnValue}.";
+                return $"{CurrentPlayerField9.Name} rolled \"9\" on the 1st turn, go to {ReturnValue}.";
             }
-            return base.ToString();
+            return $"{CurrentPlayerField9.Name} hit a Goose, he will chase you for {GooseFollowsXPositions} tiles!";
         }
     }
 }

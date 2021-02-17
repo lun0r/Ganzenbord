@@ -16,12 +16,12 @@
           Background="#e1ddbf">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="700" />
+            <RowDefinition Height="750" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="700" />
+            <ColumnDefinition Width="750" />
             <ColumnDefinition Width="250" />
             <ColumnDefinition Width="125" />
             <ColumnDefinition Width="1*" />
@@ -138,36 +138,60 @@
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical"
-                            VerticalAlignment="Bottom"
-                            Margin="10"
-                            Width="95"
-                            Grid.Row="1"
-                            Grid.Column="3">
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="3"></Image>
-                    </Button>
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="5,3"></Image>
-                    </Button>
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="5,3"></Image>
-                    </Button>
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="5,3"></Image>
-                    </Button>
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="5,3"></Image>
-                    </Button>
-                    <Button>
-                        <Image Source="/avatar.png"
-                               Margin="5,3"></Image>
-                    </Button>
+                <!--PlayersDisplay-->
+
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Top">
+
+                    <Border Width="3"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Height="105"
+                            CornerRadius="0"
+                            BorderBrush="#04253a"
+                            BorderThickness="3,0,0,0"></Border>
+                    <StackPanel Orientation="Vertical"
+                                VerticalAlignment="Top">
+                        <Border Width="90"
+                                Height="0"
+                                Margin="12,0"></Border>
+                        <ListBox     x:Name="PlayersDisplay"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                     Background="Transparent"
+                                     HorizontalAlignment="Center"
+                                     BorderBrush="Transparent"
+                                     ItemsSource="{Binding StartSidebar.PlayersDisplay, Mode=TwoWay}">
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#04253a"
+                                            Background="#04253a"
+                                            Padding="3">
+                                        <Grid Height="90"
+                                              Width="90">
+                                            <Image Source="{Binding AvatarPath, Mode=TwoWay}"
+                                                   Margin="5,3"
+                                                   Stretch="Fill"
+                                                   HorizontalAlignment="Stretch" />
+                                            <Image Source="{Binding PawnImagePath, Mode=TwoWay}"
+                                                   Margin="5,3"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Bottom"
+                                                   Height="35" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <Border Width="3"
+                            Height="105"
+                            CornerRadius="0"
+                            BorderBrush="#04253a"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Left"
+                            BorderThickness="3,0,0,0"></Border>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -223,7 +247,8 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Grid.Row="3"
-                       Margin="5" />
+                       Margin="5">
+                </Label>
 
                 <TextBox x:Name="TxtPlayerName"
                          Grid.Row="4"
@@ -297,7 +322,7 @@
                   DataContext="{Binding PlaySidebar}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="45" />
 
                     <RowDefinition Height="3*" />
                     <RowDefinition Height="5*" />
@@ -312,15 +337,15 @@
                     </Style>
                 </Grid.Resources>
                 <Border Background="#04253a"
-                        Padding="0"
+                        Padding="0,0,0,0"
                         Grid.Row="0"
                         Margin="5">
                     <Label Content="{Binding CurrentTurn, Mode=TwoWay}"
-                           FontSize="40"
-                           Margin="0"
-                           Padding="0"
+                           FontSize="36"
+                           Margin="0,0,0,0"
+                           Padding="0,0,0,0"
                            Foreground="WhiteSmoke"
-                           VerticalAlignment="Center"
+                           VerticalAlignment="Top"
                            HorizontalAlignment="Center" />
                 </Border>
                 <Border Grid.Row="2"
@@ -328,7 +353,7 @@
                         Margin="5"
                         Padding="5"
                         BorderBrush="#04253a">
-                    <Label FontSize="30"
+                    <Label FontSize="27"
                            Foreground="WhiteSmoke">
                         <TextBlock Text="{Binding FieldMessage, Mode=TwoWay}"
                                    TextWrapping="WrapWithOverflow"
@@ -337,11 +362,16 @@
                     </Label>
                 </Border>
 
-                <TextBox x:Name="DiceRolled"
-                         Margin="5"
-                         FontSize="25"
-                         Grid.Row="1"
-                         Text="{Binding DiceRolled, Mode=TwoWay}"></TextBox>
+                <Label Content="{Binding DiceRolled, Mode=TwoWay}"
+                       x:Name="DiceRolled"
+                       FontSize="30"
+                       Foreground="WhiteSmoke"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Grid.Row="1"
+                       Margin="0">
+                </Label>
 
                 <Button Content="Roll the dice!"
                         x:Name="throwDice"
@@ -365,7 +395,7 @@
                                     <Grid Margin="5">
 
                                         <Border Width="200"
-                                                Padding="1"
+                                                Padding="0"
                                                 BorderBrush="#04253a"
                                                 BorderThickness="0,3,0,3"
                                                 HorizontalAlignment="Center">
